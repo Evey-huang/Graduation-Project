@@ -9,3 +9,15 @@ npm-debug.log
 
 # Nuxt generate
 dist
+
+# Bower
+bower_components/
+
+# IDE/Editor data
+.idea
+.vscode
+
+# System
+.DS_Store
+thumbs.db
+!.gitkeep
