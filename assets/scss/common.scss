@@ -1,0 +1,40 @@
+html, body {
+    background: #fff;
+    font-size: $font-size-base;
+    font-family: -apple-system, CenturyGothic, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", "微软雅黑", sans-serif;
+}
+.container{
+    width: $container-width;
+    margin: 0 auto;
+}
+h3, p, ul {
+    margin: 0;
+    padding: 0
+}
+h3 {
+    color: $font-color-title;
+    font-size: $font-size-headline;
+    text-align: center;
+}
+h4 {
+    font-size: $font-size-subtitle;
+    font-weight: normal;
+}
+ul li {
+    list-style: none;
+}
+a, a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+    color: $font-color-secondary;
+}
+.banner {
+    color: $font-color-secondary;
+    background: $headBg;
+}
+@media screen and (max-width: 1200px) {
+    .container{
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+

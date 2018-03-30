@@ -1,0 +1,24 @@
+// container
+$container-width: 1200px;
+$header-height: 60px;
+$mobile-container-width: 100%;
+
+//font 
+$font-size-weak: 14px; // 用于较弱的文字
+$font-size-base: 16px; // 用于阅读文字、导航栏分类、网页底部栏小标题及分类
+$font-size-subtitle: 22px; // 用于段落小标题
+$font-size-headline: 36px; // 用于大标题、突出信息
+
+// 主色调
+$primary: #1A88FA;      // 主色调 用于部分按钮、强调icon、字体hover
+
+// 辅助色
+$footerBg: #3D3E49; // 用于底部栏背景色
+$headBg:#202431; // 用于部分banner背景色、顶部导航背景色
+$body-bg: #F6F7FA; // 用于背景色、产品功能展开模块
+
+// 文字颜色
+$font-color-secondary: #fff; // 用于导航栏选中分类、部分按钮文字、底部突出信息及小标题
+$font-color-primary: #7F7F7F; // 用于阅读文字
+$font-color-title: #3E464C; // 用于大标题、段落小标题
+$font-color-aide: #B6B7BB; // 用于导航栏未选中分类、网页底部栏分类
