@@ -210,6 +210,10 @@ export default {
         top: 100px;
         font-size: 24px;
       }
+      .banner-bg {
+        width: auto;
+        margin-left: -78%;
+      }
     }
   }
 }
