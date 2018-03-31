@@ -104,7 +104,15 @@
               </div>
           </div>
           <div class="aside">
-              <div class="aside-article"></div>
+              <div class="aside-article">
+                  <!-- <p class="title"><span></span></p>
+                  <ul>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                  </ul> -->
+              </div>
+              <div class="aside-tag"></div>
           </div>
       </div>
   </div>
@@ -159,7 +167,12 @@ export default {
             }
         }
         .aside {
+            .aside-article {
 
+            }
+            .aside-tag {
+
+            }
         }
     }
   }
