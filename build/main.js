@@ -92,7 +92,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
 var app = __WEBPACK_IMPORTED_MODULE_1_express___default()();
 
 app.use(__WEBPACK_IMPORTED_MODULE_2_body_parser___default.a.urlencoded({ extended: true }));
@@ -108,7 +107,7 @@ app.set('port', port);
 app.use('/api', __WEBPACK_IMPORTED_MODULE_4__api__["a" /* default */]);
 
 // Import and Set Nuxt.js options
-var config = __webpack_require__(7);
+var config = __webpack_require__(8);
 config.dev = !("development" === 'production');
 
 // Init Nuxt.js
@@ -162,8 +161,12 @@ module.exports = require("cookie-parser");
 var router = Object(__WEBPACK_IMPORTED_MODULE_0_express__["Router"])();
 
 router.get('/', function (req, res, next) {
+  res.status(200);
   res.json({
-    success: true
+    name: '天元云api',
+    version: '1.0.0',
+    author: '天元云团队',
+    powered: ['Vue', 'Nuxt.js', 'MongoDB', 'Nodejs', 'Express', 'Nginx']
   });
 });
 
@@ -179,6 +182,9 @@ router.use(__WEBPACK_IMPORTED_MODULE_1__users__["a" /* default */]);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jsonwebtoken__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jsonwebtoken___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jsonwebtoken__);
+
 
 
 var router = Object(__WEBPACK_IMPORTED_MODULE_0_express__["Router"])();
@@ -195,9 +201,13 @@ router.post('/login', function (req, res, next) {
     return item.username === username;
   });
   if (user.password === password) {
+    var token = __WEBPACK_IMPORTED_MODULE_1_jsonwebtoken___default.a.sign({ username: username, password: password }, 'sky-cloud', { expiresIn: '3h' });
     res.json({
       success: true,
-      message: '登录成功'
+      message: '登录成功',
+      data: {
+        token: token
+      }
     });
   } else {
     res.status(400);
@@ -214,6 +224,12 @@ router.post('/login', function (req, res, next) {
 /* 7 */
 /***/ (function(module, exports) {
 
+module.exports = require("jsonwebtoken");
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports = {
   /*
   ** Headers of the page
@@ -224,6 +240,7 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   css: [{ src: '~/assets/scss/app.scss', lang: 'scss' }],
+  dev: "development" !== 'production',
   /*
   ** Customize the progress bar color
   */
@@ -250,6 +267,8 @@ module.exports = {
     },
 
     publicPath: '/statics/'
+    // 将重复引用的(第三方/自有)模块添加到vendor.bundle.js
+    // vendor: ['axios']
   },
   router: {
     linkActiveClass: 'active-link', // 链接激活时使用的 CSS 类名

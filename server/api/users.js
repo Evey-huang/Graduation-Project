@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import jwt from 'jsonwebtoken'
 
 const router = Router()
 
@@ -11,9 +12,13 @@ router.post('/login', function (req, res, next) {
   let { username, password } = req.body
   let user = users.find(item => item.username === username)
   if (user.password === password) {
+    let token = jwt.sign({ username, password }, 'sky-cloud', { expiresIn: '3h' })
     res.json({
       success: true,
-      message: '登录成功'
+      message: '登录成功',
+      data: {
+        token
+      }
     })
   } else {
     res.status(400)

@@ -16,6 +16,7 @@ module.exports = {
   css: [
     { src: '~/assets/scss/app.scss', lang: 'scss' }
   ],
+  dev: (process.env.NODE_ENV !== 'production'),
   /*
   ** Customize the progress bar color
   */
@@ -37,7 +38,10 @@ module.exports = {
         })
       }
     },
-    publicPath: '/statics/'
+    publicPath: '/statics/',
+
+    // 将重复引用的(第三方/自有)模块添加到vendor.bundle.js
+    vendor: ['axios']
   },
   router: {
     linkActiveClass: 'active-link', // 链接激活时使用的 CSS 类名

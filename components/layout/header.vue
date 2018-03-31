@@ -43,12 +43,14 @@ export default {
     }
   },
   mounted () {
-    document.querySelector('body').addEventListener('click', e => {
-      let el = document.querySelector('.dropdown-menu')
-      if (!e.target.contains(el)) {
-        this.isShow = false
-      }
-    })
+    if (!process.server) {
+      document.querySelector('body').addEventListener('click', e => {
+        let el = document.querySelector('.dropdown-menu')
+        if (!e.target.contains(el)) {
+          this.isShow = false
+        }
+      })
+    }
   }
 }
 </script>
