@@ -32,21 +32,21 @@
 <script>
 export default {
   name: 'layout-header',
-  data() {
+  data () {
     return {
       isShow: false
     }
   },
   methods: {
-    showMenu: function() {
+    showMenu () {
       this.isShow = !this.isShow
     }
   },
-  mounted (){
-   document.querySelector("body").addEventListener("click",(e) => {
-      var el  = document.querySelector(".dropdown-menu");
-      if(!e.target.contains(el)){
-        this.isShow = false;
+  mounted () {
+    document.querySelector('body').addEventListener('click', e => {
+      let el = document.querySelector('.dropdown-menu')
+      if (!e.target.contains(el)) {
+        this.isShow = false
       }
     })
   }
@@ -75,7 +75,7 @@ export default {
         color: $font-color-secondary;
         .item {
           display: inline-block;
-          margin-right: 88px; 
+          margin-right: 88px;
           line-height: $header-height;
           .link {
             display: block;
@@ -191,7 +191,7 @@ export default {
           li {
             padding: 7px 25px 0 25px;
             &:hover {
-              background: #1A88FA; 
+              background: #1A88FA;
             }
             a {
               color: #000;

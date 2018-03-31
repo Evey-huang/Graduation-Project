@@ -167,19 +167,17 @@
   </div>
 </template>
 
-
 <script>
-
 export default {
   layout: 'default',
-  data() {
+  data () {
     return {
       index: 0
     }
   },
   methods: {
-    tabIndex(index){
-      this.index = index;
+    tabIndex (index) {
+      this.index = index
     }
   }
 }
@@ -260,7 +258,7 @@ export default {
             color: $font-color-title;
             font-size: 22px;
           }
-        } 
+        }
       }
     }
     #advantage {
@@ -297,7 +295,7 @@ export default {
             color: #A5A9AE;
             padding: 0 24px;
           }
-          
+
         }
 
       }

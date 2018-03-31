@@ -14,7 +14,7 @@ module.exports = {
     ]
   },
   css: [
-    { src: '~/assets/scss/app.scss', lang: 'scss'}
+    { src: '~/assets/scss/app.scss', lang: 'scss' }
   ],
   /*
   ** Customize the progress bar color
@@ -36,10 +36,14 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
+    },
+    publicPath: '/statics/'
   },
   router: {
     linkActiveClass: 'active-link', // 链接激活时使用的 CSS 类名
-    linkExactActiveClass: 'exact-active-link', // 当链接被精确匹配的时候应该激活的 class
-  }
+    linkExactActiveClass: 'exact-active-link' // 当链接被精确匹配的时候应该激活的 class
+  },
+  plugins: [
+    { src: '~/plugins/axios.js' }
+  ]
 }
