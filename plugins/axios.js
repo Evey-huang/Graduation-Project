@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-const service = axios.create({
-  baseURL: 'http://localhost:8080/api'
-})
+const options = {
+  baseURL: process.env.baseUrl
+}
 
 // 拦截器
 axios.interceptors.request.use(config => {
@@ -19,4 +19,4 @@ axios.interceptors.response.use(response => {
 })
 
 Vue.prototype.$http = axios
-export default service
+export default axios.create(options)
