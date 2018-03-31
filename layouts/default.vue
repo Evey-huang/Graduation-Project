@@ -19,10 +19,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import '~assets/scss/normalize.scss';
-@import '~assets/scss/variables.scss';
-
-</style>
-
