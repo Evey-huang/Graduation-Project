@@ -3,8 +3,7 @@
     <div class="banner">
       <div class="container">
         <div class="index-banner-slogan">
-          <p>集中、统一、高效、规范的网络自</p>
-          <p>动化平台</p>
+          <p>集中、统一、高效、规范的网络<br class="line">自动化平台</p>
         </div>
         <img class="banner-bg" src="~/assets/images/ic_banner.png" />
       </div>
@@ -15,7 +14,7 @@
         <div class="advantage-item1">
           <div class="img">
             <img src="~/assets/images/ic_youshi_pic01.png"/>
-          </div>  
+          </div>
           <div class="info">
             <h4>统一管理</h4>
             <span>支持多个主流厂商网络设备</span>
@@ -31,12 +30,12 @@
           </div>
           <div class="img">
             <img src="~/assets/images/ic_youshi_pic02.png"/>
-          </div>  
+          </div>
         </div>
         <div class="advantage-item3">
           <div class="img">
             <img src="~/assets/images/ic_youshi_pic03.png"/>
-          </div>  
+          </div>
           <div class="info">
             <h4>场景应用</h4>
             <span>防火墙策略开通</span>
@@ -68,14 +67,13 @@ export default {
 
 .banner {
   .container {
-    display: flex;
-    align-items: center;
     .banner-bg {
       display: block;
       width: 100%;
     }
     .index-banner-slogan {
       position: absolute;
+      top: 120px;
       font-size: 36px;
       margin-left: 40px;
       line-height: 1.5;
@@ -85,10 +83,9 @@ export default {
 .container {
   .video {
     background: $body-bg;
-    width: 960px;
+    max-width: 960px;
     height: 540px;
-    margin: 0 auto;
-    margin-top: 100px;
+    margin: 100px auto 0 auto;
   }
   .our-advantage {
     margin-top: 120px;
@@ -108,7 +105,6 @@ export default {
       span {
         display: block;
         line-height: 1.5;
-        vertical-align: middle;
         padding-top: 13px;
         @include opacity(0.5);
         &:before {
@@ -178,88 +174,156 @@ export default {
     }
   }
 }
-@media screen and (max-width: 900px) {
+
+@media (max-width: 1024px) {
+  .banner {
+    .container {
+      .index-banner-slogan {
+        font-size: 28px;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
   .banner {
     .container {
       .banner-bg {
+        width: auto;
         height: 360px;
+        margin-left: -10%;
       }
       .index-banner-slogan {
-        font-size: 30px;
+        font-size: 24px;
       }
     }
   }
 }
-@media screen and (max-width: 767px) {
+@media (max-width: 640px) {
   .banner {
     .container {
-      .index-banner-slogan {
-        font-size: 26px;
+      .banner-bg {
+        width: auto;
+        height: 320px;
+        margin-left: -15%;
       }
-    }
-  }
-  .contact-sale {
-    .container {
-      h3 {
-        font-size: 30px;
+      .index-banner-slogan {
+        top: 100px;
+        font-size: 24px;
       }
     }
   }
 }
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
   .banner {
     .container {
+      .banner-bg {
+        width: auto;
+        height: 280px;
+        margin-left: -40%;
+      }
       .index-banner-slogan {
-        font-size: 22px;
-      }
-    }
-  }
-  .container {
-    h3 {
-      font-size: 26px;
-    }
-    .advantage-item1, .advantage-item2, .advantage-item3 {
-      .img {
-        img {
-          width: 150px;
-          height: 150px;
-        }
-      }
-      .info {
-        h4 {
-          font-size: 20px;
-        }
-        span {
-          font-size: 14px;
-        }
-      }
-    }
-    .advantage-item1, .advantage-item3 {
-      .img {
-        margin-left: 20px;
-      }
-      .info {
-        margin-left: 25px;
-      }
-    }
-    .advantage-item2 {
-      .img {
-        margin-left: 25px;
-      }
-      .info {
-        margin-left: 20px;
-      }
-    }
-  }
-  .contact-sale {
-    .container {
-      h3 {
-        font-size: 26px;
-      }
-      a {
-        font-size: 14px;
+        font-size: 18px;
       }
     }
   }
 }
+@media (max-width: 320px) {
+  .banner {
+    .container {
+      .banner-bg {
+        width: auto;
+        height: 240px;
+        margin-left: -70%;
+      }
+      .index-banner-slogan {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+// @media screen and (max-width: 900px) {
+//   .banner {
+//     .container {
+//       .banner-bg {
+//         height: 360px;
+//       }
+//       .index-banner-slogan {
+//         font-size: 30px;
+//       }
+//     }
+//   }
+// }
+// @media screen and (max-width: 767px) {
+//   .banner {
+//     .container {
+//       .index-banner-slogan {
+//         font-size: 26px;
+//       }
+//     }
+//   }
+//   .contact-sale {
+//     .container {
+//       h3 {
+//         font-size: 30px;
+//       }
+//     }
+//   }
+// }
+// @media screen and (max-width: 480px) {
+//   .banner {
+//     .container {
+//       .index-banner-slogan {
+//         font-size: 22px;
+//       }
+//     }
+//   }
+//   .container {
+//     h3 {
+//       font-size: 26px;
+//     }
+//     .advantage-item1, .advantage-item2, .advantage-item3 {
+//       .img {
+//         img {
+//           width: 150px;
+//           height: 150px;
+//         }
+//       }
+//       .info {
+//         h4 {
+//           font-size: 20px;
+//         }
+//         span {
+//           font-size: 14px;
+//         }
+//       }
+//     }
+//     .advantage-item1, .advantage-item3 {
+//       .img {
+//         margin-left: 20px;
+//       }
+//       .info {
+//         margin-left: 25px;
+//       }
+//     }
+//     .advantage-item2 {
+//       .img {
+//         margin-left: 25px;
+//       }
+//       .info {
+//         margin-left: 20px;
+//       }
+//     }
+//   }
+//   .contact-sale {
+//     .container {
+//       h3 {
+//         font-size: 26px;
+//       }
+//       a {
+//         font-size: 14px;
+//       }
+//     }
+//   }
+// }
 </style>

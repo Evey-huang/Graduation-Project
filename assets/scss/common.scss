@@ -2,9 +2,10 @@ html, body {
     background: #fff;
     font-size: $font-size-base;
     font-family: -apple-system, CenturyGothic, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", "微软雅黑", sans-serif;
+    overflow-x: hidden;
 }
 .container{
-    width: $container-width;
+    max-width: $container-width;
     margin: 0 auto;
 }
 h3, p, ul {
@@ -31,10 +32,29 @@ a, a:hover, a:visited, a:link, a:active {
     color: $font-color-secondary;
     background: $headBg;
 }
-@media screen and (max-width: 1200px) {
-    .container{
-        width: 100%;
-        margin: 0 auto;
-    }
-}
 
+@media (max-width: 1024px) {
+  .container{
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .container{
+    width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  .container{
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .container{
+    width: 100%;
+  }
+}
+@media (max-width: 320px) {
+  .container{
+    width: 100%;
+  }
+}
