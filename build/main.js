@@ -252,11 +252,8 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend: function extend(config, _ref) {
-      var isDev = _ref.isDev,
-          isClient = _ref.isClient;
-
-      if (isDev && isClient) {
+    extend: function extend(config) {
+      if (process.client) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
@@ -266,9 +263,8 @@ module.exports = {
       }
     },
 
-    publicPath: '/statics/'
     // 将重复引用的(第三方/自有)模块添加到vendor.bundle.js
-    // vendor: ['axios']
+    vendor: ['axios']
   },
   router: {
     linkActiveClass: 'active-link', // 链接激活时使用的 CSS 类名

@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="container">
-      <nuxt-link to="/" class="logo"><img src="~assets/images/ic_logo.png"/></nuxt-link>
+      <nuxt-link to="/" class="logo"><img src="~/assets/images/ic_logo.png"/></nuxt-link>
       <nav class="nav">
         <ul>
           <li class="item"><nuxt-link class="link" to="/">首页</nuxt-link></li>

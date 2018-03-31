@@ -28,8 +28,8 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
-      if (isDev && isClient) {
+    extend (config) {
+      if (process.client) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
@@ -38,8 +38,6 @@ module.exports = {
         })
       }
     },
-    publicPath: '/statics/',
-
     // 将重复引用的(第三方/自有)模块添加到vendor.bundle.js
     vendor: ['axios']
   },
