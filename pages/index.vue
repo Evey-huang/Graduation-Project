@@ -196,6 +196,10 @@ export default {
       .index-banner-slogan {
         font-size: 26px;
       }
+      .banner-bg {
+        width: auto;
+        margin-left: -25%;
+      }
     }
   }
   .contact-sale {
@@ -211,6 +215,10 @@ export default {
     .container {
       .index-banner-slogan {
         font-size: 22px;
+      }
+      .banner-bg {
+        width: auto;
+        margin-left: -78%;
       }
     }
   }
