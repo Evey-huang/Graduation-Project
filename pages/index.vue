@@ -197,6 +197,43 @@ export default {
       }
     }
   }
+  .container {
+    .our-advantage {
+      margin-top: 40px;
+    }
+    .advantage-item1, .advantage-item2, .advantage-item3 {
+      margin-top: 40px;
+      .img, .info {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .info {
+        h4 {
+          @include opacity(0.8);
+          font-size: 24px;
+        }
+      }
+    }
+    .advantage-item1, .advantage-item3 {
+      .img {
+        margin-left: 20px;
+      }
+      .info {
+        margin-left: 80px;
+      }
+    }
+    .advantage-item2 {
+      .img {
+        margin-left: 80px;
+      }
+      .info {
+        margin-left: 20px;
+      }
+    }
+    .learn-more {
+      margin-top: 40px;
+    }
+  }
 }
 @media (max-width: 640px) {
   .banner {
@@ -212,6 +249,25 @@ export default {
       }
     }
   }
+  .container {
+    .advantage-item1, .advantage-item2, .advantage-item3 {
+      .img {
+        width: 180px;
+        img {
+          width: 100%;
+        }
+      }
+      .info {
+        h4 {
+          font-size: 22px;
+          margin: 0;
+        }
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+  }
 }
 @media (max-width: 480px) {
   .banner {
@@ -223,6 +279,25 @@ export default {
       }
       .index-banner-slogan {
         font-size: 18px;
+      }
+    }
+  }
+  .container {
+    .advantage-item1, .advantage-item2, .advantage-item3 {
+      .img {
+        width: 140px;
+        img {
+          width: 100%;
+        }
+      }
+      .info {
+        h4 {
+          font-size: 16px;
+          margin: 0;
+        }
+        span {
+          font-size: 12px;
+        }
       }
     }
   }
