@@ -37,5 +37,4 @@ app.use(nuxt.render)
 // Listen the server
 app.listen(port, host)
 
-// eslint-disable-next-line no-console
 console.log('Server listening on ' + host + ':' + port)

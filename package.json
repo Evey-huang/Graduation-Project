@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "Nuxt.js project",
   "author": "Evey-huang <Evey-huang@evey_wong@163.com>",
-  "private": true,
   "scripts": {
     "dev": "backpack dev",
-    "build": "nuxt build && backpack build",
+    "build": "cross-env NODE_ENV=production nuxt build && backpack build",
     "start": "cross-env NODE_ENV=production node build/main.js",
     "analyz": "cross-env NODE_ENV=production nuxt build --analyzer",
     "generate": "nuxt generate",
@@ -23,10 +22,10 @@
     "nuxt": "^1.4.0"
   },
   "devDependencies": {
+    "ajv": "^6.4.0",
     "babel-eslint": "^7.2.3",
     "backpack-core": "^0.4.1",
     "eslint": "^4.3.0",
-    "eslint-friendly-formatter": "^3.0.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-html": "^3.1.1",

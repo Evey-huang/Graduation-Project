@@ -28,8 +28,8 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config) {
-      if (process.client) {
+    extend (config, ctx) {
+      if (ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
