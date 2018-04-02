@@ -185,6 +185,18 @@ export default {
       }
     }
   }
+  .container {
+    h3 {
+      font-size: 28px;
+    }
+  }
+  .contact-sale {
+    .container {
+      h3 {
+        font-size: 28px;
+      }
+    }
+  }
 }
 @media (max-width: 768px) {
   .banner {
@@ -202,6 +214,7 @@ export default {
   .container {
     .our-advantage {
       margin-top: 40px;
+      font-size: 24px;
     }
     .advantage-item1, .advantage-item2, .advantage-item3 {
       margin-top: 40px;
@@ -212,7 +225,7 @@ export default {
       .info {
         h4 {
           @include opacity(0.8);
-          font-size: 24px;
+          font-size: 20px;
         }
       }
     }
@@ -234,6 +247,13 @@ export default {
     }
     .learn-more {
       margin-top: 40px;
+    }
+  }
+  .contact-sale {
+    .container {
+      h3 {
+        font-size: 24px;
+      }
     }
   }
 }
@@ -270,6 +290,13 @@ export default {
       }
     }
   }
+  .contact-sale {
+    .container {
+      h3 {
+        font-size: 24px;
+      }
+    }
+  }
 }
 @media (max-width: 480px) {
   .banner {
@@ -285,6 +312,12 @@ export default {
     }
   }
   .container {
+    h3 {
+      font-size: 18px;
+    }
+    .learn-more {
+      font-size: 14px;
+    }
     .advantage-item1, .advantage-item2, .advantage-item3 {
       .img {
         width: 140px;
@@ -303,6 +336,18 @@ export default {
       }
     }
   }
+  .contact-sale {
+    .container {
+      h3 {
+        font-size: 18px;
+      }
+      span {
+        a {
+          font-size: 14px;
+        }
+      }
+    }
+  }
 }
 @media (max-width: 320px) {
   .banner {
@@ -317,90 +362,19 @@ export default {
       }
     }
   }
+  .container {
+    h3 {
+      font-size: 16px;
+    }
+    
+  }
+  .contact-sale {
+    .container {
+      h3 {
+        font-size: 16px;
+      }
+    }
+  }
 }
 
-// @media screen and (max-width: 900px) {
-//   .banner {
-//     .container {
-//       .banner-bg {
-//         height: 360px;
-//       }
-//       .index-banner-slogan {
-//         font-size: 30px;
-//       }
-//     }
-//   }
-// }
-// @media screen and (max-width: 767px) {
-//   .banner {
-//     .container {
-//       .index-banner-slogan {
-//         font-size: 26px;
-//       }
-//     }
-//   }
-//   .contact-sale {
-//     .container {
-//       h3 {
-//         font-size: 30px;
-//       }
-//     }
-//   }
-// }
-// @media screen and (max-width: 480px) {
-//   .banner {
-//     .container {
-//       .index-banner-slogan {
-//         font-size: 22px;
-//       }
-//     }
-//   }
-//   .container {
-//     h3 {
-//       font-size: 26px;
-//     }
-//     .advantage-item1, .advantage-item2, .advantage-item3 {
-//       .img {
-//         img {
-//           width: 150px;
-//           height: 150px;
-//         }
-//       }
-//       .info {
-//         h4 {
-//           font-size: 20px;
-//         }
-//         span {
-//           font-size: 14px;
-//         }
-//       }
-//     }
-//     .advantage-item1, .advantage-item3 {
-//       .img {
-//         margin-left: 20px;
-//       }
-//       .info {
-//         margin-left: 25px;
-//       }
-//     }
-//     .advantage-item2 {
-//       .img {
-//         margin-left: 25px;
-//       }
-//       .info {
-//         margin-left: 20px;
-//       }
-//     }
-//   }
-//   .contact-sale {
-//     .container {
-//       h3 {
-//         font-size: 26px;
-//       }
-//       a {
-//         font-size: 14px;
-//       }
-//     }
-//   }
-// }
 </style>

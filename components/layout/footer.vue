@@ -105,7 +105,24 @@ export default {
       }
     }
   }
-  @media screen and (max-width: 850px) {
+
+  /*-----start-responsive-design------*/
+  
+  @media screen and (max-width: 1024px) {
+    footer {
+      .container {
+        .footer-contact {
+          span {
+            font-size: 24px;
+          }
+          p {
+            font-size: 28px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
     footer {
       .container {
         height: 280px;
@@ -116,7 +133,7 @@ export default {
             font-size: 24px;
           }
           p {
-            font-size: 28px;
+            font-size: 24px;
           }
         }
         .footer-website {
@@ -127,7 +144,7 @@ export default {
       }
     }
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 640px) {
     footer {
       .container {
         .footer-contact {
@@ -135,7 +152,7 @@ export default {
             font-size: 20px;
           }
           p {
-            font-size: 22px;
+            font-size: 24px;
           }
         }
         .footer-website {
@@ -161,6 +178,7 @@ export default {
         }
         .other {
           display: block;
+          font-size: 14px;
           .about {
             position: relative;
             margin-right: 30px;

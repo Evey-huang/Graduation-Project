@@ -127,8 +127,11 @@ export default {
       }
     }
     #contact-wrapper {
-      h3 {
-        font-size: 28px;
+      .container {
+        h3 {
+          font-size: 28px;
+        }
+
       }
     }
   }
@@ -152,8 +155,15 @@ export default {
       }
     }
     #contact-wrapper {
-      h3 {
-        font-size: 24px;
+      .container {
+        h3 {
+          font-size: 24px;
+        }
+        .contact-items {
+          ul {
+            margin: 0 35px;
+          }
+        }
       }
     }
   }
@@ -175,26 +185,28 @@ export default {
       }
     }
     #contact-wrapper {
-      h3 {
-        font-size: 24px;
-      }
-      .map {
-        margin-bottom: 60px;
-      }
-      .contact-items {
-        margin-bottom: 40px;
-        ul {
-          margin-left: 30px;
-          li {
-            width: 100%;
-            box-sizing: border-box;
-            @include clearfix;
-            img {
-              float: left;
-              padding: 0 10px;
-            }
-            p {
-              margin-top: 13px;
+      .container {
+        h3 {
+          font-size: 24px;
+        }
+        .map {
+          margin-bottom: 60px;
+        }
+        .contact-items {
+          margin-bottom: 40px;
+          ul {
+            margin-left: 30px;
+            li {
+              width: 100%;
+              box-sizing: border-box;
+              @include clearfix;
+              img {
+                float: left;
+                padding: 0 10px;
+              }
+              p {
+                margin-top: 13px;
+              }
             }
           }
         }
@@ -210,6 +222,9 @@ export default {
           h3 {
             font-size: 18px;
           }
+          p {
+            font-size: 14px;
+          }
         }
         .banner-bg {
           width: auto;
@@ -219,8 +234,11 @@ export default {
       }
     }
     #contact-wrapper {
-      h3 {
-        font-size: 18px;
+      .container {
+        h3 {
+          font-size: 18px;
+          margin: 85px 0 50px 0;
+        }
       }
     }
   }
@@ -234,7 +252,7 @@ export default {
             font-size: 16px;
           }
           p {
-            font-size: 12px;
+            font-size: 14px;
           }
           .visible-xs {
             display: block;
@@ -251,15 +269,18 @@ export default {
       }
     }
     #contact-wrapper {
-      h3 {
-        font-size: 16px;
-      }
-      .contact-items {
-        margin: 0;
-        ul {
-          li {
-            p {
-              font-size: 14px;
+      .container {
+        h3 {
+          font-size: 16px;
+          margin: 57px 0 50px 0;
+        }
+        .contact-items {
+          margin: 0;
+          ul {
+            li {
+              p {
+                font-size: 14px;
+              }
             }
           }
         }
@@ -267,76 +288,5 @@ export default {
     }
   }
 }
-
-// @media screen and (max-width: 1200px) {
-//   .about {
-//     .banner {
-//       .about-banner-slogan {
-//         h3 {
-//           font-size: 34px;
-//         }
-//       }
-//       .banner-bg {
-//         height: 380px;
-//       }
-//     }
-//   }
-// }
-// @media screen and (max-width: 800px) {
-//   .about {
-//     .banner {
-//       .about-banner-slogan {
-//         h3 {
-//           font-size: 30px;
-//         }
-//       }
-//     }
-//     #contact-wrapper {
-//       h3 {
-//         font-size: 30px;
-//       }
-//       .map {
-//         margin-bottom: 60px;
-//       }
-//       .contact-items {
-//         margin-bottom: 40px;
-//         ul {
-//           margin-left: 30px;
-//           li {
-//             width: 100%;
-//             box-sizing: border-box;
-//             @include clearfix;
-//             img {
-//               float: left;
-//               padding: 0 10px;
-//             }
-//             p {
-//               margin-top: 13px;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// @media screen and (max-width: 480px) {
-//   .about {
-//     .banner {
-//       .about-banner-slogan {
-//         h3 {
-//           font-size: 26px;
-//         }
-//         p {
-//           font-size: 14px;
-//         }
-//       }
-//     }
-//     #contact-wrapper {
-//       h3 {
-//         font-size: 26px;
-//       }
-//     }
-//   }
-// }
 </style>
 
