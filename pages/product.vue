@@ -402,10 +402,51 @@ export default {
   .product {
     .banner {
       .container {
+        .banner-slogan {
+          h3 {
+            font-size: 28px;
+          }
+        }
         .banner-bg {
           width: auto;
           height: 360px;
           margin-left: -10%;
+        }
+      }
+    }
+    .product-wrapper {
+      .introduce {
+        h3 {
+          font-size: 28px;
+        }
+        ul {
+          li {
+            flex-basis: 25%;
+            span {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+      #advantage {
+        .container {
+          h3 {
+            font-size: 28px;
+          }
+          ul {
+            li {
+              h4 {
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+      .features {
+        .container {
+          h3 {
+            font-size: 28px;
+          }
         }
       }
     }
@@ -422,11 +463,66 @@ export default {
         }
         .banner-slogan {
           width: 82%;
+          h3 {
+            font-size: 24px;
+          }
           .visible-xs {
             display: block;
           }
           .hidden-xs {
             display: none;
+          }
+        }
+      }
+    }
+    .product-wrapper {
+      .introduce {
+        h3 {
+          font-size: 24px;
+        }
+        .visible-xs {
+          display: block;
+        }
+        .hidden-xs {
+          display: none
+        }
+        ul {
+          margin: 10% 2%;
+          li {
+            flex-basis: 28%;
+            span {
+              font-size: 16px;
+              padding-left: 30px;
+            }
+          }
+        }
+      }
+      #advantage {
+        .container {
+          h3 {
+            font-size: 24px;
+          }
+          ul {
+            li {
+              flex-basis: 46%;
+              h4 {
+                font-size: 18px;
+              }
+            }
+          }
+        }
+      }
+      .features {
+        .container {
+          h3 {
+            font-size: 24px;
+          }
+          ul {
+            li {
+              h4 {
+                font-size: 20px;
+              }
+            }
           }
         }
       }
@@ -437,9 +533,42 @@ export default {
   .product {
     .banner {
       .container {
+        .banner-slogan {
+          p {
+            font-size: 14px;
+          }
+          span {
+            a {
+              font-size: 14px;
+            }
+          }  
+        }
         .banner-bg {
           width: auto;
           height: 400px;
+        }
+      }
+    }
+    .product-wrapper {
+      .introduce {
+        ul {
+          li {
+            flex-basis: 30%;
+            span {
+              padding-left: 15px;
+            }
+          }
+        }
+      }
+      #advantage {
+        .container {
+          ul {
+            li {
+              h4 {
+                font-size: 16px;
+              }
+            }
+          }
         }
       }
     }
@@ -449,168 +578,140 @@ export default {
   .product {
     .banner {
       .container {
+        .banner-slogan {
+          h3 {
+            font-size: 18px;
+          }
+        }
         .banner-bg {
           width: auto;
           height: 420px;
         }
       }
     }
+    .product-wrapper {
+      .introduce {
+        h3 {
+          font-size: 18px;
+        }
+        p {
+          font-size: 14px;
+        }
+        ul {
+          margin: 10% 5%;
+          li {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            position: relative;
+            flex-basis: 15%;
+            span {
+              position: absolute;
+              top: 100%;
+              left: -19px;
+              font-size: 14px;
+              padding-top: 10px;
+            }
+            img {
+              width: 50px;
+              height: 50px;
+            }
+          }
+        }
+      }
+      #advantage {
+        .container {
+          h3 {
+            font-size: 18px;
+          }
+          ul {
+            li {
+              padding: 0;
+              flex-basis: 100%;
+              h4 {
+                font-size: 16px;
+              }
+              p {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+      .features {
+        .container {
+          h3 {
+            font-size: 18px;
+          }
+          ul {
+            display: block;
+            li {
+              h4 {
+                font-size: 18px;
+              }
+              .arrow {
+                width: 0;
+              }
+            }
+          }
+          .details {
+            .details-item {
+              width: 100%;
+              text-align: center;
+              p {
+                font-size: 14px;
+              }
+              h4 {
+                font-size: 16px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 @media screen and (max-width: 320px) {
-  
+  .product {
+    .product-wrapper {
+      .introduce {
+        .container {
+          h3 {
+            font-size: 16px;
+          }
+          ul {
+            li {
+              flex-basis: 20%;
+            }
+          }
+        }
+      }
+      #advantage {
+        .container {
+          h3 {
+            font-size: 16px;
+          }
+          ul {
+            li {
+              img {
+                width: 80px;
+              }
+              h4 {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+      .features {
+        .container {
+          h3 {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
 }
-
-// @media screen and (max-width: 1200px) {
-//   .product {
-//     .banner {
-//       .container {
-//         .banner-bg {
-//           height: 380px;
-//         }
-//         .banner-slogan {
-//           width: 72%;
-//           h3 {
-//             font-size: 30px;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// @media screen and (max-width: 767px){
-//   .product {
-//     .banner {
-//       .container {
-//         .banner-slogan {
-//           width: 82%;
-//           .visible-xs {
-//             display: block;
-//           }
-//           .hidden-xs {
-//             display: none;
-//           }
-//           h3 {
-//             font-size: 28px;
-//           }
-//           p {
-//             font-size: 14px;
-//           }
-//           span {
-//             a {
-//               font-size: 14px;
-//             }
-//           }
-//         }
-//       }
-//     }
-//     .product-wrapper {
-//       .introduce {
-//         h3 {
-//           font-size: 30px;
-//         }
-//         .visible-xs {
-//           display: block;
-//         }
-//         .hidden-xs {
-//           display: none
-//         }
-//         ul {
-//           margin: 10% 2%;
-//           li {
-//             flex-basis: 32%;
-//             span {
-//               font-size: 16px;
-//             }
-//           }
-//         }
-//       }
-//       #advantage {
-//         h3 {
-//           font-size: 30px;
-//         }
-//         ul {
-//           li {
-//             flex-basis: 46%;
-//           }
-//         }
-//       }
-//       .features {
-//         h3 {
-//           font-size: 30px;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// @media screen and (max-width: 480px){
-//   .product {
-//     .product-wrapper {
-//       .introduce {
-//         h3 {
-//           font-size: 26px;
-//         }
-//         p {
-//           font-size: 14px;
-//         }
-//         ul {
-//           margin: 10% 5%;
-//           li {
-//             width: 100%;
-//             box-sizing: border-box;
-//             margin-bottom: 20px;
-//             position: relative;
-//             span {
-//               position: absolute;
-//               top: 100%;
-//               left: -43px;
-//               font-size: 14px;
-//               padding-top: 10px;
-//             }
-//             img {
-//               width: 50px;
-//               height: 50px;
-//             }
-//           }
-//         }
-//       }
-//       #advantage {
-//         h3 {
-//           font-size: 26px;
-//         }
-//         ul {
-//           li {
-//             padding: 0;
-//             flex-basis: 100%;
-//             h4 {
-//               font-size: 20px;
-//             }
-//             p {
-//               font-size: 14px;
-//             }
-//           }
-//         }
-//       }
-//       .features {
-//         h3 {
-//           font-size: 26px;
-//         }
-//         ul {
-//           li {
-//             h4 {
-//               font-size: 18px;
-//             }
-//           }
-//         }
-//         .details {
-//           p {
-//             font-size: 14px;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
 
 </style>
