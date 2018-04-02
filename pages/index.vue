@@ -175,6 +175,8 @@ export default {
   }
 }
 
+/*-----start-responsive-design------*/
+
 @media (max-width: 1024px) {
   .banner {
     .container {

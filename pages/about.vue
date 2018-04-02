@@ -4,7 +4,8 @@
       <div class="container" id="about-us">
         <div class="about-banner-slogan">
           <h3>关于我们</h3>
-          <p>深圳天元云科技有限公司成立于2017年，是一家致力于为企业客户打造一个可扩展的企业级运维自动化平台的公司。</p>
+          <p class="hidden-xs">深圳天元云科技有限公司成立于2017年，是一家致力于为企业客户打造一个可扩展的企业级运维自动化平台的公司</p>
+          <p class="visible-xs">天元云是一家致力于为企业打造一个可扩展的企业级运维自动化平台的公司</p>
         </div>
         <img class="banner-bg" src="~/assets/images/ic_about_banner.png" />
       </div>
@@ -60,13 +61,15 @@ export default {
       .about-banner-slogan {
         position: absolute;
         text-align: center;
-        // width: 863px;
         h3 {
           margin-bottom: 27px;
           color: #fff;
         }
         p {
           line-height: 2;
+        }
+        .visible-xs {
+          display: none;
         }
       }
     }
@@ -104,32 +107,76 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1200px) {
+
+/*-----start-responsive-design------*/
+
+@media screen  and (max-width: 1024px) {
   .about {
     .banner {
-      .about-banner-slogan {
-        h3 {
-          font-size: 34px;
+      .container {
+        .about-banner-slogan {
+          h3 {
+            font-size: 28px;
+          }
         }
-      }
-      .banner-bg {
-        height: 380px;
-      }
-    }
-  }
-}
-@media screen and (max-width: 800px) {
-  .about {
-    .banner {
-      .about-banner-slogan {
-        h3 {
-          font-size: 30px;
+        .banner-bg {
+          width: auto;
+          height: 360px;
+          margin-left: -15%;
         }
       }
     }
     #contact-wrapper {
       h3 {
-        font-size: 30px;
+        font-size: 28px;
+      }
+    }
+  }
+}
+@media screen  and (max-width: 768px) {
+  .about {
+    .banner {
+      .container {
+        .about-banner-slogan {
+          padding: 0 10px;
+          left: 0;
+          h3 {
+            font-size: 24px;
+          }
+        }
+        .banner-bg {
+          width: auto;
+          height: 360px;
+          margin-left: -35%;
+        }
+      }
+    }
+    #contact-wrapper {
+      h3 {
+        font-size: 24px;
+      }
+    }
+  }
+}
+@media screen  and (max-width: 640px) {
+  .about {
+    .banner {
+      .container {
+        .about-banner-slogan {
+          h3 {
+            font-size: 24px;
+          }
+        }
+        .banner-bg {
+          width: auto;
+          height: 320px;
+          margin-left: -40%;
+        }
+      }
+    }
+    #contact-wrapper {
+      h3 {
+        font-size: 24px;
       }
       .map {
         margin-bottom: 60px;
@@ -155,24 +202,141 @@ export default {
     }
   }
 }
-@media screen and (max-width: 480px) {
+@media screen  and (max-width: 480px) {
   .about {
     .banner {
-      .about-banner-slogan {
-        h3 {
-          font-size: 26px;
+      .container {
+        .about-banner-slogan {
+          h3 {
+            font-size: 18px;
+          }
         }
-        p {
-          font-size: 14px;
+        .banner-bg {
+          width: auto;
+          height: 280px;
+          margin-left: -50%;
         }
       }
     }
     #contact-wrapper {
       h3 {
-        font-size: 26px;
+        font-size: 18px;
       }
     }
   }
 }
+@media screen  and (max-width: 320px) {
+  .about {
+    .banner {
+      .container {
+        .about-banner-slogan {
+          h3 {
+            font-size: 16px;
+          }
+          p {
+            font-size: 12px;
+          }
+          .visible-xs {
+            display: block;
+          }
+          .hidden-xs {
+            display: none;
+          }
+        }
+        .banner-bg {
+          width: auto;
+          height: 280px;
+          margin-left: -100%;
+        }
+      }
+    }
+    #contact-wrapper {
+      h3 {
+        font-size: 16px;
+      }
+      .contact-items {
+        margin: 0;
+        ul {
+          li {
+            p {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// @media screen and (max-width: 1200px) {
+//   .about {
+//     .banner {
+//       .about-banner-slogan {
+//         h3 {
+//           font-size: 34px;
+//         }
+//       }
+//       .banner-bg {
+//         height: 380px;
+//       }
+//     }
+//   }
+// }
+// @media screen and (max-width: 800px) {
+//   .about {
+//     .banner {
+//       .about-banner-slogan {
+//         h3 {
+//           font-size: 30px;
+//         }
+//       }
+//     }
+//     #contact-wrapper {
+//       h3 {
+//         font-size: 30px;
+//       }
+//       .map {
+//         margin-bottom: 60px;
+//       }
+//       .contact-items {
+//         margin-bottom: 40px;
+//         ul {
+//           margin-left: 30px;
+//           li {
+//             width: 100%;
+//             box-sizing: border-box;
+//             @include clearfix;
+//             img {
+//               float: left;
+//               padding: 0 10px;
+//             }
+//             p {
+//               margin-top: 13px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// @media screen and (max-width: 480px) {
+//   .about {
+//     .banner {
+//       .about-banner-slogan {
+//         h3 {
+//           font-size: 26px;
+//         }
+//         p {
+//           font-size: 14px;
+//         }
+//       }
+//     }
+//     #contact-wrapper {
+//       h3 {
+//         font-size: 26px;
+//       }
+//     }
+//   }
+// }
 </style>
 

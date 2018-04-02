@@ -4,7 +4,7 @@
       <div class="container">
         <div class="banner-slogan">
           <h3>NAP</h3>
-          <p class="hidden-xs">NAP(Network Automation Platform)通过主流网络设备的配置进行解析和建模，形成统一的配置模型，提供完善的配置管理接口，并通过编排引擎实现对一系列复杂网络服务自动化场景的支持。</p>
+          <p class="hidden-xs">NAP(Network Automation Platform)通过主流网络设备的配置进行解析和建模，形成统一的配置模型，提供完善的配置<br>管理接口，并通过编排引擎实现对一系列复杂网络服务自动化场景的支持。</p>
           <p class="visible-xs">NAP通过主流网络设备的配置进行解析和建模，形成统一的配置模型，提供完善的配置管理接口，并通过编排引擎实现对一系列复杂网络服务自动化场景的支持。</p>
           <span><nuxt-link to="./about">联系销售</nuxt-link></span>
         </div>
@@ -199,7 +199,7 @@ export default {
       .banner-slogan {
         position: absolute;
         text-align: center;
-        width: 52%;
+        // width: 52%;
         .visible-xs {
           display: none;
         }
@@ -395,27 +395,31 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1200px) {
+
+/*-----start-responsive-design------*/
+
+@media screen and (max-width: 1024px) {
   .product {
     .banner {
       .container {
         .banner-bg {
-          height: 380px;
-        }
-        .banner-slogan {
-          width: 72%;
-          h3 {
-            font-size: 30px;
-          }
+          width: auto;
+          height: 360px;
+          margin-left: -10%;
         }
       }
     }
   }
 }
-@media screen and (max-width: 767px){
+@media screen and (max-width: 768px) {
   .product {
     .banner {
       .container {
+        .banner-bg {
+          width: auto;
+          height: 380px;
+          margin-left: -13%;
+        }
         .banner-slogan {
           width: 82%;
           .visible-xs {
@@ -424,126 +428,189 @@ export default {
           .hidden-xs {
             display: none;
           }
-          h3 {
-            font-size: 28px;
-          }
-          p {
-            font-size: 14px;
-          }
-          span {
-            a {
-              font-size: 14px;
-            }
-          }
-        }
-      }
-    }
-    .product-wrapper {
-      .introduce {
-        h3 {
-          font-size: 30px;
-        }
-        .visible-xs {
-          display: block;
-        }
-        .hidden-xs {
-          display: none
-        }
-        ul {
-          margin: 10% 2%;
-          li {
-            flex-basis: 32%;
-            span {
-              font-size: 16px;
-            }
-          }
-        }
-      }
-      #advantage {
-        h3 {
-          font-size: 30px;
-        }
-        ul {
-          li {
-            flex-basis: 46%;
-          }
-        }
-      }
-      .features {
-        h3 {
-          font-size: 30px;
         }
       }
     }
   }
+}
+@media screen and (max-width: 640px) {
+  .product {
+    .banner {
+      .container {
+        .banner-bg {
+          width: auto;
+          height: 400px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .product {
+    .banner {
+      .container {
+        .banner-bg {
+          width: auto;
+          height: 420px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  
 }
 
-@media screen and (max-width: 480px){
-  .product {
-    .product-wrapper {
-      .introduce {
-        h3 {
-          font-size: 26px;
-        }
-        p {
-          font-size: 14px;
-        }
-        ul {
-          margin: 10% 5%;
-          li {
-            width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            position: relative;
-            span {
-              position: absolute;
-              top: 100%;
-              left: -43px;
-              font-size: 14px;
-              padding-top: 10px;
-            }
-            img {
-              width: 50px;
-              height: 50px;
-            }
-          }
-        }
-      }
-      #advantage {
-        h3 {
-          font-size: 26px;
-        }
-        ul {
-          li {
-            padding: 0;
-            flex-basis: 100%;
-            h4 {
-              font-size: 20px;
-            }
-            p {
-              font-size: 14px;
-            }
-          }
-        }
-      }
-      .features {
-        h3 {
-          font-size: 26px;
-        }
-        ul {
-          li {
-            h4 {
-              font-size: 18px;
-            }
-          }
-        }
-        .details {
-          p {
-            font-size: 14px;
-          }
-        }
-      }
-    }
-  }
-}
+// @media screen and (max-width: 1200px) {
+//   .product {
+//     .banner {
+//       .container {
+//         .banner-bg {
+//           height: 380px;
+//         }
+//         .banner-slogan {
+//           width: 72%;
+//           h3 {
+//             font-size: 30px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// @media screen and (max-width: 767px){
+//   .product {
+//     .banner {
+//       .container {
+//         .banner-slogan {
+//           width: 82%;
+//           .visible-xs {
+//             display: block;
+//           }
+//           .hidden-xs {
+//             display: none;
+//           }
+//           h3 {
+//             font-size: 28px;
+//           }
+//           p {
+//             font-size: 14px;
+//           }
+//           span {
+//             a {
+//               font-size: 14px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//     .product-wrapper {
+//       .introduce {
+//         h3 {
+//           font-size: 30px;
+//         }
+//         .visible-xs {
+//           display: block;
+//         }
+//         .hidden-xs {
+//           display: none
+//         }
+//         ul {
+//           margin: 10% 2%;
+//           li {
+//             flex-basis: 32%;
+//             span {
+//               font-size: 16px;
+//             }
+//           }
+//         }
+//       }
+//       #advantage {
+//         h3 {
+//           font-size: 30px;
+//         }
+//         ul {
+//           li {
+//             flex-basis: 46%;
+//           }
+//         }
+//       }
+//       .features {
+//         h3 {
+//           font-size: 30px;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 480px){
+//   .product {
+//     .product-wrapper {
+//       .introduce {
+//         h3 {
+//           font-size: 26px;
+//         }
+//         p {
+//           font-size: 14px;
+//         }
+//         ul {
+//           margin: 10% 5%;
+//           li {
+//             width: 100%;
+//             box-sizing: border-box;
+//             margin-bottom: 20px;
+//             position: relative;
+//             span {
+//               position: absolute;
+//               top: 100%;
+//               left: -43px;
+//               font-size: 14px;
+//               padding-top: 10px;
+//             }
+//             img {
+//               width: 50px;
+//               height: 50px;
+//             }
+//           }
+//         }
+//       }
+//       #advantage {
+//         h3 {
+//           font-size: 26px;
+//         }
+//         ul {
+//           li {
+//             padding: 0;
+//             flex-basis: 100%;
+//             h4 {
+//               font-size: 20px;
+//             }
+//             p {
+//               font-size: 14px;
+//             }
+//           }
+//         }
+//       }
+//       .features {
+//         h3 {
+//           font-size: 26px;
+//         }
+//         ul {
+//           li {
+//             h4 {
+//               font-size: 18px;
+//             }
+//           }
+//         }
+//         .details {
+//           p {
+//             font-size: 14px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
 </style>
