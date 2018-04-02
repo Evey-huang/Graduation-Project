@@ -106,7 +106,7 @@
           <div class="details" v-show="index === 0">
             <div class="details-item">
               <h4>权限管理</h4>
-              <p>用户角色分为普通用户和管理员</p>
+              <p>给不同角色授权访问不同的资源</p>
             </div>
             <div class="details-item">
               <h4>配置管理</h4>
@@ -131,8 +131,8 @@
               <p>将设备纳入一个组内进行管理</p>
             </div>
             <div class="details-item">
-              <h4>人工审核</h4>
-              <p>xxxxxxxxxxxxxxxxxxxxx</p>
+              <h4>可人工审核</h4>
+              <p>审核下发的内容</p>
             </div>
             <div class="details-item">
               <h4>自动分析下发路径</h4>
@@ -140,13 +140,13 @@
             </div>
             <div class="details-item">
               <h4>可回退</h4>
-              <p>xxxxxxxxxxxxxx</p>
+              <p>回退下发的命令</p>
             </div>
           </div>
           <div class="details" v-show="index === 2">
              <div class="details-item">
               <h4>全网实时搜索</h4>
-              <p>XXXXXXXXXXXXXX</p>
+              <p>支持全网实时搜索，即搜即得</p>
             </div>
             <div class="details-item">
               <h4>支持Excel导出</h4>
@@ -154,11 +154,11 @@
             </div>
             <div class="details-item">
               <h4>支持动作、源地址、目的地址和协议搜索</h4>
-              <p>XXXXXXXXXXXXXXXX</p>
+              <p>支持以动作、源地址、目的地址和协议为关键字进行防火墙策略搜索</p>
             </div>
             <div class="details-item">
-              <h4>支持网络对象、对象组递归搜索</h4>
-              <p>xxxxxxxxxxxxxxxxxxxxx</p>
+              <h4>结果筛选器</h4>
+              <p>对搜索的结果，按条件精准过滤</p>
             </div>
           </div>
         </div>
