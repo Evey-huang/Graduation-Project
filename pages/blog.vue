@@ -2,7 +2,7 @@
   <div class="blog">
       <div class="container">
           <div class="article-list">
-              <div class="article-list-item">
+              <div class="article-list-item" @click="toAricle">
                   <div class="item-content">
                       <div class="item-thumb">
                           <nuxt-link to="#"><img src="~/assets/images/blog1.png" alt="文章插图"></nuxt-link>
@@ -151,6 +151,11 @@ export default {
               {text: "Docker",num: 150,key: 7}
           ]
       }
+  },
+  methods: {
+      toAricle() {
+          this.$router.push("/articles/1")
+      }
   }
 }
 </script>
@@ -259,4 +264,74 @@ export default {
         }
     }
   }
+
+/*-----start-responsive-design------*/
+
+@media screen and (max-width: 1024px) {
+  .blog {
+      margin-left: 40px;
+      .container {
+          .article-list {
+            // width: 100%;
+          }
+          .aside {
+            //   width: 50%;
+            //   float: left;
+            //   margin-left: 40px;
+              
+          }
+      }
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .blog {
+        margin-left: 30px;
+      .container {
+          .article-list {
+            width: 90%;
+          }
+          .aside {
+              width: 50%;
+              float: left;
+              margin-left: 40px;
+              
+          }
+      }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .blog {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .blog {
+        .container {
+            .article-list {
+                .article-list-item {
+                    .item-content {
+                        margin-bottom: 200px;
+                        .item-thumb {
+                            text-align: center;
+                        }
+                        .item-body {
+                            // float: left;
+                            // width: 100%;
+                            left: 0;
+                            top: unset;
+                            margin-left: 0;
+                            margin-top: 20px;
+                        }
+                    }
+                }
+            }
+            .aside {
+
+            }
+        }
+    }
+}
 </style>
