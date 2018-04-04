@@ -270,17 +270,6 @@ export default {
 @media screen and (max-width: 1024px) {
   .blog {
       margin-left: 40px;
-      .container {
-          .article-list {
-            // width: 100%;
-          }
-          .aside {
-            //   width: 50%;
-            //   float: left;
-            //   margin-left: 40px;
-              
-          }
-      }
   }
 }
 
@@ -318,8 +307,6 @@ export default {
                             text-align: center;
                         }
                         .item-body {
-                            // float: left;
-                            // width: 100%;
                             left: 0;
                             top: unset;
                             margin-left: 0;

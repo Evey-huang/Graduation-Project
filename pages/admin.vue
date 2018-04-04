@@ -1,10 +1,38 @@
 <template>
   <div class="app-wrapper">
-    <nav class="left">
-      <nuxt-link to="tags">标签管理</nuxt-link>
-      <nuxt-link to="articles">文章管理</nuxt-link>
-      <nuxt-link to="client">客户管理</nuxt-link>
-    </nav>
+    <!-- <nav class="left">
+      <nuxt-link to="/admin/article">文章管理</nuxt-link>
+      <nuxt-link to="/admin/tags">标签管理</nuxt-link>
+      <nuxt-link to="/admin/client">客户管理</nuxt-link>
+    </nav> -->
+    <div class="left">
+      <el-row class="tac">
+        <el-col :span="12">
+          <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-location"></i>
+                <span>文章设置</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item index="1-1">撰写文章</el-menu-item>
+                <el-menu-item index="1-2"><nuxt-link to="/admin/tags">标签管理</nuxt-link></el-menu-item>
+                <el-menu-item index="1-2"><nuxt-link to="/admin/article">全部文章</nuxt-link></el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
+            <el-menu-item index="2">
+              <i class="el-icon-menu"></i>
+              <span slot="title"><nuxt-link to="/admin/client">客户管理</nuxt-link></span>
+            </el-menu-item>
+            <el-menu-item index="3">
+              <i class="el-icon-document"></i>
+              <span slot="title"><nuxt-link to="">站点设置</nuxt-link></span>
+            </el-menu-item>
+          </el-menu>
+        </el-col>
+      </el-row>
+    </div>
+    
     <div class="right">
       <nuxt-child/>
     </div>
@@ -21,32 +49,29 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '~assets/scss/mixins.scss';
+
   .app-wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
     .left {
-      background: #212121;
       width: 180px;
-      height: 100%;
       position: fixed;
       top: 0;
+      bottom: 0;
       left: 0;
-      ul {
-        text-align: center;
-        margin-top: 50px;
-        li {
-
-          a {
-            display: block;
-            padding: 20px;
+      background: #545c64;
+      .el-col {
+        width: 100%;
+        .el-menu-item-group {
+          .el-menu-item {
+            min-width: 0;
           }
         }
       }
     }
     .right {
       float: left;
-      margin-left: 200px;
+      margin: 50px 0 0 200px;
+      width: 100%;
     }
   }
 </style>
