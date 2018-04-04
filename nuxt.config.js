@@ -49,6 +49,7 @@ module.exports = {
   ],
   router: {
     linkActiveClass: 'active-link', // 链接激活时使用的 CSS 类名
-    linkExactActiveClass: 'exact-active-link' // 当链接被精确匹配的时候应该激活的 class
+    linkExactActiveClass: 'exact-active-link', // 当链接被精确匹配的时候应该激活的 class
+    middleware: 'auth'
   }
 }

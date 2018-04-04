@@ -31,7 +31,6 @@ export default {
     login () {
       Service.post('/login', {username: this.username, password: this.password}).then(res => {
         if(res.data.success) {
-          // TO DO token save and middleware filter
           this.$router.push('/admin')
         }
       })

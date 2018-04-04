@@ -2,7 +2,8 @@ import Vue from 'vue'
 import axios from 'axios'
 
 const options = {
-  baseURL: process.env.baseUrl
+  baseURL: process.env.baseUrl,
+  withCredentials: true
 }
 
 // 拦截器
