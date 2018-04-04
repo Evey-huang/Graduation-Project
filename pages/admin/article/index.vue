@@ -1,6 +1,6 @@
 <template>
   <div>
-    首页
+    文章管理页面
   </div>
 </template>
 

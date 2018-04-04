@@ -1,6 +1,6 @@
 <template>
   <div>
-    首页
+    撰写文章 或 编辑文章
   </div>
 </template>
 
