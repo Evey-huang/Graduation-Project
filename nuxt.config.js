@@ -17,14 +17,26 @@ module.exports = {
       }
     },
     // 将重复引用的(第三方/自有)模块添加到vendor.bundle.js
-    vendor: ['axios']
+    vendor: ['axios', 'element-ui']
   },
   css: [
-    { src: '~/assets/scss/app.scss', lang: 'scss' }
+    { src: '~/assets/scss/app.scss', lang: 'scss' },
+    { src: 'element-ui/lib/theme-chalk/index.css', ssr: true }
   ],
   dev: (process.env.NODE_ENV !== 'production'),
   env: {
     baseUrl: `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 8080}/api`
+  },
+  babel: {
+    "plugins": [["component", [
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-default"
+      },
+      'transform-async-to-generator',
+      'transform-runtime'
+    ]]],
+    comments: true
   },
   /*
    ** Headers of the page
@@ -46,6 +58,7 @@ module.exports = {
   loading: { color: '#1A88FA' },
   plugins: [
     // { src: '~/plugins/axios' }
+    '~plugins/element-ui'
   ],
   router: {
     linkActiveClass: 'active-link', // 链接激活时使用的 CSS 类名
