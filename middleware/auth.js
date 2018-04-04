@@ -1,4 +1,5 @@
-import jwt from 'jsonwebtoken'
+const jwt = require('jsonwebtoken')
+const config = require('../server/config')
 
 export default async ({req, res, route, redirect}, next) => {
   if(process.server) {
@@ -8,9 +9,11 @@ export default async ({req, res, route, redirect}, next) => {
       }
       let tokenContent
       try {
-        tokenContent = await jwt.verify(req.cookies.token, 'sky-cloud')
+        tokenContent = await jwt.verify(req.cookies.token, config.token)
       } catch (err) {
         // Token 过期
+        console.log(req.cookies.token, config.token)
+        console.log(err)
         if (err.name === 'TokenExpiredError') {
           return redirect('/login')
         }

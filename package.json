@@ -20,6 +20,9 @@
     "express": "^4.16.3",
     "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.2.0",
+    "mongoose": "^5.0.12",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-paginate": "^5.0.3",
     "nuxt": "^1.4.0"
   },
   "devDependencies": {

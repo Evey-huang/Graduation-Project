@@ -18,6 +18,10 @@ app.set('port', port)
 // Import API Routes
 app.use('/api', api)
 
+// data server
+const mongodb = require('./db/mongodb')
+mongodb.connect()
+
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
