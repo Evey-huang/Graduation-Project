@@ -43,6 +43,12 @@
   </div>
 </template>
 <script>
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
+
 export default {
   layout: 'admin',
   data(){
@@ -74,7 +80,7 @@ export default {
     }
     .right {
       float: left;
-      margin: 50px 0 0 200px;
+      margin: 18px 0 0 200px;
       width: 100%;
     }
   }
