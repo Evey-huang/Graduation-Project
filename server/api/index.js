@@ -7,6 +7,9 @@ import config from "../config";
 // Mock Users
 const users = [{ username: "admin", password: "r00tme" }];
 
+import upload from "./upload";
+router.use(upload);
+
 import Tag from "../controller/tag";
 import Article from "../controller/article";
 import Client from "../controller/client";
