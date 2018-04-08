@@ -1,5 +1,16 @@
 <template>
   <section class="container">
+
+    <el-upload
+      class="upload-demo"
+      drag
+      action="/api/upload/multerFile"
+      multiple>
+      <i class="el-icon-upload"></i>
+      <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+      <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+    </el-upload>
+
     <div class="single">
       <div class="title">单个文件上传</div>
       <input type="file" name="singleFile" ref="singleFile">
@@ -34,7 +45,7 @@
       singleFile() {
         let fileList = this.$refs.singleFile.files
         let formData = new FormData()
-        formData.append('singleFile', fileList[0])
+        formData.append('file', fileList[0])
         axios.post('/upload/singleFile', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
           this.img = res.data.imageUrl
         })
@@ -43,7 +54,7 @@
         let fileList = this.$refs.multerFile.files
         let formData = new FormData()
         for (let i = 0; i < fileList.length; i++) {
-          formData.append('multerFile', fileList[i]);
+          formData.append('file', fileList[i]);
         }
         axios.post('/upload/multerFile', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
           console.log(res)

@@ -1,6 +1,7 @@
 // 引入模块
 import { Router } from "express";
 import multer from "multer";
+import verifyToken from "./verifyToken";
 // 创建实例
 const router = Router();
 const upload = multer({
@@ -19,9 +20,9 @@ const upload = multer({
   })
 });
 
-let singleUpload = upload.single("singleFile");
+let singleUpload = upload.single("file");
 // 单文件上传
-router.post("/upload/singleFile", function(req, res, next) {
+router.post("/upload/singleFile", verifyToken, (req, res, next) => {
   singleUpload(req, res, err => {
     if (err) {
       return res.json({
@@ -49,9 +50,9 @@ router.post("/upload/singleFile", function(req, res, next) {
   });
 });
 
-let multerUpload = upload.array("multerFile");
+let multerUpload = upload.array("file");
 //多个文件上传
-router.post("/upload/multerFile", (req, res, next) => {
+router.post("/upload/multerFile", verifyToken, (req, res, next) => {
   multerUpload(req, res, err => {
     if (err) {
       return res.json({
