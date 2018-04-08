@@ -1,14 +1,13 @@
 <template>
   <div class="app-wrapper">
-    <!-- <nav class="left">
-      <nuxt-link to="/admin/article">文章管理</nuxt-link>
-      <nuxt-link to="/admin/tags">标签管理</nuxt-link>
-      <nuxt-link to="/admin/client">客户管理</nuxt-link>
-    </nav> -->
     <div class="left">
       <el-row class="tac">
         <el-col :span="12">
           <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+            <el-menu-item index="2">
+              <i class="el-icon-menu"></i>
+              <span slot="title"><nuxt-link to="/admin">首页</nuxt-link></span>
+            </el-menu-item>
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
@@ -39,6 +38,12 @@
   </div>
 </template>
 <script>
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
+
 export default {
   layout: 'admin',
   data(){
@@ -61,16 +66,19 @@ export default {
       background: #545c64;
       .el-col {
         width: 100%;
-        .el-menu-item-group {
-          .el-menu-item {
-            min-width: 0;
+        .el-menu {
+          border-right: none;
+          .el-menu-item-group {
+            .el-menu-item {
+              min-width: 0;
+            }
           }
         }
       }
     }
     .right {
       float: left;
-      margin: 50px 0 0 200px;
+      margin: 18px 0 0 200px;
       width: 100%;
     }
   }
