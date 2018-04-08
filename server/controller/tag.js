@@ -3,6 +3,7 @@
  */
 
 const TagModel = require("../models/tag");
+const ArticleModel = require("../models/article");
 
 const select = {
   id: false,
@@ -59,6 +60,7 @@ class Tag {
         select: select
       };
       const tags = await TagModel.paginate(query, options);
+
       return res.status(200).json({
         success: true,
         message: "获取所有标签",
@@ -72,16 +74,26 @@ class Tag {
         }
       });
     } else {
-      const tags = await TagModel.find(query, select);
+      const tags = await TagModel.aggregate([
+        {
+          $lookup: {
+            from: "articles",
+            localField: "_id",
+            foreignField: "tag",
+            as: "articleTotal"
+          }
+        },
+        { $match: query },
+        { $project: select }
+      ]);
+      tags.forEach(item => {
+        item.articleTotal = item.articleTotal.length
+      });
       return res.status(200).json({
         success: true,
         message: "获取所有标签",
         data: {
-          success: true,
-          message: "获取所有标签",
-          data: {
-            tags: tags
-          }
+          tags: tags
         }
       });
     }

@@ -1,8 +1,8 @@
 module.exports = {
   db: {
     url: "mongodb://localhost:27017/skyCloud",
-    user: "Daker",
-    pass: "Daker19960525",
+    user: "admin",
+    pass: "r00tme",
     auth: {
       authSource: "admin",
       authMechanism: "SCRAM-SHA-1"

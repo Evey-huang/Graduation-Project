@@ -8,6 +8,7 @@ import config from "../config";
 const users = [{ username: "admin", password: "r00tme" }];
 
 import Tag from "../controller/tag";
+import Article from "../controller/article";
 
 router
   .get("/", (req, res, next) => {
@@ -48,6 +49,12 @@ router
   .get("/tag", Tag.get)
   .post("/tag", verifyToken, Tag.create)
   .put("/tag/:id", verifyToken, Tag.update)
-  .delete("/tag/:id", verifyToken, Tag.delete);
+  .delete("/tag/:id", verifyToken, Tag.delete)
+  // 文章管理
+  .get("/article", Article.list)
+  .post("/article", verifyToken, Article.create)
+  .get("/article/:id", Article.get)
+  .put("/article/:id", verifyToken, Article.update)
+  .delete("/article/:id", verifyToken, Article.delete);
 
 export default router;
