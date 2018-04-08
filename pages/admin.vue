@@ -9,6 +9,10 @@
       <el-row class="tac">
         <el-col :span="12">
           <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+            <el-menu-item index="2">
+              <i class="el-icon-menu"></i>
+              <span slot="title"><nuxt-link to="/admin">首页</nuxt-link></span>
+            </el-menu-item>
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
@@ -24,10 +28,10 @@
               <i class="el-icon-menu"></i>
               <span slot="title"><nuxt-link to="/admin/client">客户管理</nuxt-link></span>
             </el-menu-item>
-            <el-menu-item index="3">
+            <!-- <el-menu-item index="3">
               <i class="el-icon-document"></i>
               <span slot="title"><nuxt-link to="">站点设置</nuxt-link></span>
-            </el-menu-item>
+            </el-menu-item> -->
           </el-menu>
         </el-col>
       </el-row>
