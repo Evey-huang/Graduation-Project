@@ -3,7 +3,6 @@
  */
 
 const TagModel = require("../models/tag");
-const ArticleModel = require("../models/article");
 
 const select = {
   id: false,
@@ -102,7 +101,7 @@ class Tag {
   // 更新标签
   static async update(req, res) {
     const tag = req.body;
-    const id = req.id;
+    const id = req.params.id;
 
     console.log(id);
     // name validate

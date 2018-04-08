@@ -9,6 +9,7 @@ const users = [{ username: "admin", password: "r00tme" }];
 
 import Tag from "../controller/tag";
 import Article from "../controller/article";
+import Client from "../controller/client";
 
 router
   .get("/", (req, res, next) => {
@@ -55,6 +56,11 @@ router
   .post("/article", verifyToken, Article.create)
   .get("/article/:id", Article.get)
   .put("/article/:id", verifyToken, Article.update)
-  .delete("/article/:id", verifyToken, Article.delete);
+  .delete("/article/:id", verifyToken, Article.delete)
+  // 客户管理
+  .get("/client", verifyToken, Client.get)
+  .post("/client", verifyToken, Client.create)
+  .put("/client/:id", verifyToken, Client.update)
+  .delete("/client/:id", verifyToken, Client.delete);
 
 export default router;
