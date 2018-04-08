@@ -1,10 +1,5 @@
 <template>
   <div class="app-wrapper">
-    <!-- <nav class="left">
-      <nuxt-link to="/admin/article">文章管理</nuxt-link>
-      <nuxt-link to="/admin/tags">标签管理</nuxt-link>
-      <nuxt-link to="/admin/client">客户管理</nuxt-link>
-    </nav> -->
     <div class="left">
       <el-row class="tac">
         <el-col :span="12">
@@ -28,10 +23,10 @@
               <i class="el-icon-menu"></i>
               <span slot="title"><nuxt-link to="/admin/client">客户管理</nuxt-link></span>
             </el-menu-item>
-            <!-- <el-menu-item index="3">
+            <el-menu-item index="3">
               <i class="el-icon-document"></i>
               <span slot="title"><nuxt-link to="">站点设置</nuxt-link></span>
-            </el-menu-item> -->
+            </el-menu-item>
           </el-menu>
         </el-col>
       </el-row>
@@ -71,9 +66,12 @@ export default {
       background: #545c64;
       .el-col {
         width: 100%;
-        .el-menu-item-group {
-          .el-menu-item {
-            min-width: 0;
+        .el-menu {
+          border-right: none;
+          .el-menu-item-group {
+            .el-menu-item {
+              min-width: 0;
+            }
           }
         }
       }

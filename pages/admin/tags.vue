@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import axios from '~/plugins/axios'
+
 export default {
   data() {
     return {
@@ -118,6 +120,9 @@ export default {
         name: this.tags.name,
         description: this.tags.description
       }
+      axios.post("/tag", params).then(res => {
+        console.log(res)
+      })
     }
   }
 }
