@@ -5,7 +5,7 @@
       <el-input class="search" placeholder="请输入内容"></el-input>
       <span @click="handleNew"><i class="icon el-icon-plus"></i></span>
       <span><i class="icon el-icon-refresh"></i></span>
-      <el-dialog title="添加标签" :visible.sync="tagDialog.isShow" width="20%" center>
+      <el-dialog :title="tagDialog.add ? '添加标签' : '修改标签'" :visible.sync="tagDialog.isShow" width="20%" center>
         <el-form :model="tags">
           <el-form-item label="名称">
             <el-input v-model="tags.name" placeholder="请输入标签名称"></el-input>
@@ -20,17 +20,17 @@
         </div>
       </el-dialog>
     </div>
-    <el-table :data="tagData" tooltip-effect="dark" style="width: 90%" @selection-change="handleSelectionChange">
+    <el-table :data="tagsList" tooltip-effect="dark" style="width: 90%" @selection-change="handleSelectionChange">
       <el-table-column width="55"></el-table-column>
       <el-table-column label="名称" width="120">
-        <template slot-scope="scope">{{ scope.row.tag }}</template>
+        <template slot-scope="scope">{{ scope.row.name }}</template>
       </el-table-column>
       <el-table-column prop="description" label="描述" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="number" label="文章" show-overflow-tooltip sortable></el-table-column>
+      <el-table-column prop="articleTotal" label="文章" show-overflow-tooltip sortable></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit">编辑</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete">删除</el-button>
+          <el-button size="mini" @click="updateTag(scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="delTag(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -43,35 +43,7 @@ import axios from '~/plugins/axios'
 export default {
   data() {
     return {
-      tagData: [{
-        tag: 'Node.js',
-        number: 11,
-        description: '描述描述描述'
-      }, {
-        tag: 'JavaScript',
-        number: 11,
-        description: '描述描述描述'
-      }, {
-        tag: 'HTML',
-        number: 11,
-        description: '描述描述描述'
-      }, {
-        tag: 'CSS',
-        number: 11,
-        description: '描述描述描述'
-      }, {
-        tag: 'MongoDB',
-        number: 11,
-        description: '描述描述描述'
-      }, {
-        tag: 'c++',
-        number: 11,
-        description: '描述描述描述'
-      }, {
-        tag: '产品发布',
-        number: 11,
-        description: '描述描述描述'
-      }],
+      tagsList: [],
       multipleSelection: [],
       tags: { // 标签信息
         name: '',
@@ -87,6 +59,12 @@ export default {
   methods: {
     handleSelectionChange(val) {
       this.multipleSelection = val;
+    },
+    // 获取标签列表
+    getListTags() {
+      axios.get("/tag", {}).then(res => {
+        this.tagsList = res.data.tags
+      })
     },
     // 关闭Dialog窗口
     closeTagDialog() {
@@ -107,12 +85,29 @@ export default {
       this.tagDialog.isShow = true
     },
     // 编辑修改标签
-    handleEdit() {
-
+    updateTag(row) {
+      this.closeTagDialog()
+      this.tags = {
+        id: row._id,
+        name: row.name,
+        description: row.description
+      }
+      this.tagDialog.edit = true
+      this.tagDialog.isShow = true
     },
     // 删除标签
-    handleDelete() {
-
+    delTag(row) {
+      this.tags = {
+        id: row._id
+      }
+      row._id = this.tags.id
+      axios.delete(`/tag/${this.tags.id}`, {}).then(res => {
+        this.$message({
+          message: `标签 ${row.name} 删除成功`,
+          type: 'success'
+        })
+        this.getListTags()
+      })
     },
     // 提交
     commitUpdateTag() {
@@ -120,10 +115,30 @@ export default {
         name: this.tags.name,
         description: this.tags.description
       }
-      axios.post("/tag", params).then(res => {
-        console.log(res)
-      })
+      if(this.tagDialog.add) {
+        axios.post("/tag", params).then(res => {
+          this.getListTags()
+          this.closeTagDialog()
+          this.$message({
+            message: `标签 ${this.tags.name} 添加成功`,
+            type: 'success'
+          })
+        })
+      }
+      if(this.tagDialog.edit) {
+        axios.put(`/tag/${this.tags.id}`, params).then(res => {
+          this.getListTags()
+          this.closeTagDialog()
+          this.$message({
+            message: `标签 ${this.tags.name} 更新成功`,
+            type: 'success'
+          })
+        })
+      }
     }
+  },
+  mounted () {
+    this.getListTags()
   }
 }
 </script>

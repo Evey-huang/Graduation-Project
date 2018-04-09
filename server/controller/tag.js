@@ -91,9 +91,7 @@ class Tag {
       return res.status(200).json({
         success: true,
         message: "获取所有标签",
-        data: {
-          tags: tags
-        }
+        tags
       });
     }
   }
