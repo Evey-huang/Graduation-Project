@@ -34,6 +34,30 @@
         </div>
       </div>
     </div>
+    <div id="contact-sale">
+      <div class="container">
+        <h3>联系销售</h3>
+        <form class="contact-content">
+          <div class="left">
+            <p>
+              <input type="text" class="text" placeholder="姓名">
+              <input type="text" class="text" placeholder="手机号">
+            </p>
+            <p>
+              <input type="text" class="text" placeholder="公司">
+              <input type="text" class="text" placeholder="固定电话">
+            </p>
+            <p>
+              <input type="text" class="text email" placeholder="邮箱">
+            </p>
+          </div>
+          <div class="right">
+            <textarea class="message" placeholder="想要了解的信息..."></textarea>
+          </div>
+        </form>
+        <input type="submit" class="more_btn" value="发送信息">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -106,6 +130,53 @@ export default {
       }
     }
   }
+  #contact-sale {
+    margin-bottom: 100px;
+    .container {
+      h3 {
+        margin-bottom: 50px;
+      }
+      .contact-content {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 50px;
+        input, textarea {
+          outline: none;
+          font-size: 14px;
+          padding-left: 10px;
+        }
+        .left {
+          margin-left: 45px;
+          .text {
+            width: 270px;
+            height: 40px;
+            margin: 0 10px 18px 0;
+          }
+          .email {
+            width: 565px;
+          }
+        }
+        .right {
+          margin-left: 20px;
+          textarea {
+            border-color: #d5d5d5;
+            padding-top: 10px;
+            height: 162px;
+            width: 480px;
+          }
+        }
+      }
+      .more_btn {
+        padding: 13px 30px;
+        color: #fff;
+        background: #1A88FA;
+        display: block;
+        margin: 0 auto;
+        font-size: 14px;
+        @include border-radius(4px);
+      }
+    }
+  }
 }
 
 /*-----start-responsive-design------*/
@@ -131,7 +202,30 @@ export default {
         h3 {
           font-size: 28px;
         }
-
+      }
+    }
+    #contact-sale {
+      .container {
+        h3 {
+          font-size: 28px;
+        }
+        .contact-content {
+          .left {
+            .text {
+              width: 225px;
+              margin: 0 10px 15px 0;
+            }
+            .email {
+              width: 475px;
+            }
+          }
+          .right {
+            textarea {
+              height: 156px;
+              width: 405px;
+            }
+          }
+        }
       }
     }
   }
@@ -163,6 +257,36 @@ export default {
           ul {
             margin: 0 35px;
           }
+        }
+      }
+    }
+    #contact-sale {
+      .container {
+        h3 {
+          font-size: 24px;
+        }
+        .contact-content {
+          flex-wrap: wrap;
+          justify-content: center;
+          .left {
+            margin-left: 0;
+            .text {
+              width: 225px;
+            }
+            .email {
+              width: 475px;
+            }
+          }
+          .right {
+            margin-left: -10px;
+            textarea {
+              height: 156px;
+              width: 475px;
+            }
+          }
+        }
+        .more_btn {
+          padding: 13px 25px;
         }
       }
     }
@@ -212,6 +336,27 @@ export default {
         }
       }
     }
+    #contact-sale {
+      .container {
+        .contact-content {
+          .left {
+            .text {
+              width: 400px;
+              display: block;
+            }
+          }
+          .right {
+            textarea {
+              height: 140px;
+              width: 400px;
+            }
+          }
+        }
+        .more_btn {
+          padding: 13px 25px;
+        }
+      }
+    }
   }
 }
 @media screen  and (max-width: 480px) {
@@ -238,6 +383,29 @@ export default {
         h3 {
           font-size: 18px;
           margin: 85px 0 50px 0;
+        }
+      }
+    }
+    #contact-sale {
+      .container {
+        h3 {
+          font-size: 18px;
+        }
+        .contact-content {
+          .left {
+            .text {
+              width: 300px;
+            }
+          }
+          .right {
+            textarea {
+              height: 120px;
+              width: 300px;
+            }
+          }
+        }
+        .more_btn {
+          padding: 10px 20px;
         }
       }
     }
@@ -283,6 +451,30 @@ export default {
               }
             }
           }
+        }
+      }
+    }
+    #contact-sale {
+      .container {
+        h3 {
+          font-size: 18px;
+          margin-top: 30px;
+        }
+        .contact-content {
+          .left {
+            .text {
+              width: 240px;
+            }
+          }
+          .right {
+            textarea {
+              height: 120px;
+              width: 240px;
+            }
+          }
+        }
+        .more_btn {
+          padding: 10px 20px;
         }
       }
     }
