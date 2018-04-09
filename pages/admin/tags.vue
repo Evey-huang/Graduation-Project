@@ -4,7 +4,7 @@
       <p class="title">标签管理</p>
       <el-input class="search" placeholder="请输入内容"></el-input>
       <span @click="handleNew"><i class="icon el-icon-plus"></i></span>
-      <span><i class="icon el-icon-refresh"></i></span>
+      <span @click="getListTags"><i class="icon el-icon-refresh"></i></span>
       <el-dialog :title="tagDialog.add ? '添加标签' : '修改标签'" :visible.sync="tagDialog.isShow" width="20%" center>
         <el-form :model="tags">
           <el-form-item label="名称">
@@ -20,7 +20,7 @@
         </div>
       </el-dialog>
     </div>
-    <el-table :data="tagsList" tooltip-effect="dark" style="width: 90%" @selection-change="handleSelectionChange">
+    <el-table :data="tagsList" tooltip-effect="dark" style="width: 90%">
       <el-table-column width="55"></el-table-column>
       <el-table-column label="名称" width="120">
         <template slot-scope="scope">{{ scope.row.name }}</template>
@@ -43,8 +43,7 @@ import axios from '~/plugins/axios'
 export default {
   data() {
     return {
-      tagsList: [],
-      multipleSelection: [],
+      tagsList: [], // 标签列表
       tags: { // 标签信息
         name: '',
         description: ''
@@ -57,9 +56,6 @@ export default {
     }
   },
   methods: {
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-    },
     // 获取标签列表
     getListTags() {
       axios.get("/tag", {}).then(res => {
