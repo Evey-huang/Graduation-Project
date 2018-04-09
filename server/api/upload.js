@@ -4,17 +4,21 @@ import multer from "multer";
 import verifyToken from "./verifyToken";
 // 创建实例
 const router = Router();
+const config = require('./../config');
 const upload = multer({
   storage: multer.diskStorage({
     // 设置上传文件路径,以后可以扩展成上传至七牛,文件服务器等等
     // Note:如果你传递的是一个函数，你负责创建文件夹，如果你传递的是一个字符串，multer会自动创建
-    destination: function(req, file, cb) {
-      cb(null, "./uploads/");
-    },
+    // destination: function(req, file, cb) {
+    //   cb(null, "./uploads/");
+    // },
+    destination: config.src,
     // TODO: 文件区分目录存放
     // 获取文件MD5，重命名，添加后缀,文件重复会直接覆盖
     filename: function(req, file, cb) {
-      let changedName = new Date().getTime() + "-" + file.originalname;
+      console.log()
+      // let changedName = new Date().getTime() + "-" + file.originalname;
+      let changedName = new Date().getTime() + "." + file.mimetype.split('/')[1];
       cb(null, changedName);
     }
   })
@@ -37,7 +41,8 @@ router.post("/upload/singleFile", verifyToken, (req, res, next) => {
         success: true,
         message: "上传成功",
         type: "single",
-        originalname: req.file.originalname
+        originalname: req.file.originalname,
+        path: config.getSrc + req.file.filename
       });
     } else {
       return res.json({
@@ -65,7 +70,8 @@ router.post("/upload/multerFile", verifyToken, (req, res, next) => {
     let fileList = [];
     req.files.map(elem => {
       fileList.push({
-        originalname: elem.originalname
+        originalname: elem.originalname,
+        path: config.getSrc + elem.filename
       });
     });
     return res.json({
