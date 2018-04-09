@@ -6,7 +6,7 @@
           <h3>NAP</h3>
           <p class="hidden-xs">NAP(Network Automation Platform)通过主流网络设备的配置进行解析和建模，形成统一的配置模型，提供完善的配置<br>管理接口，并通过编排引擎实现对一系列复杂网络服务自动化场景的支持。</p>
           <p class="visible-xs">NAP通过主流网络设备的配置进行解析和建模，形成统一的配置模型，提供完善的配置管理接口，并通过编排引擎实现对一系列复杂网络服务自动化场景的支持。</p>
-          <span><nuxt-link to="./about">联系销售</nuxt-link></span>
+          <span><nuxt-link to="/about/#contact-sale">联系销售</nuxt-link></span>
         </div>
         <img class="banner-bg" src="~/assets/images/ic_product_banner.png" />
       </div>

@@ -47,7 +47,7 @@
     <div class="contact-sale">
       <div class="container">
         <h3>NAP，轻松管理网络服务的生命周期</h3>
-        <span><nuxt-link to="/pages/about.vue">联系销售</nuxt-link></span>
+        <span><nuxt-link to="/about/#contact-sale">联系销售</nuxt-link></span>
       </div>
     </div>
   </div>
@@ -55,9 +55,24 @@
 
 
 <script>
-
 export default {
-  layout: 'default'
+  layout: 'default',
+  data() {
+    return {
+      showAlert: false
+    }
+  },
+  methods: {
+    contactSales() {
+      this.showAlert = true
+    },
+    sure() {
+      this.close();
+    },
+    cancel() {
+      this.showAlert = false;
+    }
+  }
 }
 </script>
 
@@ -171,6 +186,80 @@ export default {
       &:hover, &:active {
         background: #0063E7;
       }
+    }
+  }
+}
+
+.contact-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0, 0.8);
+  z-index: 1000;
+  transition: all .3s ease-in-out;
+}
+.wrap {
+  position: absolute;
+  z-index: 1002;
+  min-width: 800px;
+  height: 700px;
+  background: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  padding: 40px 20px;
+  .contact-title {
+    font-size: 24px;
+    padding-bottom: 10px;
+  }
+  form {
+    margin-top: 50px;
+    p {
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      input, textarea {
+        width: 320px;
+        margin-top: 10px;
+        outline: none;
+      }
+      input {
+        height: 45px;
+      }
+      .area-code {
+        width: 100px;
+        margin-right: 5px;
+      }
+      .tel {
+       width: 199px;
+       margin-left: 5px;
+      }
+      textarea {
+        height: 100px;
+      }
+    }
+  }
+  .foot {
+    margin-top: 20px;
+    text-align: center;
+    button {
+      margin-right: 40px;
+      width: 80px;
+      height: 40px;
+      color: #000;
+      @include border-radius(4px);
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .btn-base {
+      background: #1A88FA;
+      color: #fff;
+      
     }
   }
 }
