@@ -46,6 +46,7 @@ module.exports = {
   loading: { color: '#1A88FA' },
   plugins: [
     // { src: '~/plugins/axios' }
+    { src: '~/plugins/filters.js' }
   ],
   router: {
     linkActiveClass: 'active-link', // 链接激活时使用的 CSS 类名

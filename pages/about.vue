@@ -40,22 +40,25 @@
         <form class="contact-content">
           <div class="left">
             <p>
-              <input type="text" class="text" placeholder="姓名">
-              <input type="text" class="text" placeholder="手机号">
+              <input type="text" v-model="clients.name" placeholder="姓名">
+              <input type="text" v-model="clients.phone" placeholder="手机号">
             </p>
             <p>
-              <input type="text" class="text" placeholder="公司">
-              <input type="text" class="text" placeholder="固定电话">
+              <input type="text" v-model="clients.company" placeholder="公司">
+              <input type="text" v-model="clients.tel" placeholder="固定电话">
             </p>
             <p>
-              <input type="text" class="text email" placeholder="邮箱">
+              <input type="text" class="email" v-model="clients.email" placeholder="邮箱">
             </p>
           </div>
           <div class="right">
-            <textarea class="message" placeholder="想要了解的信息..."></textarea>
+            <textarea class="message" v-model="clients.message" placeholder="想要了解的信息..."></textarea>
           </div>
         </form>
-        <input type="submit" class="more_btn" value="发送信息">
+        <input type="submit" class="more_btn" @click="sendMessage" value="发送信息">
+      </div>
+      <div class="tips" v-if="success">
+        <span><i class="iconfont icon-tipssuccess"></i>信息已发送</span>
       </div>
     </div>
   </div>
@@ -63,9 +66,51 @@
 
 
 <script>
+import axios from '~/plugins/axios'
+
 export default {
   name: 'about',
-  layout: 'default'
+  layout: 'default',
+  data() {
+    return {
+      success: false,
+      clients: {
+        name: '',
+        company: '',
+        phone: '',
+        tel: '',
+        email: '',
+        message: ''
+      }
+    }
+  },
+  methods: {
+    // 发送客户信息
+    sendMessage() {
+      let params = {
+        name: this.clients.name,
+        company: this.clients.company,
+        phone: this.clients.phone,
+        tel: this.clients.tel,
+        email: this.clients.email,
+        message: this.clients.message
+      }
+      axios.post("/client", params).then(res => {
+        this.success = true
+        this.clients = {
+          name: '',
+          company: '',
+          phone: '',
+          tel: '',
+          email: '',
+          message: ''
+        }
+        setTimeout(() => {
+          this.success = false
+        }, 2000)
+      })
+    }
+  }
 }
 </script>
 
@@ -132,6 +177,7 @@ export default {
   }
   #contact-sale {
     margin-bottom: 100px;
+    position: relative;
     .container {
       h3 {
         margin-bottom: 50px;
@@ -147,7 +193,7 @@ export default {
         }
         .left {
           margin-left: 45px;
-          .text {
+          input {
             width: 270px;
             height: 40px;
             margin: 0 10px 18px 0;
@@ -174,6 +220,21 @@ export default {
         margin: 0 auto;
         font-size: 14px;
         @include border-radius(4px);
+      }
+    }
+    .tips {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      background: #f0f9eb;
+      padding: 1em;
+      @include border-radius(4px);
+      span {
+        color: #67c23a;
+        i {
+          padding-right: 10px;
+        }
       }
     }
   }
@@ -211,7 +272,7 @@ export default {
         }
         .contact-content {
           .left {
-            .text {
+            input {
               width: 225px;
               margin: 0 10px 15px 0;
             }
@@ -270,7 +331,7 @@ export default {
           justify-content: center;
           .left {
             margin-left: 0;
-            .text {
+            input {
               width: 225px;
             }
             .email {
@@ -340,7 +401,7 @@ export default {
       .container {
         .contact-content {
           .left {
-            .text {
+            input {
               width: 400px;
               display: block;
             }
@@ -393,7 +454,7 @@ export default {
         }
         .contact-content {
           .left {
-            .text {
+            input {
               width: 300px;
             }
           }
@@ -462,7 +523,7 @@ export default {
         }
         .contact-content {
           .left {
-            .text {
+            input {
               width: 240px;
             }
           }
