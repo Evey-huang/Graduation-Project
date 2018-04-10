@@ -27,7 +27,7 @@ class Client {
       return res.status(400).send("邮箱为空");
     }
 
-    if (!client.phone || !client.tel) {
+    if (!client.phone && !client.tel) {
       return res.status(400).send("固定电话或手机号需要选填一个");
     }
 
