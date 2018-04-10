@@ -1,17 +1,26 @@
 <template>
-  <div class="article-wrapper">
-    <el-table ref="multipleTable" :data="tableData3" tooltip-effect="dark" style="width: 90%" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column label="文章" width="120">
-        <template slot-scope="scope">{{ scope.row.article }}</template>
+  <div class="article-container">
+    <div class="header">
+      <el-input class="search" placeholder="请输入内容"></el-input>
+      <span @click="getListArticles"><i class="icon el-icon-refresh"></i></span>
+    </div>
+    <el-table :data="articleList" tooltip-effect="dark" style="width: 98%">
+      <el-table-column width="55"></el-table-column>
+      <el-table-column label="标题" width="120">
+        <template slot-scope="scope">{{ scope.row.title }}</template>
       </el-table-column>
-      <el-table-column prop="tag" label="标签" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="date" label="创建时间" show-overflow-tooltip sortable></el-table-column>
+      <el-table-column label="标签">
+        <template slot-scope="scope" v-for="tag in articleList">{{ tag.tag[0].name }}</template>
+      </el-table-column>
+      <el-table-column prop="keywords" label="关键字"></el-table-column>
+      <el-table-column prop="description" label="描述"></el-table-column>
+      <el-table-column prop="createAt" label="创建时间" sortable>
+        <template slot-scope="scope">{{ scope.row.createAt | toLocalString }}</template>
+      </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)">新建</el-button>
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          <el-button size="mini" @click="updateTag(scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="delTag(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -19,61 +28,47 @@
 </template>
 
 <script>
+import axios from '~/plugins/axios'
+
 export default {
   data() {
     return {
-      tableData3: [{
-        article: '文章标题一',
-        date: '2016-05-03',
-        tag: 'Node.js'
-      }, {
-        article: '文章标题二',
-        date: '2016-06-03',
-        tag: 'JavaScript'
-      }, {
-        article: '文章标题三',
-        date: '2016-05-17',
-        tag: 'HTML'
-      }, {
-        article: '文章标题四',
-        date: '2016-05-22',
-        tag: 'CSS'
-      }, {
-        article: '文章标题五',
-        date: '2016-09-03',
-        tag: 'MongoDB'
-      }, {
-        article: '文章标题六',
-        date: '2016-10-03',
-        tag: 'c++'
-      }, {
-        article: '文章标题七',
-        date: '2016-01-03',
-        tag: '产品发布'
-      }],
-      multipleSelection: []
+      articleList: [], // 文章列表
     }
   },
   methods: {
-    toggleSelection(rows) {
-      if (rows) {
-        rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
-      } else {
-        this.$refs.multipleTable.clearSelection();
-      }
-    },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
+    // 获取文章列表
+    getListArticles() {
+      axios.get("/article", {}).then(res => {
+        console.log(res)
+        this.articleList = res.data.articles
+      })
     }
+  },
+  mounted () {
+    this.getListArticles()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .article-wrapper {
-    margin-right: 100px;
+  .article-container {
+    margin-left: 25px;
+    .header {
+      margin: 30px 0;
+      .title {
+        margin-bottom: 15px;
+      }
+      .search {
+        width: 93%;
+      }
+      span {
+        padding-left: 10px;
+        i {
+          font-size: 20px;
+          color: #409EFF;
+        }
+      }
+    }
   }
 </style>
-
