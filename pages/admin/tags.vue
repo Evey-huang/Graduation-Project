@@ -1,7 +1,6 @@
 <template>
   <div class="tags-container">
     <div class="header">
-      <p class="title">标签管理</p>
       <el-input class="search" placeholder="请输入内容"></el-input>
       <span @click="handleNew"><i class="icon el-icon-plus"></i></span>
       <span @click="getListTags"><i class="icon el-icon-refresh"></i></span>
@@ -20,7 +19,7 @@
         </div>
       </el-dialog>
     </div>
-    <el-table :data="tagsList" tooltip-effect="dark" style="width: 90%">
+    <el-table :data="tagsList" tooltip-effect="dark" style="width: 98%">
       <el-table-column width="55"></el-table-column>
       <el-table-column label="名称" width="120">
         <template slot-scope="scope">{{ scope.row.name }}</template>
@@ -141,13 +140,14 @@ export default {
 
 <style lang="scss" scoped>
   .tags-container {
+    margin-left: 25px;
     .header {
-      margin-bottom: 30px;
+      margin: 30px 0;
       .title {
         margin-bottom: 15px;
       }
       .search {
-        width: 83%;
+        width: 93%;
       }
       span {
         padding-left: 10px;
