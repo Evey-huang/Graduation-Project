@@ -26,14 +26,12 @@ const ClientSchema = new Schema({
 
   // 固定电话
   tel: {
-    type: String,
-    validate: /^\(?0[1-9]\d{1,2}\)?[\s\-]?[2-9]\d{3}[\s\-]?\d{3,4}$/
+    type: String
   },
 
   // 手机号
   phone: {
-    type: String,
-    validate: /^1[3-578]\d{9}$/
+    type: String
   },
 
   // message

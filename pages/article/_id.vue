@@ -4,7 +4,7 @@
       <article class="content markdown-body" v-html="compiledMarkdown"></article>
       <div class="aside">
         <div class="aside-article">
-          <p class="title"><span>最热文章</span></p>
+          <p class="title"><span>相关文章</span></p>
           <ul>
             <li>
               <span><nuxt-link to="">实现基于Nuxt.js的SSR应用</nuxt-link></span>
@@ -88,7 +88,7 @@ export default {
   .article {
     .container {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
     }
     .content {
       padding: 10px 45px;

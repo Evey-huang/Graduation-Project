@@ -31,6 +31,16 @@ class Client {
       return res.status(400).send("固定电话或手机号需要选填一个");
     }
 
+    let phoneValidate = /^\(?0[1-9]\d{1,2}\)?[\s\-]?[2-9]\d{3}[\s\-]?\d{3,4}$/;
+    if (client.phone && !phoneValidate.test(client.phone)) {
+      return res.status(400).send("手机号不合法！");
+    }
+
+    let telValidate = /^1[3-578]\d{9}|\S+$/;
+    if (tel.phone && !telValidate.test(client.tel)) {
+      return res.status(400).send("电话号码不合法！");
+    }
+
     await new ClientModel(client)
       .save()
       .then(() => {
