@@ -63,13 +63,11 @@ class Article {
     return res.status(200).json({
       success: true,
       message: "获取文章列表成功",
-      data: {
-        articles: articles.docs,
-        total: articles.total,
-        limit: articles.limit,
-        page: articles.page,
-        pages: articles.pages
-      }
+      articles: articles.docs,
+      total: articles.total,
+      limit: articles.limit,
+      page: articles.page,
+      pages: articles.pages
     });
   }
 
