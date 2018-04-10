@@ -33,13 +33,14 @@ class Client {
 
     await new ClientModel(client)
       .save()
-      .then(() => {
+      .then(result => {
         return res.status(200).json({
           success: true,
           message: "客户创建成功"
         });
       })
-      .catch(() => {
+      .catch(err => {
+        console.log(err)
         return res.status(400).send("客户创建失败");
       });
   }
