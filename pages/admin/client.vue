@@ -13,11 +13,12 @@
       <el-table-column prop="company" label="公司"></el-table-column>
       <el-table-column prop="tel" label="固定电话"></el-table-column>
       <el-table-column prop="email" label="邮箱"></el-table-column>
-      <el-table-column prop="contact" label="是否已联系"></el-table-column>
+      <el-table-column prop="contact" label="是否已联系">
+      </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" @click="updateTag(scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="delTag(scope.row)">删除</el-button>
+          <el-button size="mini" @click="updateStatus(scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="delClient(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -37,8 +38,21 @@ export default {
     // 获取客户联系列表
     getListClients() {
       axios.get("/client", {}).then(res => {
-        // console.log(res)
         this.clientList = res.data.data.clients
+      })
+    },
+    // 编辑联系状态
+    updateStatus(row) {
+
+    },
+    // 删除客户信息
+    delClient(row) {
+      axios.delete(`/client/${row._id}`, {}).then(res => {
+        this.$message({
+          message: `客户 ${row.name} 信息删除成功`,
+          type: 'success'
+        })
+        this.getListClients()
       })
     }
   },

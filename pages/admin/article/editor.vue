@@ -106,7 +106,17 @@ export default {
           this.$route.push('/admin/article')
         }
       })
-    }
+    },
+    // 编辑文章
+    beforeRouteEnter(to, from, next) {
+      axios.get(`/article/${to.params.id}`, {}).then(res => {
+        // to.meta.title = res.data.articles.title
+        // next(vm => {
+        //   vm.article = res.data.articles
+        // })
+        console.log(res)
+      })
+    },
   }
 }
 </script>
