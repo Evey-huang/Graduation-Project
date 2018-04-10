@@ -57,6 +57,9 @@
         </form>
         <input type="submit" class="more_btn" @click="sendMessage" value="发送信息">
       </div>
+      <div class="tips" v-if="success">
+        <span><i class="iconfont icon-tipssuccess"></i>信息已发送</span>
+      </div>
     </div>
   </div>
 </template>
@@ -64,12 +67,13 @@
 
 <script>
 import axios from '~/plugins/axios'
- 
+
 export default {
   name: 'about',
   layout: 'default',
   data() {
     return {
+      success: false,
       clients: {
         name: '',
         company: '',
@@ -92,7 +96,18 @@ export default {
         message: this.clients.message
       }
       axios.post("/client", params).then(res => {
-        console.log(res)
+        this.success = true
+        this.clients = {
+          name: '',
+          company: '',
+          phone: '',
+          tel: '',
+          email: '',
+          message: ''
+        }
+        setTimeout(() => {
+          this.success = false
+        }, 2000)
       })
     }
   }
@@ -162,6 +177,7 @@ export default {
   }
   #contact-sale {
     margin-bottom: 100px;
+    position: relative;
     .container {
       h3 {
         margin-bottom: 50px;
@@ -204,6 +220,21 @@ export default {
         margin: 0 auto;
         font-size: 14px;
         @include border-radius(4px);
+      }
+    }
+    .tips {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      background: #f0f9eb;
+      padding: 1em;
+      @include border-radius(4px);
+      span {
+        color: #67c23a;
+        i {
+          padding-right: 10px;
+        }
       }
     }
   }
