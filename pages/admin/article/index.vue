@@ -12,10 +12,11 @@
       <el-table-column prop="tag" label="标签"></el-table-column>
       <el-table-column prop="keywords" label="关键字"></el-table-column>
       <el-table-column prop="description" label="描述"></el-table-column>
-      <el-table-column prop="createAt" label="创建时间" sortable>
+      <el-table-column label="创建时间" sortable>
         <!-- <template slot-scope="scope">
           {{scope.row.cratedAt | toYMD}}
         </template> -->
+        <template slot-scope="scope">{{ scope.row.cratedAt | toYMD }}</template>
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
