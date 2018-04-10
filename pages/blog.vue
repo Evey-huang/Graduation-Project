@@ -154,7 +154,7 @@ export default {
   },
   methods: {
       toAricle() {
-          this.$router.push("/articles/1")
+          this.$router.push("/article/1")
       }
   }
 }
@@ -213,7 +213,7 @@ export default {
             width: 20%;
             .title {
                 border-bottom: 1px solid #DDDFE2;
-                padding-bottom: 20px; 
+                padding-bottom: 20px;
                 width: 100%;
                 span {
                     border-left: 3px solid #4A90E2;
@@ -222,7 +222,7 @@ export default {
                     color: #666;
                 }
             }
-            .aside-article {  
+            .aside-article {
                 ul {
                     margin-top: 20px;
                     li {
@@ -284,7 +284,7 @@ export default {
               width: 50%;
               float: left;
               margin-left: 40px;
-              
+
           }
       }
     }

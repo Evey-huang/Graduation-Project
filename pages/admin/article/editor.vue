@@ -32,14 +32,16 @@
       </el-form>
     </el-col>
     <el-col :span="20">
-      <mavon-editor ref="md" v-model="article.content" @imgAdd="imgAdd" @save="save"></mavon-editor>
+      <no-ssr>
+        <mavon-editor ref="md" v-model="article.content" @imgAdd="imgAdd" @save="save"></mavon-editor>
+      </no-ssr>
     </el-col>
   </el-row>
 
 </template>
 
 <script>
-import mavonEditor from '~/plugins/mavon-editor'
+import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import axios from '~/plugins/axios'
 

@@ -97,16 +97,14 @@ class Article {
   // 获取文章
   static async get(req, res) {
     const id = req.params.id;
-
     // 判断来源
     const isFindById = Object.is(Number(id), NaN);
     let result;
-
     if (isFindById) {
-      result = await ArticleModel.findById(id);
+      result = await ArticleModel.findOne({ id: id });
     } else {
-      result = await ArticleModel.findOne({ id: id, state: 1, pub: 1 })
-        .populate("category tag")
+      result = await ArticleModel.findOne({ id: id })
+        .populate("tag")
         .exec();
     }
 
@@ -124,20 +122,21 @@ class Article {
       result.save();
     }
 
-    let newResult = result.toObject();
+    let article = result.toObject();
+    let articles
     // 按照tag请求相似文章
     if (!isFindById && result.tag.length) {
-      let related = await ArticleModel.find({
+      articles = await ArticleModel.find({
         tag: { $in: result.tag.map(t => t._id) }
       });
-      newResult.related = related;
     }
 
     // 成功回应
     return res.status(200).json({
       success: true,
       message: "获取文章成功",
-      data: newResult
+      article,
+      articles
     });
   }
 
