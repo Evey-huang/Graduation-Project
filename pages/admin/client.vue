@@ -37,7 +37,6 @@ export default {
     // 获取客户联系列表
     getListClients() {
       axios.get("/client", {}).then(res => {
-        // console.log(res)
         this.clientList = res.data.data.clients
       })
     }
