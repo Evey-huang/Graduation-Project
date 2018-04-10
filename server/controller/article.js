@@ -10,13 +10,13 @@ const select = {
 
 class Article {
   static async list(req, res) {
-    let { page, per_page, keyword, tag, date, hot } = req.query;
+    let { currentPage, pageSize, keyword, tag, date, hot } = req.query;
 
     // filter options
     const options = {
       sort: { createAt: -1 },
-      page: Number(page || 1),
-      limit: Number(per_page || 10),
+      page: Number(currentPage || 1),
+      limit: Number(pageSize || 10),
       populate: ["tag"],
       select: "-password -content"
     };

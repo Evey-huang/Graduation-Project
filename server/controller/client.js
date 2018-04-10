@@ -77,13 +77,11 @@ class Client {
       return res.status(200).json({
         success: true,
         message: "获取所有客户",
-        data: {
-          clients: clients.docs,
-          pagination: {
-            currentPage: clients.page,
-            pageSize: clients.limit,
-            total: clients.total
-          }
+        clients: clients.docs,
+        pagination: {
+          currentPage: clients.page,
+          pageSize: clients.limit,
+          total: clients.total
         }
       });
     } else {
