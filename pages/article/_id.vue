@@ -42,11 +42,18 @@ import 'highlight.js/styles/atom-one-dark.css'
 import axios from '~/plugins/axios'
 
 export default {
-  async asyncData ({params}) {
-    let result = await axios.get(`/article/${params.id}`)
-    return {
-      article: result.data.article,
-      articles: result.data.articles,
+  validate({ params }) {
+    return params.id && !isNaN(Number(params.id))
+  },
+  async asyncData ({params, error}) {
+    try {
+      let result = await axios.get(`/article/${params.id}`)
+      return {
+        article: result.data.article,
+        articles: result.data.articles,
+      }
+    } catch (err) {
+      error({ statusCode: 404 })
     }
   },
   computed: {
@@ -57,7 +64,7 @@ export default {
         tables: true,
         breaks: false,
         pedantic: false,
-        sanitize: false,
+        sanitize: true,
         smartLists: true,
         smartypants: false,
         highlight(code) {
