@@ -51,7 +51,7 @@
 import "~/plugins/element-ui.js";
 import "element-ui/lib/theme-chalk/index.css";
 export default {
-  layout: "admin"
+  layout: "empty"
 };
 </script>
 <style lang="scss" scoped>

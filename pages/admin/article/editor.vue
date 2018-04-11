@@ -41,49 +41,48 @@
 </template>
 
 <script>
-import { mavonEditor } from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
-import axios from '~/plugins/axios'
-import index from 'vue';
+import { mavonEditor } from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
+import axios from "~/plugins/axios";
 
 export default {
   components: {
     mavonEditor
   },
-  async asyncData ({query}) {
-    let res = await axios.get('/tag')
+  async asyncData({ query }) {
+    let res = await axios.get("/tag");
     let article = {
-        title: '',
-        keywords: '',
-        description: '',
-        content: '',
-        thumb: '',
-        tag: []
-      }
-    if(query.articleId) {
-      let res2 = await axios.get(`/article/${query.articleId}`, {})
+      title: "",
+      keywords: "",
+      description: "",
+      content: "",
+      thumb: "",
+      tag: []
+    };
+    if (query.articleId) {
+      let res2 = await axios.get(`/article/${query.articleId}`, {});
       res2.data.article.tag.forEach((item, index) => {
-        res2.data.article.tag[index] = item._id
-      })
-      article = res2.data.article
+        res2.data.article.tag[index] = item._id;
+      });
+      article = res2.data.article;
     }
     return {
       options: res.data.success ? res.data.tags : [],
       article
-    }
+    };
   },
-  beforeRouteUpdate (to, from, next) {
-    if(!to.query.articleId) {
+  beforeRouteUpdate(to, from, next) {
+    if (!to.query.articleId) {
       this.article = {
-        title: '',
-        keywords: '',
-        description: '',
-        content: '',
-        thumb: '',
+        title: "",
+        keywords: "",
+        description: "",
+        content: "",
+        thumb: "",
         tag: []
-      }
+      };
     }
-    next()
+    next();
   },
   methods: {
     handleAvatarSuccess(res, file) {
@@ -107,34 +106,38 @@ export default {
       const isLt2M = file.size / 1024 / 1024 < 2;
 
       if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!');
+        this.$message.error("上传头像图片大小不能超过 2MB!");
       }
       return isLt2M;
     },
     imgAdd(pos, $file) {
-      let formData = new FormData()
-      formData.append('file', $file)
-      axios.post('/upload/singleFile', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
-        this.$refs.md.$img2Url(pos, res.data.path);
-      })
+      let formData = new FormData();
+      formData.append("file", $file);
+      axios
+        .post("/upload/singleFile", formData, {
+          headers: { "Content-Type": "multipart/form-data" }
+        })
+        .then(res => {
+          this.$refs.md.$img2Url(pos, res.data.path);
+        });
     },
     save(value, render) {
-      if(!this.$route.query.articleId) {
-        axios.post('/article', this.article).then(res => {
-          if(res.data.success) {
-            this.$router.push('/admin/article')
+      if (!this.$route.query.articleId) {
+        axios.post("/article", this.article).then(res => {
+          if (res.data.success) {
+            this.$router.push("/admin/article");
           }
-        })
+        });
       } else {
         axios.put(`/article/${this.article._id}`, this.article).then(res => {
-          if(res.data.success) {
-            this.$router.push('/admin/article')
+          if (res.data.success) {
+            this.$router.push("/admin/article");
           }
-        })
+        });
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -143,7 +146,6 @@ export default {
   .header {
     display: flex;
     justify-content: flex-end;
-
   }
   .el-col-20 {
     height: calc(100vh - 20px);

@@ -56,15 +56,14 @@
 
 <script>
 export default {
-  layout: 'default',
   data() {
     return {
       showAlert: false
-    }
+    };
   },
   methods: {
     contactSales() {
-      this.showAlert = true
+      this.showAlert = true;
     },
     sure() {
       this.close();
@@ -73,12 +72,12 @@ export default {
       this.showAlert = false;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/scss/variables.scss';
-@import '~assets/scss/mixins.scss';
+@import "~assets/scss/variables.scss";
+@import "~assets/scss/mixins.scss";
 
 .banner {
   .container {
@@ -106,9 +105,12 @@ export default {
     margin-top: 120px;
     color: $font-color-title;
   }
-  .advantage-item1, .advantage-item2, .advantage-item3 {
+  .advantage-item1,
+  .advantage-item2,
+  .advantage-item3 {
     margin-top: 120px;
-    .img, .info {
+    .img,
+    .info {
       display: inline-block;
       vertical-align: middle;
     }
@@ -123,7 +125,7 @@ export default {
         padding-top: 13px;
         @include opacity(0.5);
         &:before {
-          content: '';
+          content: "";
           background: $primary;
           border-radius: 50%;
           display: inline-block;
@@ -135,7 +137,8 @@ export default {
       }
     }
   }
-  .advantage-item1, .advantage-item3 {
+  .advantage-item1,
+  .advantage-item3 {
     .img {
       margin-left: 138px;
     }
@@ -161,7 +164,8 @@ export default {
       padding: 13px 33px;
       text-align: center;
       @include border-radius(4px);
-      &:hover, &:active {
+      &:hover,
+      &:active {
         background: $primary;
         color: $font-color-secondary;
       }
@@ -171,7 +175,7 @@ export default {
 .contact-sale {
   text-align: center;
   height: 328px;
-  background: url('~/assets/images/ic_lianxixiaoshou_bg.png') no-repeat;
+  background: url("~/assets/images/ic_lianxixiaoshou_bg.png") no-repeat;
   margin-top: 120px;
   display: flex;
   align-items: center;
@@ -183,8 +187,9 @@ export default {
       background: $primary;
       padding: 10px 33px;
       @include border-radius(4px);
-      &:hover, &:active {
-        background: #0063E7;
+      &:hover,
+      &:active {
+        background: #0063e7;
       }
     }
   }
@@ -196,9 +201,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0, 0.8);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 1000;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .wrap {
   position: absolute;
@@ -222,7 +227,8 @@ export default {
         display: block;
         margin-top: 10px;
       }
-      input, textarea {
+      input,
+      textarea {
         width: 320px;
         margin-top: 10px;
         outline: none;
@@ -235,8 +241,8 @@ export default {
         margin-right: 5px;
       }
       .tel {
-       width: 199px;
-       margin-left: 5px;
+        width: 199px;
+        margin-left: 5px;
       }
       textarea {
         height: 100px;
@@ -257,9 +263,8 @@ export default {
       }
     }
     .btn-base {
-      background: #1A88FA;
+      background: #1a88fa;
       color: #fff;
-      
     }
   }
 }
@@ -305,9 +310,12 @@ export default {
       margin-top: 40px;
       font-size: 24px;
     }
-    .advantage-item1, .advantage-item2, .advantage-item3 {
+    .advantage-item1,
+    .advantage-item2,
+    .advantage-item3 {
       margin-top: 40px;
-      .img, .info {
+      .img,
+      .info {
         display: inline-block;
         vertical-align: middle;
       }
@@ -318,7 +326,8 @@ export default {
         }
       }
     }
-    .advantage-item1, .advantage-item3 {
+    .advantage-item1,
+    .advantage-item3 {
       .img {
         margin-left: 20px;
       }
@@ -361,7 +370,9 @@ export default {
     }
   }
   .container {
-    .advantage-item1, .advantage-item2, .advantage-item3 {
+    .advantage-item1,
+    .advantage-item2,
+    .advantage-item3 {
       .img {
         width: 180px;
         img {
@@ -407,7 +418,9 @@ export default {
     .learn-more {
       font-size: 14px;
     }
-    .advantage-item1, .advantage-item2, .advantage-item3 {
+    .advantage-item1,
+    .advantage-item2,
+    .advantage-item3 {
       .img {
         width: 140px;
         img {
@@ -455,7 +468,6 @@ export default {
     h3 {
       font-size: 16px;
     }
-    
   }
   .contact-sale {
     .container {
@@ -465,5 +477,4 @@ export default {
     }
   }
 }
-
 </style>
