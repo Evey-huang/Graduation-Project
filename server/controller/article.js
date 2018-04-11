@@ -78,7 +78,7 @@ class Article {
     if (!article.title || !article.content) {
       return res.status(400).send("文章标题或内容为空");
     }
-
+    
     await new ArticleModel(article)
       .save()
       .then(result => {
@@ -160,7 +160,7 @@ class Article {
     return res.status(200).json({
       success: true,
       message: "文章修改成功",
-      data: result
+      article: result
     });
   }
 

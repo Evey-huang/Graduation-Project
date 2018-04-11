@@ -16,7 +16,7 @@ const ArticleSchema = new Schema({
   title: { type: String, required: true, validate: /\S+/ },
 
   // 文章关键词
-  keywords: [{ type: String }],
+  keywords: { type: String },
 
   // 描述
   description: String,

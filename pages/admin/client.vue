@@ -14,10 +14,13 @@
       <el-table-column prop="tel" label="固定电话"></el-table-column>
       <el-table-column prop="email" label="邮箱"></el-table-column>
       <el-table-column prop="contact" label="是否已联系">
+        <template slot-scope="scope">
+          <el-switch v-model="scope.row.contact" active-text="已联系" inactive-text="未联系" @change="handleChange"></el-switch>
+        </template>
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" @click="updateStatus(scope.row)">编辑</el-button>
+          <!-- <el-button size="mini" @click="updateStatus(scope.row)">编辑</el-button> -->
           <el-button size="mini" type="danger" @click="delClient(scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -42,7 +45,7 @@ export default {
       })
     },
     // 编辑联系状态
-    updateStatus(row) {
+    handleChange() {
 
     },
     // 删除客户信息
