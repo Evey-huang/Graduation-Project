@@ -15,7 +15,9 @@
       <el-table-column prop="email" label="邮箱"></el-table-column>
       <el-table-column prop="contact" label="是否已联系">
         <template slot-scope="scope">
-          <el-switch v-model="scope.row.contact" active-text="已联系" inactive-text="未联系" @change="handleChange"></el-switch>
+          <el-tag closable v-if="!scope.row.contact" @close="handleClose(scope.row)">未联系</el-tag>
+          <el-tag closable type='success' v-else  @close="handleClose(scope.row)">已联系</el-tag>
+          <!-- <el-switch v-model="scope.row.contact" active-text="已联系" inactive-text="未联系" @change="handleChange(val, row)"></el-switch> -->
         </template>
       </el-table-column>
       <el-table-column label="操作">
@@ -45,8 +47,9 @@ export default {
       })
     },
     // 编辑联系状态
-    handleChange() {
-
+    async handleClose(row) {
+      row.contact = !row.contact
+      return await axios.put(`/client/${row._id}`, row)
     },
     // 删除客户信息
     delClient(row) {
