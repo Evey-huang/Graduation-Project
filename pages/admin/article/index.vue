@@ -1,7 +1,8 @@
 <template>
   <div class="article-container">
     <header>
-      <el-input class="search" placeholder="请输入内容"></el-input>
+      <el-input v-model="search" class="search" placeholder="请输入内容" @select="handleSearch">
+      </el-input>
       <span @click="getListArticles"><i class="icon el-icon-refresh"></i></span>
     </header>
     <el-table :data="articleList" tooltip-effect="dark" style="width: 98%">
@@ -53,6 +54,7 @@ export default {
         pageSize: 5,
         total: 0
       },
+      search: ''
     }
   },
   methods: {
@@ -88,6 +90,9 @@ export default {
     handleCurrentChange(val) {
       this.pagination.currentPage = val
       this.getListArticles()
+    },
+    // 搜索文章
+    handleSearch() {
     }
   },
   mounted () {
