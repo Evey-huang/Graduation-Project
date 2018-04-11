@@ -1,324 +1,303 @@
 <template>
   <div class="blog">
       <div class="container">
-          <div class="article-list">
-              <div class="article-list-item" @click="toAricle">
-                  <div class="item-content">
-                      <div class="item-thumb">
-                          <nuxt-link to="#"><img src="~/assets/images/blog1.png" alt="文章插图"></nuxt-link>
-                      </div>
-                      <div class="item-body">
-                          <h4><nuxt-link to="#">怎样才能高效的完成所有的事情</nuxt-link></h4>
-                          <p>这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这</p>
-                          <div class="item-meta">
-                              <span class="date">
-                                  <i class="iconfont icon-shijian"></i>
-                                  <span>2018/3/30</span>
-                              </span>
-                              <span class="views">
-                                  <i class="iconfont icon-yanjing"></i>
-                                  <span>30</span>
-                              </span>
-                              <span class="likes">
-                                  <i class="iconfont icon-xihuan"></i>
-                                  <span>233</span>
-                              </span>
-                          </div>
-                      </div>
-                  </div>
+        <div class="article-list">
+          <div class="article-list-item" v-for="(article, index) in articles" :key="index">
+            <div class="item-content">
+              <div class="item-thumb">
+                <nuxt-link :to="`/article/${article.id}`">
+                  <img :src="article.thumb" :alt="article.title">
+                </nuxt-link>
               </div>
-               <div class="article-list-item">
-                  <div class="item-content">
-                      <div class="item-thumb">
-                          <nuxt-link to="#"><img src="~/assets/images/blog2.png" alt="文章插图"></nuxt-link>
-                      </div>
-                      <div class="item-body">
-                          <h4><nuxt-link to="#">怎样才能高效的完成所有的事情</nuxt-link></h4>
-                          <p>这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这</p>
-                          <div class="item-meta">
-                              <span class="date">
-                                  <i class="iconfont icon-shijian"></i>
-                                  <span>2018/3/30</span>
-                              </span>
-                              <span class="views">
-                                  <i class="iconfont icon-yanjing"></i>
-                                  <span>30</span>
-                              </span>
-                              <span class="likes">
-                                  <i class="iconfont icon-xihuan"></i>
-                                  <span>233</span>
-                              </span>
-                          </div>
-                      </div>
-                  </div>
+              <div class="item-body">
+                <h4><nuxt-link :to="`/article/${article.id}`">{{article.title}}</nuxt-link></h4>
+                <p>{{article.meta.description}}</p>
+                <div class="item-meta">
+                  <span class="date">
+                    <i class="iconfont icon-shijian"></i>
+                    <span>{{article.updateAt | toLocalString}}</span>
+                  </span>
+                  <span class="views">
+                    <i class="iconfont icon-yanjing"></i>
+                    <span>{{article.meta.views}}</span>
+                  </span>
+                  <span class="likes">
+                    <i class="iconfont icon-xihuan"></i>
+                    <span>{{article.meta.likes}}</span>
+                  </span>
+                </div>
               </div>
-               <div class="article-list-item">
-                  <div class="item-content">
-                      <div class="item-thumb">
-                          <nuxt-link to="#"><img src="~/assets/images/blog1.png" alt="文章插图"></nuxt-link>
-                      </div>
-                      <div class="item-body">
-                          <h4><nuxt-link to="#">怎样才能高效的完成所有的事情</nuxt-link></h4>
-                          <p>这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这</p>
-                          <div class="item-meta">
-                              <span class="date">
-                                  <i class="iconfont icon-shijian"></i>
-                                  <span>2018/3/30</span>
-                              </span>
-                              <span class="views">
-                                  <i class="iconfont icon-yanjing"></i>
-                                  <span>30</span>
-                              </span>
-                              <span class="likes">
-                                  <i class="iconfont icon-xihuan"></i>
-                                  <span>233</span>
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-               <div class="article-list-item">
-                  <div class="item-content">
-                      <div class="item-thumb">
-                          <nuxt-link to="#"><img src="~/assets/images/blog2.png" alt="文章插图"></nuxt-link>
-                      </div>
-                      <div class="item-body">
-                          <h4><nuxt-link to="#">怎样才能高效的完成所有的事情</nuxt-link></h4>
-                          <p>这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这</p>
-                          <div class="item-meta">
-                              <span class="date">
-                                  <i class="iconfont icon-shijian"></i>
-                                  <span>2018/3/30</span>
-                              </span>
-                              <span class="views">
-                                  <i class="iconfont icon-yanjing"></i>
-                                  <span>30</span>
-                              </span>
-                              <span class="likes">
-                                  <i class="iconfont icon-xihuan"></i>
-                                  <span>233</span>
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+            </div>
           </div>
-          <div class="aside">
-              <div class="aside-article">
-                  <p class="title"><span>最热文章</span></p>
-                  <ul>
-                      <li>
-                          <span><nuxt-link to="">实现基于Nuxt.js的SSR应用</nuxt-link></span>
-                          <p>sky-cloud前端团队</p>
-                      </li>
-                      <li>
-                          <span><nuxt-link to="#">实现基于Nuxt.js的SSR应用</nuxt-link></span>
-                          <p>sky-cloud前端团队</p>
-                      </li>
-                      <li>
-                          <span><nuxt-link to="#">实现基于Nuxt.js的SSR应用</nuxt-link></span>
-                          <p>sky-cloud前端团队</p>
-                      </li>
-                  </ul>
-              </div>
-              <div class="aside-tag">
-                  <p class="title"><span>标签</span></p>
-                  <ul>
-                      <li v-for="item in data" v-bind:key="item.key">
-                          <nuxt-link to="">
-                              <span v-html="item.text" :style="{'font-size': item.num>150?'36px':item.num>100?'28px':item.num>50?'20px':item.num>20?'18px':'14px'}"></span>
-                          </nuxt-link>
-                      </li>
-                  </ul>
-              </div>
-          </div>
+          <div class="load-more" @click="getArticles(true)" v-if="currentPage < pages">加载更多</div>
+          <div class="load-more" v-else> 没有更多了</div>
+        </div>
+        <div class="aside">
+            <div class="aside-article">
+                <p class="title"><span>最热文章</span></p>
+                <ul>
+                  <li v-for="(article, index) in hot" :key="index">
+                    <span><nuxt-link :to="`/article/${article.id}`">{{article.title}}</nuxt-link></span>
+                    <p>sky-cloud前端团队</p>
+                  </li>
+                </ul>
+            </div>
+            <div class="aside-tag">
+                <p class="title"><span>标签</span></p>
+                <ul>
+                  <li v-for="tag in tags" :key="tag._id">
+                    <nuxt-link :to="`?tag=${tag.name}`">{{tag.name}}</nuxt-link>
+                  </li>
+                </ul>
+            </div>
+        </div>
       </div>
   </div>
 </template>
 
 <script>
+import axios from "~/plugins/axios";
 export default {
-  layout: 'default',
-  data(){
-      return {
-          data: [
-              {text: "node.js",num: 10,key: 1},
-              {text: "MongoDB",num: 20,key: 2},
-              {text: "云安全",num: 30,key: 3},
-              {text: "运维",num: 40,key: 4},
-              {text: "数据库",num: 70,key: 5},
-              {text: "新产品发布",num: 50,key: 6},
-              {text: "Docker",num: 150,key: 7}
-          ]
-      }
+  async asyncData({ query }) {
+    let tags = await axios.get("/tag");
+    let tag;
+    if (query.tag) {
+      tag = tags.data.tags.find(tag => tag.name == query.tag)._id;
+    }
+    let articles = await axios.get(`/article${tag ? "?tag=" + tag : ""}`);
+    let hot = await axios.get("/article?currentPage=1&pageSize=5&hot=true");
+    return {
+      tags: tags.data.tags,
+      articles: articles.data.articles,
+      pages: articles.data.pages,
+      currentPage: articles.data.currentPage,
+      pageSize: articles.data.pageSize,
+      hot: hot.data.articles
+    };
+  },
+  async beforeRouteUpdate(to, from, next) {
+    this.articles = [];
+    await this.getArticles(false, to.query.tag);
+    next();
   },
   methods: {
-      toAricle() {
-          this.$router.push("/article/1")
+    async getArticles(flag, TagName) {
+      if (flag) {
+        TagName = this.$route.query.tag;
+        this.currentPage += 1;
+      } else {
+        this.currentPage = 1;
       }
+      let tag;
+      if (TagName) {
+        tag = this.tags.find(tag => tag.name == TagName)._id;
+      }
+      return await axios
+        .get(
+          `/article?currentPage=${this.currentPage}&pageSize=${this.pageSize}${
+            tag ? "&tag=" + tag : ""
+          }`
+        )
+        .then(res => {
+          this.articles = this.articles.concat(res.data.articles);
+          this.pages = res.data.pages;
+          this.currentPage =
+            res.data.currentPage < res.data.pages
+              ? res.data.currentPage
+              : res.data.pages;
+          this.pageSize = res.data.pageSize;
+        });
+    }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/scss/mixins.scss';
+@import "~assets/scss/mixins.scss";
 
-  .blog {
-    margin-top: 120px;
-    margin-left: 80px;
-    .container {
-        @include clearfix;
-        .article-list {
-            min-width: 60%;
-            float: left;
-            margin-left: 40px;
-            .article-list-item {
-                border-bottom: 1px solid #DDDFE2;
-                .item-content {
-                    margin-bottom: 50px;
-                    position: relative;
-                    .item-thumb {
-                        margin-top: 50px;
-                    }
-                    .item-body {
-                        position: absolute;
-                        top: 0;
-                        left: 170px;
-                        margin-left: 10px;
-                        h4 {
-                            margin: 0;
-                            a {
-                                color: #3E464C;
-                            }
-                        }
-                        p {
-                            margin-top: 10px;
-                        }
-                        .item-meta {
-                            position: absolute;
-                            top: 100px;
-                            span {
-                                font-size: 14px;
-                                margin-right: 20px;
-                            }
-                        }
-                    }
-                }
-            }
+.blog {
+  margin-top: 60px;
+  .container {
+    @include clearfix;
+    display: flex;
+    justify-content: space-between;
+    .article-list {
+      padding: 30px 45px;
+      flex: 3;
+      .article-list-item {
+        border-bottom: 1px solid #dddfe2;
+        margin-top: 60px;
+        padding-bottom: 10px;
+        &:first-child {
+          margin-top: 0;
         }
-        .aside {
-            float: right;
-            margin-top: 50px;
-            margin-right: 40px;
-            width: 20%;
-            .title {
-                border-bottom: 1px solid #DDDFE2;
-                padding-bottom: 20px;
-                width: 100%;
-                span {
-                    border-left: 3px solid #4A90E2;
-                    padding-left: 10px;
-                    font-size: 20px;
-                    color: #666;
-                }
+        .item-content {
+          display: flex;
+          align-items: stretch;
+          .item-thumb {
+            width: 168px;
+            height: 120px;
+            img {
+              display: block;
+              width: 100%;
+              height: 100%;
             }
-            .aside-article {
-                ul {
-                    margin-top: 20px;
-                    li {
-                        line-height: 1.5;
-                        margin-bottom: 15px;
-                        span {
-                            a {
-                                color: #212121;
-                                font-size: 16px;
-                            }
-                        }
-                        p {
-                            color: #999;
-                            font-size: 14px;
-                        }
-                    }
-                }
+          }
+          .item-body {
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            h4 {
+              flex: 1;
+              margin: 0;
+              font-size: 18px;
+              a {
+                color: #3e464c;
+              }
             }
-            .aside-tag {
-                margin-top: 50px;
-                ul {
-                    margin-top: 20px;
-                    display: flex;
-                    flex-wrap: wrap;
-                    align-items: center;
-                    li {
-                        display: inline-block;
-                        background: #F7F7F7;
-                        border: 1px solid #DDDFE2;
-                        margin: 5px;
-                        a {
-                            color: #666;
-                            padding: 15px;
-                            display: inline-block;
-                        }
-                    }
-                }
+            p {
+              flex: 3;
+              margin-top: 10px;
             }
+            .item-meta {
+              text-align: right;
+              flex: 1;
+              .iconfont {
+                margin-right: 4px;
+                vertical-align: middle;
+              }
+              span {
+                font-size: 14px;
+                margin-right: 20px;
+                vertical-align: middle;
+              }
+            }
+          }
         }
+      }
+      .load-more {
+        cursor: pointer;
+        text-align: center;
+        margin-top: 10px;
+        padding: 15px;
+        @include box-shadow(0.5px, 0.5px, 5px, rgba(0, 0, 0, 0.2));
+        @include border-radius(5px);
+        &:hover {
+          background: rgba(0, 0, 0, 0.05);
+          @include transition();
+        }
+      }
+    }
+    .aside {
+      margin-top: 30px;
+      flex: 1;
+      .title {
+        border-bottom: 1px solid #dddfe2;
+        padding-bottom: 20px;
+        width: 100%;
+        span {
+          border-left: 3px solid #4a90e2;
+          padding-left: 10px;
+          font-size: 20px;
+          color: #666;
+        }
+      }
+      .aside-article {
+        ul {
+          margin-top: 20px;
+          li {
+            line-height: 1.5;
+            margin-bottom: 15px;
+            span {
+              a {
+                color: #212121;
+                font-size: 16px;
+              }
+            }
+            p {
+              color: #999;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      .aside-tag {
+        margin-top: 50px;
+        ul {
+          margin-top: 20px;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          li {
+            display: inline-block;
+            background: #f7f7f7;
+            border: 1px solid #dddfe2;
+            margin: 5px;
+            a {
+              color: #666;
+              padding: 15px;
+              display: inline-block;
+            }
+          }
+        }
+      }
     }
   }
+}
 
 /*-----start-responsive-design------*/
 
 @media screen and (max-width: 1024px) {
   .blog {
-      margin-left: 40px;
+    margin-left: 40px;
   }
 }
 
 @media screen and (max-width: 768px) {
-    .blog {
-        margin-left: 30px;
-      .container {
-          .article-list {
-            width: 90%;
-          }
-          .aside {
-              width: 50%;
-              float: left;
-              margin-left: 40px;
-
-          }
+  .blog {
+    margin-left: 30px;
+    .container {
+      .article-list {
+        width: 90%;
+      }
+      .aside {
+        width: 50%;
+        float: left;
+        margin-left: 40px;
       }
     }
+  }
 }
 
 @media screen and (max-width: 640px) {
-    .blog {
-        margin-left: 0;
-    }
+  .blog {
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: 480px) {
-    .blog {
-        .container {
-            .article-list {
-                .article-list-item {
-                    .item-content {
-                        margin-bottom: 200px;
-                        .item-thumb {
-                            text-align: center;
-                        }
-                        .item-body {
-                            left: 0;
-                            top: unset;
-                            margin-left: 0;
-                            margin-top: 20px;
-                        }
-                    }
-                }
+  .blog {
+    .container {
+      .article-list {
+        .article-list-item {
+          .item-content {
+            margin-bottom: 200px;
+            .item-thumb {
+              text-align: center;
             }
-            .aside {
-
+            .item-body {
+              left: 0;
+              top: unset;
+              margin-left: 0;
+              margin-top: 20px;
             }
+          }
         }
+      }
+      .aside {
+      }
     }
+  }
 }
 </style>

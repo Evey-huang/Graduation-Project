@@ -11,14 +11,13 @@ const select = {
 class Article {
   static async list(req, res) {
     let { currentPage, pageSize, keyword, tag, date, hot } = req.query;
-
     // filter options
     const options = {
       sort: { createAt: -1 },
       page: Number(currentPage || 1),
       limit: Number(pageSize || 10),
       populate: ["tag"],
-      select: "-password -content"
+      select: "-content"
     };
 
     // 查询参数
@@ -43,7 +42,8 @@ class Article {
     if (!!hot) {
       options.sort = {
         "meta.comments": -1,
-        "meta.likes": -1
+        "meta.likes": -1,
+        "meta.views": -1
       };
     }
 
@@ -65,8 +65,8 @@ class Article {
       message: "获取文章列表成功",
       articles: articles.docs,
       total: articles.total,
-      limit: articles.limit,
-      page: articles.page,
+      pageSize: articles.limit,
+      currentPage: articles.page,
       pages: articles.pages
     });
   }
@@ -78,7 +78,7 @@ class Article {
     if (!article.title || !article.content) {
       return res.status(400).send("文章标题或内容为空");
     }
-    
+
     await new ArticleModel(article)
       .save()
       .then(result => {
@@ -121,7 +121,7 @@ class Article {
     }
 
     let article = result.toObject();
-    let articles
+    let articles;
     // 按照tag请求相似文章
     if (!isFindById && result.tag.length) {
       articles = await ArticleModel.find({

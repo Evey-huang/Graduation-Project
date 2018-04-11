@@ -55,6 +55,9 @@ module.exports = {
   },
   render: {
     http2: true,
-    resourceHints: false
+    resourceHints: false,
+    gzip: {
+      threshold: 9
+    }
   }
 }
