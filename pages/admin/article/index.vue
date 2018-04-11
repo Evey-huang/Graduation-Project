@@ -1,7 +1,7 @@
 <template>
   <div class="article-container">
     <header>
-      <el-input v-model="search" class="search" placeholder="请输入内容" @select="handleSearch">
+      <el-input v-model="search" class="search" placeholder="请输入内容" @change="handleSearch">
       </el-input>
       <span @click="getListArticles"><i class="icon el-icon-refresh"></i></span>
     </header>
@@ -93,6 +93,10 @@ export default {
     },
     // 搜索文章
     handleSearch() {
+      axios.get( `/article?keyword=${this.search}`).then(res => {
+        // console.log(res)
+        this.articleList = res.data.articles
+      })
     }
   },
   mounted () {

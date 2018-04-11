@@ -29,7 +29,8 @@ class Article {
       querys["$or"] = [
         { title: keywordReg },
         { content: keywordReg },
-        { description: keywordReg }
+        { description: keywordReg },
+        { keywords: keywordReg }
       ];
     }
 
