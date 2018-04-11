@@ -17,12 +17,10 @@
         <template slot-scope="scope">
           <el-tag closable v-if="!scope.row.contact" @close="handleClose(scope.row)">未联系</el-tag>
           <el-tag closable type='success' v-else  @close="handleClose(scope.row)">已联系</el-tag>
-          <!-- <el-switch v-model="scope.row.contact" active-text="已联系" inactive-text="未联系" @change="handleChange(val, row)"></el-switch> -->
         </template>
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <!-- <el-button size="mini" @click="updateStatus(scope.row)">编辑</el-button> -->
           <el-button size="mini" type="danger" @click="delClient(scope.row)">删除</el-button>
         </template>
       </el-table-column>
