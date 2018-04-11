@@ -44,20 +44,37 @@
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import axios from '~/plugins/axios'
+import index from 'vue';
 
 export default {
   components: {
     mavonEditor
   },
-  async asyncData () {
+  async asyncData ({query}) {
     let res = await axios.get('/tag')
+    let article = {
+        title: '',
+        keywords: '',
+        description: '',
+        content: '',
+        thumb: '',
+        tag: []
+      }
+    if(query.articleId) {
+      let res2 = await axios.get(`/article/${query.articleId}`, {})
+      res2.data.article.tag.forEach((item, index) => {
+        res2.data.article.tag[index] = item._id
+      })
+      article = res2.data.article
+    }
     return {
-      options: res.data.success ? res.data.tags : []
+      options: res.data.success ? res.data.tags : [],
+      article
     }
   },
-  data () {
-    return {
-      article: {
+  beforeRouteUpdate (to, from, next) {
+    if(!to.query.articleId) {
+      this.article = {
         title: '',
         keywords: '',
         description: '',
@@ -66,6 +83,7 @@ export default {
         tag: []
       }
     }
+    next()
   },
   methods: {
     handleAvatarSuccess(res, file) {
@@ -101,22 +119,20 @@ export default {
       })
     },
     save(value, render) {
-      axios.post('/article', this.article).then(res => {
-        if(res.success) {
-          this.$route.push('/admin/article')
-        }
-      })
-    },
-    // 编辑文章
-    beforeRouteEnter(to, from, next) {
-      axios.get(`/article/${to.params.id}`, {}).then(res => {
-        // to.meta.title = res.data.articles.title
-        // next(vm => {
-        //   vm.article = res.data.articles
-        // })
-        console.log(res)
-      })
-    },
+      if(!this.$route.query.articleId) {
+        axios.post('/article', this.article).then(res => {
+          if(res.data.success) {
+            this.$router.push('/admin/article')
+          }
+        })
+      } else {
+        axios.put(`/article/${this.article._id}`, this.article).then(res => {
+          if(res.data.success) {
+            this.$router.push('/admin/article')
+          }
+        })
+      }
+    }
   }
 }
 </script>

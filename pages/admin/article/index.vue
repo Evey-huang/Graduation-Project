@@ -8,7 +8,7 @@
       <el-table-column width="55"></el-table-column>
       <el-table-column label="标题" width="250">
         <template slot-scope="scope">
-          <router-link class="link" :to="'article/' + scope.row.id">{{scope.row.title}}</router-link>
+          <nuxt-link class="link" :to="`article/editor?articleId=${scope.row.id}`">{{scope.row.title}}</nuxt-link>
         </template>
       </el-table-column>
       <el-table-column label="标签">
