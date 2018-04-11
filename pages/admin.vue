@@ -48,44 +48,36 @@
   </el-row>
 </template>
 <script>
-import Vue from 'vue';
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-
-Vue.use(ElementUI);
-
+import "~/plugins/element-ui.js";
+import "element-ui/lib/theme-chalk/index.css";
 export default {
-  layout: 'admin',
-  data(){
-    return {
-
-    }
-  }
-}
+  layout: "admin"
+};
 </script>
 <style lang="scss" scoped>
-@import '~assets/scss/mixins.scss';
-  .app-wrapper {
-    .el-menu {
-      height: 100vh;
-      .el-menu-item, .el-submenu {
-        min-width: 100%;
-        span {
-          display: block;
-          width: 100%;
-          height: 100%;
-          i {
-            color: inherit;
-          }
+@import "~assets/scss/mixins.scss";
+.app-wrapper {
+  .el-menu {
+    height: 100vh;
+    .el-menu-item,
+    .el-submenu {
+      min-width: 100%;
+      span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        i {
+          color: inherit;
         }
       }
     }
-    .el-col {
-      height: 100vh;
-      overflow-y: scroll;
-    }
-    .main {
-      padding: 10px!important;
-    }
   }
+  .el-col {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  .main {
+    padding: 10px !important;
+  }
+}
 </style>
