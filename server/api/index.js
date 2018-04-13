@@ -12,6 +12,7 @@ router.use(upload);
 
 import Tag from "../controller/tag";
 import Article from "../controller/article";
+import Like from "../controller/like";
 import Client from "../controller/client";
 
 router
@@ -60,6 +61,8 @@ router
   .get("/article/:id", Article.get)
   .put("/article/:id", verifyToken, Article.update)
   .delete("/article/:id", verifyToken, Article.delete)
+  // 喜欢文章
+  .put("/like/:id", Like.like)
   // 客户管理
   .get("/client", verifyToken, Client.get)
   .post("/client", verifyToken, Client.create)
