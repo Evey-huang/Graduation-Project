@@ -37,7 +37,7 @@ const ArticleSchema = new Schema({
     // 点赞数
     likes: { type: Number, default: 0 },
     // 评论数量
-    comments: { type: Number, default: 0 }
+    // comments: { type: Number, default: 0 }
   },
 
   // 创建时间

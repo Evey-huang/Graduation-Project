@@ -3,9 +3,13 @@
     <div class="container">
       <div class="content">
         <h2 class="title">{{article.title}}</h2>
+        <p class="title-meta">
+          <span class="time"> {{article.createAt | toYMD}}</span> | 
+          <span class="views"><i class="iconfont icon-yanjing"></i>阅读 {{article.meta.views}} 次</span> |
+          <span><i class="iconfont icon-xihuan"></i>喜欢 {{article.meta.likes}} 次</span>
+        </p>
         <article class="markdown-body" v-html="compiledMarkdown"></article>
         <div class="metas">
-          <p class="item">本文于 {{article.createAt | toYMD}} 发布，当前已被围观 {{article.meta.views}} 次</p>
           <p class="item">相关标签:
             <nuxt-link v-for="(tag, index) in article.tag"  :key="index" :to="`/blog?tag=${tag.name}`">
               <span>{{tag.name}}</span>
@@ -80,22 +84,33 @@ export default {
       padding: 10px 45px;
       flex: 3;
       .metas {
-        margin: 15px 0;
+        margin: 30px 0;
         line-height: 2;
         .item {
           color: rgb(85, 85, 85);
           a {
             color: rgb(85, 85, 85);
+            padding: 5px 7px;
+            background: #f5f5f5;
             @include transition();
             &:hover {
-              color: rgb(34, 34, 34);
-              text-decoration: underline;
+              background: #999;
             }
           }
         }
       }
       .title {
         text-align: center;
+      }
+      .title-meta {
+        text-align: center;
+        display: block;
+        font-size: 14px;
+        color: #909090;
+        margin-bottom: 30px;
+        i {
+          padding-right: 5px;
+        }
       }
       .markdown-body {
         ul li {
