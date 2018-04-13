@@ -88,78 +88,81 @@
           <h3>产品功能</h3>
           <ul>
             <li @click="tabIndex(0)">
-              <span :class="['features-items item1',{'change-img1': index === 0}]"></span>
+              <span :class="['features-items item1',{'change-img1': tab === 0}]"></span>
               <h4>配置管理</h4>
-              <span v-show="index === 0" class="arrow"></span>
+              <span v-show="tab === 0" class="arrow"></span>
             </li>
             <li @click="tabIndex(1)">
-              <span :class="['features-items item2',{'change-img2': index === 1}]"></span>
+              <span :class="['features-items item2',{'change-img2': tab === 1}]"></span>
               <h4>防火墙策略开通</h4>
-              <span v-show="index === 1" class="arrow"></span>
+              <span v-show="tab === 1" class="arrow"></span>
             </li>
             <li @click="tabIndex(2)">
-              <span :class="['features-items item3',{'change-img3': index === 2}]"></span>
+              <span :class="['features-items item3',{'change-img3': tab === 2}]"></span>
               <h4>防火墙策略搜索</h4>
-              <span v-show="index === 2" class="arrow"></span>
+              <span v-show="tab === 2" class="arrow"></span>
             </li>
           </ul>
-          <div class="details" v-show="index === 0">
-            <div class="details-item">
-              <h4>权限管理</h4>
-              <p>给不同角色授权访问不同的资源</p>
+          <div class="details">
+            <div v-if="tab === 0" class="item" :class="animated">
+               <div class="details-item">
+                <h4>权限管理</h4>
+                <p>给不同角色授权访问不同的资源</p>
+              </div>
+              <div class="details-item">
+                <h4>配置管理</h4>
+                <p>可以对配置进行查看历史配置、配置对比和配置全文搜索操作</p>
+              </div>
+              <div class="details-item">
+                <h4>设备管理</h4>
+                <p>将设备纳入一个组内进行管理</p>
+              </div>
             </div>
-            <div class="details-item">
-              <h4>配置管理</h4>
-              <p>可以对配置进行查看历史配置、配置对比和配置全文搜索操作</p>
+            <div v-if="tab === 1" class="item" :class="animated">
+              <div class="details-item">
+                <h4>支持API</h4>
+                <p>开放API，利于学习</p>
+              </div>
+              <div class="details-item">
+                <h4>下发优化</h4>
+                <p>互斥策略、等效策略</p>
+              </div>
+              <div class="details-item">
+                <h4>支持Excel批量导入</h4>
+                <p>将设备纳入一个组内进行管理</p>
+              </div>
+              <div class="details-item">
+                <h4>可人工审核</h4>
+                <p>审核下发的内容</p>
+              </div>
+              <div class="details-item">
+                <h4>自动分析下发路径</h4>
+                <p>自动分析下发路径，减少策略分析成本</p>
+              </div>
+              <div class="details-item">
+                <h4>可回退</h4>
+                <p>回退下发的命令</p>
+              </div>
             </div>
-            <div class="details-item">
-              <h4>设备管理</h4>
-              <p>将设备纳入一个组内进行管理</p>
+            <div v-if="tab === 2" class="item" :class="animated">
+              <div class="details-item">
+                <h4>全网实时搜索</h4>
+                <p>支持全网实时搜索，即搜即得</p>
+              </div>
+              <div class="details-item">
+                <h4>支持Excel导出</h4>
+                <p>支持导出Excel格式的搜索结果</p>
+              </div>
+              <div class="details-item">
+                <h4>支持动作、源地址、目的地址和协议搜索</h4>
+                <p>支持以动作、源地址、目的地址和协议为关键字进行防火墙策略搜索</p>
+              </div>
+              <div class="details-item">
+                <h4>结果筛选器</h4>
+                <p>对搜索的结果，按条件精准过滤</p>
+              </div>
             </div>
-          </div>
-          <div class="details" v-show="index === 1">
-            <div class="details-item">
-              <h4>支持API</h4>
-              <p>开放API，利于学习</p>
-            </div>
-            <div class="details-item">
-              <h4>下发优化</h4>
-              <p>互斥策略、等效策略</p>
-            </div>
-            <div class="details-item">
-              <h4>支持Excel批量导入</h4>
-              <p>将设备纳入一个组内进行管理</p>
-            </div>
-            <div class="details-item">
-              <h4>可人工审核</h4>
-              <p>审核下发的内容</p>
-            </div>
-            <div class="details-item">
-              <h4>自动分析下发路径</h4>
-              <p>自动分析下发路径，减少策略分析成本</p>
-            </div>
-            <div class="details-item">
-              <h4>可回退</h4>
-              <p>回退下发的命令</p>
-            </div>
-          </div>
-          <div class="details" v-show="index === 2">
-             <div class="details-item">
-              <h4>全网实时搜索</h4>
-              <p>支持全网实时搜索，即搜即得</p>
-            </div>
-            <div class="details-item">
-              <h4>支持Excel导出</h4>
-              <p>支持导出Excel格式的搜索结果</p>
-            </div>
-            <div class="details-item">
-              <h4>支持动作、源地址、目的地址和协议搜索</h4>
-              <p>支持以动作、源地址、目的地址和协议为关键字进行防火墙策略搜索</p>
-            </div>
-            <div class="details-item">
-              <h4>结果筛选器</h4>
-              <p>对搜索的结果，按条件精准过滤</p>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -172,20 +175,36 @@ export default {
   layout: 'default',
   data () {
     return {
-      index: 0
+      tab: 0,
+      animated: "",
+      timeOut: null
     }
   },
   methods: {
     tabIndex (index) {
-      this.index = index
+      if(this.timeOut) {
+        clearTimeout(this.timeOut);
+        this.animated = "";
+      }
+      
+      if(this.tab != index) {
+        this.animated = "features-animated"
+        this.timeOut = setTimeout(() => {
+          this.animated = ""
+        }, 1000);
+      }
+      this.tab = index
     }
-  }
+  },
+
 }
 </script>
 
 <style lang="scss" scoped>
 @import '~assets/scss/variables.scss';
 @import '~assets/scss/mixins.scss';
+@import '~assets/scss/common.scss';
+
 .product {
   .banner {
     .container {
@@ -199,13 +218,17 @@ export default {
       .banner-slogan {
         position: absolute;
         text-align: center;
-        // width: 52%;
         .visible-xs {
           display: none;
+        }
+        h3, p, span {
+          @extend .animated;
+          @extend .slideInDown;
         }
         h3 {
           margin-bottom: 27px;
           color: $font-color-secondary;
+          animation-duration: .5s;
         }
         p {
           line-height: 2;
@@ -215,6 +238,7 @@ export default {
         span {
           display: block;
           margin: 0 auto;
+          animation-duration: 2s;
           a {
             background: $primary;
             padding: 10px 33px;
@@ -230,8 +254,13 @@ export default {
   }
   .product-wrapper {
     .introduce {
+      h3, p {
+        @extend .animated;
+        @extend .slideInUp;
+      }
       h3 {
         margin-top: 120px;
+        animation-duration: .5s;
       }
       p {
         padding: 0 20px;
@@ -257,6 +286,9 @@ export default {
             top: 40%;
             color: $font-color-title;
             font-size: 22px;
+            @extend .animated;
+            @extend .slideInUp;
+            animation-duration: 2s;
           }
         }
       }
@@ -287,17 +319,20 @@ export default {
             display: block;
             padding-top: 35px;
           }
+          h4, p {
+            @extend .animated;
+            @extend .slideInUp;
+          }
           h4 {
             padding: 2px 0;
+            animation-duration: .6s;
           }
           p {
             line-height: 1.5;
             color: #A5A9AE;
             padding: 0 24px;
           }
-
         }
-
       }
     }
     .features {
@@ -368,28 +403,38 @@ export default {
           }
         }
         .details {
-        box-sizing: border-box;
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        padding: 60px 40px;
-        background: $body-bg;
-        .details-item{
-          width: 50%;
-          margin-bottom: 60px;
-          color: #000;
-          box-sizing: border-box;
-          h4 {
-            font-size: 18px;
-            @include opacity(0.8);
+          padding: 60px 40px;
+          background: $body-bg;
+          .item {
+            display: flex;
+            box-sizing: border-box;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            .details-item{
+              width: 50%;
+              margin-bottom: 60px;
+              color: #000;
+              box-sizing: border-box;
+              h4 {
+                font-size: 18px;
+                @include opacity(0.8);
+              }
+              p {
+                @include opacity(0.5);
+              }
+            }
+            &.features-animated {
+              .details-item {
+                h4, p {
+                  @extend .slideInUp;
+                  @extend .animated
+                }
+                h4 {
+                  animation-duration: .6s;
+                }
+              }
+            }
           }
-          p {
-            @include opacity(0.5);
-          }
-        }
-        .details-item:nth-last-child(1){
-            margin-bottom: 0;
-        }
         }
       }
     }

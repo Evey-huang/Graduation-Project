@@ -78,6 +78,7 @@ export default {
 <style lang="scss" scoped>
 @import "~assets/scss/variables.scss";
 @import "~assets/scss/mixins.scss";
+@import '~assets/scss/common.scss';
 
 .banner {
   .container {
@@ -87,10 +88,12 @@ export default {
     }
     .index-banner-slogan {
       position: absolute;
-      top: 120px;
+      top: 180px;
       font-size: 36px;
       margin-left: 40px;
       line-height: 1.5;
+      @extend .animated;
+      @extend .slideInUp;
     }
   }
 }
@@ -104,6 +107,9 @@ export default {
   .our-advantage {
     margin-top: 120px;
     color: $font-color-title;
+    @extend .animated;
+    @extend .slideInUp;
+    animation-duration: .5s;
   }
   .advantage-item1,
   .advantage-item2,
@@ -114,7 +120,18 @@ export default {
       display: inline-block;
       vertical-align: middle;
     }
+    .img {
+      transform: rotate(0deg) scale(1);
+      transition: transform 1s;
+      &:hover {
+        transform: rotate(2deg) scale(1.1);
+      }
+    }
     .info {
+      h4, span {
+        @extend .animated;
+        @extend .slideInUp;
+      }
       h4 {
         @include opacity(0.8);
         font-size: 28px;
@@ -124,6 +141,7 @@ export default {
         line-height: 1.5;
         padding-top: 13px;
         @include opacity(0.5);
+        animation-duration: 2s;
         &:before {
           content: "";
           background: $primary;
@@ -179,6 +197,13 @@ export default {
   margin-top: 120px;
   display: flex;
   align-items: center;
+  h3, span {
+    @extend .animated;
+    @extend .slideInUp;
+  }
+  h3 {
+    animation-duration: .5s;
+  }
   span {
     display: block;
     margin: 0 auto;
