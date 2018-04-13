@@ -34,21 +34,21 @@
         </div>
         <div class="aside">
             <div class="aside-article">
-                <p class="title"><span>最热文章</span></p>
-                <ul>
-                  <li v-for="(article, index) in hot" :key="index">
-                    <span><nuxt-link :to="`/article/${article.id}`">{{article.title}}</nuxt-link></span>
-                    <p>sky-cloud前端团队</p>
-                  </li>
-                </ul>
+              <p class="title"><span>最热文章</span></p>
+              <ul>
+                <li v-for="(article, index) in hot" :key="index">
+                  <span><nuxt-link :to="`/article/${article.id}`">{{article.title}}</nuxt-link></span>
+                  <p>sky-cloud前端团队</p>
+                </li>
+              </ul>
             </div>
             <div class="aside-tag">
-                <p class="title"><span>标签</span></p>
-                <ul>
-                  <li v-for="tag in tags" :key="tag._id">
-                    <nuxt-link :to="`?tag=${tag.name}`">{{tag.name}}</nuxt-link>
-                  </li>
-                </ul>
+              <p class="title"><span>标签</span></p>
+              <ul>
+                <li v-for="tag in tags" :key="tag._id">
+                  <nuxt-link :to="`?tag=${tag.name}`">{{tag.name}} ({{tag.articleTotal}})</nuxt-link>
+                </li>
+              </ul>
             </div>
         </div>
       </div>
@@ -137,10 +137,16 @@ export default {
           .item-thumb {
             width: 168px;
             height: 120px;
+            overflow: hidden;
             img {
               display: block;
               width: 100%;
               height: 100%;
+              transform: rotate(0deg) scale(1);
+              transition: transform 1s;
+              &:hover {
+                transform: rotate(2deg) scale(1.1);
+              }
             }
           }
           .item-body {
@@ -181,8 +187,6 @@ export default {
         text-align: center;
         margin-top: 10px;
         padding: 15px;
-        @include box-shadow(0.5px, 0.5px, 5px, rgba(0, 0, 0, 0.2));
-        @include border-radius(5px);
         &:hover {
           background: rgba(0, 0, 0, 0.05);
           @include transition();
@@ -234,9 +238,10 @@ export default {
             background: #f7f7f7;
             border: 1px solid #dddfe2;
             margin: 5px;
+            font-size: 14px;
             a {
               color: #666;
-              padding: 15px;
+              padding: 5px;
               display: inline-block;
             }
           }

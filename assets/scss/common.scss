@@ -1,60 +1,92 @@
-html, body {
-    background: #fff;
-    font-size: $font-size-base;
-    font-family: -apple-system, CenturyGothic, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", "微软雅黑", sans-serif;
-    overflow-x: hidden;
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.25s;
 }
-.container{
-    max-width: $container-width;
-    margin: 0 auto;
+
+.page-enter,
+.page-leave-active {
+  opacity: 0;
 }
-h3, p, ul {
-    margin: 0;
-    padding: 0
+
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all 0.2s cubic-bezier(0, 1.2, 1, 0.5);
+  opacity: 0.5;
+  transform: translate3d(2em, 0, 0);
+}
+
+.slide-left-enter,
+.slide-left-leave-active {
+  opacity: 0.3;
+  transform: translate3d(2em, 0, 0);
+}
+
+html,
+body {
+  background: #fff;
+  font-size: $font-size-base;
+  font-family: -apple-system, CenturyGothic, BlinkMacSystemFont, "PingFang SC",
+    "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei",
+    "微软雅黑", sans-serif;
+  overflow-x: hidden;
+}
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+}
+h3,
+p,
+ul {
+  margin: 0;
+  padding: 0;
 }
 h3 {
-    color: $font-color-title;
-    font-size: $font-size-headline;
-    text-align: center;
+  color: $font-color-title;
+  font-size: $font-size-headline;
+  text-align: center;
 }
 h4 {
-    font-size: $font-size-subtitle;
-    font-weight: normal;
+  font-size: $font-size-subtitle;
+  font-weight: normal;
 }
 ul li {
-    list-style: none;
+  list-style: none;
 }
-a, a:hover, a:visited, a:link, a:active {
-    text-decoration: none;
-    color: $font-color-secondary;
+a,
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+  color: $font-color-secondary;
 }
 .banner {
-    color: $font-color-secondary;
-    background: $headBg;
+  color: $font-color-secondary;
+  background: $headBg;
 }
 
 @media (max-width: 1024px) {
-  .container{
+  .container {
     width: 100%;
   }
 }
 @media (max-width: 768px) {
-  .container{
+  .container {
     width: 100%;
   }
 }
 @media (max-width: 640px) {
-  .container{
+  .container {
     width: 100%;
   }
 }
 @media (max-width: 480px) {
-  .container{
+  .container {
     width: 100%;
   }
 }
 @media (max-width: 320px) {
-  .container{
+  .container {
     width: 100%;
   }
 }
