@@ -6,7 +6,7 @@
         <p class="title-meta">
           <span class="time"> {{article.createAt | toYMD}}</span> | 
           <span class="views"><i class="iconfont icon-yanjing"></i>阅读 {{article.meta.views}} 次</span> |
-          <span><i class="iconfont icon-xihuan"></i>喜欢 {{article.meta.likes}} 次</span>
+          <span><i class="iconfont icon-xihuan" @click.once="like()"></i>喜欢 {{article.meta.likes}} 次</span>
         </p>
         <article class="markdown-body" v-html="compiledMarkdown"></article>
         <div class="metas">
@@ -62,6 +62,13 @@ export default {
       };
     } catch (err) {
       error({ statusCode: 404 });
+    }
+  },
+  methods: {
+    like() {
+      axios.put(`/like/${this.article.id}`).then(res => {
+        this.article.meta.likes++;
+      })
     }
   },
   computed: {
