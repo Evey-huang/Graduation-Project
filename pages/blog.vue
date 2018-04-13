@@ -253,54 +253,44 @@ export default {
 
 /*-----start-responsive-design------*/
 
-@media screen and (max-width: 1024px) {
-  .blog {
-    margin-left: 40px;
-  }
-}
-
 @media screen and (max-width: 768px) {
-  .blog {
-    margin-left: 30px;
-    .container {
-      .article-list {
-        width: 90%;
-      }
-      .aside {
-        width: 50%;
-        float: left;
-        margin-left: 40px;
-      }
-    }
+  .blog .article-list {
+    padding: 10px 20px;
   }
 }
 
 @media screen and (max-width: 640px) {
   .blog {
-    margin-left: 0;
+    .container {
+      flex-wrap: wrap;
+      .article-list {
+        padding: 10px;
+        flex-basis: 100%;
+      }
+      .aside {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        .aside-article,
+        .aside-tag {
+          flex: 1;
+          margin: 0 15px;
+        }
+      }
+    }
   }
 }
 
 @media screen and (max-width: 480px) {
   .blog {
     .container {
-      .article-list {
-        .article-list-item {
-          .item-content {
-            margin-bottom: 200px;
-            .item-thumb {
-              text-align: center;
-            }
-            .item-body {
-              left: 0;
-              top: unset;
-              margin-left: 0;
-              margin-top: 20px;
-            }
-          }
-        }
-      }
       .aside {
+        margin-top: 0px;
+        display: block;
+        .aside-article,
+        .aside-tag {
+          margin: 0;
+        }
       }
     }
   }

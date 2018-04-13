@@ -5,9 +5,6 @@
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b">
-        <el-menu-item index="1">
-          <nuxt-link tag="span" slot="title" to="/admin"><i class="el-icon-menu"/>首页</nuxt-link>
-        </el-menu-item>
         <el-submenu index="2">
           <template slot="title">
             <span><i class="el-icon-location"/>文章设置</span>
@@ -33,11 +30,6 @@
         <el-menu-item index="3">
           <nuxt-link tag="span" slot="title" to="/admin/client">
             <i class="el-icon-service"/>客户管理
-          </nuxt-link>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <nuxt-link tag="span" slot="title" to="">
-            <i class="el-icon-setting"/>站点设置
           </nuxt-link>
         </el-menu-item>
       </el-menu>
