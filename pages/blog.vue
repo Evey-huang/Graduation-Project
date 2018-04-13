@@ -11,7 +11,7 @@
               </div>
               <div class="item-body">
                 <h4><nuxt-link :to="`/article/${article.id}`">{{article.title}}</nuxt-link></h4>
-                <p>{{article.meta.description}}</p>
+                <p>{{article.description}}</p>
                 <div class="item-meta">
                   <span class="date">
                     <i class="iconfont icon-shijian"></i>
@@ -122,7 +122,7 @@ export default {
     display: flex;
     justify-content: space-between;
     .article-list {
-      padding: 30px 45px;
+      padding: 50px 45px;
       flex: 3;
       .article-list-item {
         border-bottom: 1px solid #dddfe2;
@@ -167,7 +167,7 @@ export default {
               margin-top: 10px;
             }
             .item-meta {
-              text-align: right;
+              text-align: left;
               flex: 1;
               .iconfont {
                 margin-right: 4px;
@@ -185,7 +185,7 @@ export default {
       .load-more {
         cursor: pointer;
         text-align: center;
-        margin-top: 10px;
+        margin-top: 30px;
         padding: 15px;
         &:hover {
           background: rgba(0, 0, 0, 0.05);
@@ -194,7 +194,7 @@ export default {
       }
     }
     .aside {
-      margin-top: 30px;
+      margin-top: 50px;
       flex: 1;
       .title {
         border-bottom: 1px solid #dddfe2;
