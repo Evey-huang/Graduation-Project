@@ -132,14 +132,14 @@ export default {
       .about-banner-slogan {
         position: absolute;
         text-align: center;
-        h3, p {
-          @extend .animated;
-          @extend .slideInUp;
-        }
+        // h3, p {
+        //   @extend .animated;
+        //   @extend .slideInUp;
+        // }
         h3 {
           margin-bottom: 27px;
           color: #fff;
-          animation-duration: .5s;
+          // animation-duration: .5s;
         }
         p {
           line-height: 2;
@@ -178,8 +178,8 @@ export default {
         }
         p {
           @include opacity(0.8);
-          @extend .animated;
-          @extend .slideInUp;
+          // @extend .animated;
+          // @extend .slideInUp;
         }
       }
     }
