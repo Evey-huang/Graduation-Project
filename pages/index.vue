@@ -11,7 +11,7 @@
     <div class="container">
       <div class="video"></div>
         <h3 class="our-advantage">我们的优势</h3>
-        <div class="advantage-item1">
+        <div class="advantage-item1 move">
           <div class="img">
             <img src="~/assets/images/ic_youshi_pic01.png"/>
           </div>
@@ -21,7 +21,7 @@
             <span>防火墙、负载均衡、VPN</span>
           </div>
         </div>
-        <div class="advantage-item2">
+        <div class="advantage-item2 move">
           <div class="info">
             <h4>平台化</h4>
             <span>图形化的网络拓扑管理</span>
@@ -32,7 +32,7 @@
             <img src="~/assets/images/ic_youshi_pic02.png"/>
           </div>
         </div>
-        <div class="advantage-item3">
+        <div class="advantage-item3 move">
           <div class="img">
             <img src="~/assets/images/ic_youshi_pic03.png"/>
           </div>
@@ -42,9 +42,9 @@
             <span>防火墙策略搜索</span>
           </div>
         </div>
-        <div class="learn-more"><nuxt-link to="/product/#advantage">了解更多</nuxt-link></div>
+        <div class="learn-more move"><nuxt-link to="/product/#advantage">了解更多</nuxt-link></div>
     </div>
-    <div class="contact-sale">
+    <div class="contact-sale move">
       <div class="container">
         <h3>NAP，轻松管理网络服务的生命周期</h3>
         <span><nuxt-link to="/about/#contact-sale">联系销售</nuxt-link></span>
@@ -71,6 +71,27 @@ export default {
     cancel() {
       this.showAlert = false;
     }
+  },
+  mounted() {
+    // 滚动到容器开始执行动画
+    const Ani = document.getElementsByClassName("move")
+    const winHeight =  document.documentElement.clientHeight // 屏幕真实高度
+    // console.log(Ani)
+    var dataArr = [];
+    for(var i = 0;i < Ani.length;i++){
+      dataArr[i] = Ani[i].offsetTop - Math.floor(Ani[i].clientHeight / 2)
+    }
+    console.log(dataArr)
+    window.onscroll = function (e) {
+      let scrollTop = document.body.scrollTop | document.documentElement.scrollTop;
+      for(let i=0;i<dataArr.length;i++){
+        if (Math.floor(winHeight / 2) + scrollTop >= dataArr[i]) {
+          if (!Ani[i].className.match(new RegExp('(\\s|^)animation(\\s|$)'))) {
+             Ani[i].className += " animation"
+          }
+        }
+      }
+    }
   }
 };
 </script>
@@ -92,8 +113,12 @@ export default {
       font-size: 36px;
       margin-left: 40px;
       line-height: 1.5;
-      @extend .animated;
-      @extend .slideInUp;
+      p {
+        animation-delay: .5s;
+        animation-duration: .5s;
+        animation-fill-mode: both;
+        @extend .slideInUp;
+      }
     }
   }
 }
@@ -107,9 +132,6 @@ export default {
   .our-advantage {
     margin-top: 120px;
     color: $font-color-title;
-    @extend .animated;
-    @extend .slideInUp;
-    animation-duration: .5s;
   }
   .advantage-item1,
   .advantage-item2,
@@ -128,10 +150,6 @@ export default {
       }
     }
     .info {
-      h4, span {
-        @extend .animated;
-        @extend .slideInUp;
-      }
       h4 {
         @include opacity(0.8);
         font-size: 28px;
@@ -159,21 +177,66 @@ export default {
   .advantage-item3 {
     .img {
       margin-left: 138px;
+      visibility: hidden;
     }
     .info {
       margin-left: 205px;
+      visibility: hidden;
+    }
+    &.animation {
+      .img {
+        visibility: visible;
+        @extend .animated;
+        @extend .fadeInLeft;
+      }
+      .info {
+        h4 {
+          animation-duration: .8s;
+          animation-fill-mode: both;
+          @extend .fadeInRight;
+          visibility: visible;
+        }
+        span {
+          @extend .animated;
+          @extend .fadeInRight;
+          visibility: visible;
+        }
+        
+      }
     }
   }
   .advantage-item2 {
     .img {
       margin-left: 205px;
+      visibility: hidden;
     }
     .info {
       margin-left: 138px;
+      visibility: hidden;
+    }
+    &.animation {
+      .img {
+        visibility: visible;
+        @extend .animated;
+        @extend .fadeInRight;
+      }
+      .info {
+        h4 {
+          animation-duration: .8s;
+          animation-fill-mode: both;
+          @extend .fadeInLeft;
+          visibility: visible;
+        }
+        span {
+          @extend .animated;
+          @extend .fadeInLeft;
+          visibility: visible;
+        }
+      }
     }
   }
   .learn-more {
-    margin-top: 120px;
+    margin-top: 60px;
     display: flex;
     justify-content: center;
     a {
@@ -182,10 +245,18 @@ export default {
       padding: 13px 33px;
       text-align: center;
       @include border-radius(4px);
+      visibility: hidden;
       &:hover,
       &:active {
         background: $primary;
         color: $font-color-secondary;
+      }
+    }
+    &.animation {
+      a {
+        @extend .animated;
+        @extend .fadeInUp;
+        visibility: visible;
       }
     }
   }
@@ -197,17 +268,14 @@ export default {
   margin-top: 120px;
   display: flex;
   align-items: center;
-  h3, span {
-    @extend .animated;
-    @extend .slideInUp;
-  }
   h3 {
-    animation-duration: .5s;
+    visibility: hidden;
   }
   span {
     display: block;
     margin: 0 auto;
     margin-top: 30px;
+    visibility: hidden;
     a {
       background: $primary;
       padding: 10px 33px;
@@ -216,6 +284,19 @@ export default {
       &:active {
         background: #0063e7;
       }
+    }
+  }
+  &.animation {
+    h3 {
+      animation-duration: .8s;
+      animation-fill-mode: both;
+      @extend .fadeInUp;
+      visibility: visible;
+    }
+    span {
+      @extend .animated;
+      @extend .fadeInUp;
+      visibility: visible;
     }
   }
 }

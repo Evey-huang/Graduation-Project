@@ -221,14 +221,14 @@ export default {
         .visible-xs {
           display: none;
         }
-        h3, p, span {
-          @extend .animated;
-          @extend .slideInDown;
-        }
+        // h3, p, span {
+        //   @extend .animated;
+        //   @extend .slideInDown;
+        // }
         h3 {
           margin-bottom: 27px;
           color: $font-color-secondary;
-          animation-duration: .5s;
+          // animation-duration: .5s;
         }
         p {
           line-height: 2;
@@ -238,7 +238,7 @@ export default {
         span {
           display: block;
           margin: 0 auto;
-          animation-duration: 2s;
+          // animation-duration: 2s;
           a {
             background: $primary;
             padding: 10px 33px;
@@ -254,13 +254,13 @@ export default {
   }
   .product-wrapper {
     .introduce {
-      h3, p {
-        @extend .animated;
-        @extend .slideInUp;
-      }
+      // h3, p {
+      //   @extend .animated;
+      //   @extend .slideInUp;
+      // }
       h3 {
         margin-top: 120px;
-        animation-duration: .5s;
+        // animation-duration: .5s;
       }
       p {
         padding: 0 20px;
@@ -286,9 +286,9 @@ export default {
             top: 40%;
             color: $font-color-title;
             font-size: 22px;
-            @extend .animated;
-            @extend .slideInUp;
-            animation-duration: 2s;
+            // @extend .animated;
+            // @extend .slideInUp;
+            // animation-duration: 2s;
           }
         }
       }
@@ -319,13 +319,13 @@ export default {
             display: block;
             padding-top: 35px;
           }
-          h4, p {
-            @extend .animated;
-            @extend .slideInUp;
-          }
+          // h4, p {
+          //   @extend .animated;
+          //   @extend .slideInUp;
+          // }
           h4 {
             padding: 2px 0;
-            animation-duration: .6s;
+            // animation-duration: .6s;
           }
           p {
             line-height: 1.5;
