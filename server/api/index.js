@@ -65,7 +65,7 @@ router
   .put("/like/:id", Like.like)
   // 客户管理
   .get("/client", verifyToken, Client.get)
-  .post("/client", verifyToken, Client.create)
+  .post("/client", Client.create)
   .put("/client/:id", verifyToken, Client.update)
   .delete("/client/:id", verifyToken, Client.delete);
 

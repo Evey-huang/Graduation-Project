@@ -4,6 +4,8 @@
 
 const ClientModel = require("../models/client");
 
+import Email from "./email";
+
 const select = {
   id: false,
   __v: false
@@ -40,19 +42,14 @@ class Client {
     if (client.tel && !telValidate.test(client.tel)) {
       return res.status(400).send("电话号码不合法！");
     }
-
-    await new ClientModel(client)
-      .save()
-      .then(result => {
-        return res.status(200).json({
-          success: true,
-          message: "客户创建成功"
-        });
-      })
-      .catch(err => {
-        console.log(err)
-        return res.status(400).send("客户创建失败");
-      });
+    try {
+      const result = await new ClientModel(client).save();
+    } catch (err) {
+      return res.status(400).send("客户创建失败");
+    }
+    res.status(200).json({ success: true, message: "客户创建成功" });
+    // 发送邮件通知
+    Email.send(client);
   }
 
   // 获取客户列表
