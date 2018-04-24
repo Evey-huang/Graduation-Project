@@ -6,25 +6,35 @@
     </div>
     <el-table :data="clientList" tooltip-effect="dark" style="width: 98%">
       <el-table-column width="55"></el-table-column>
-      <el-table-column label="姓名" width="120">
+      <el-table-column label="用户名" width="120">
         <template slot-scope="scope">{{ scope.row.name }}</template>
       </el-table-column>
       <el-table-column prop="phone" label="手机号"></el-table-column>
-      <el-table-column prop="company" label="公司"></el-table-column>
-      <el-table-column prop="tel" label="固定电话"></el-table-column>
-      <el-table-column prop="email" label="邮箱"></el-table-column>
-      <el-table-column prop="contact" label="是否已联系">
-        <template slot-scope="scope">
-          <el-tag closable v-if="!scope.row.contact" @close="handleClose(scope.row)">未联系</el-tag>
-          <el-tag closable type='success' v-else  @close="handleClose(scope.row)">已联系</el-tag>
-        </template>
-      </el-table-column>
+      <el-table-column prop="password" label="密码"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
+          <el-button size="mini" type="primary" @click="editClient(scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="delClient(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
+    <el-dialog title="编辑用户信息" :visible.sync="clientDialog.isShow" width="20%" center>
+      <el-form :model="clients">
+        <el-form-item label="用户名">
+          <el-input v-model="clients.name" placeholder="请输入用户名"></el-input>
+        </el-form-item>
+        <el-form-item label="手机">
+          <el-input v-model="clients.phone" placeholder="请输入手机号"></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input type="password" v-model="clients.password" placeholder="请输入密码"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="closeClientDialog">取 消</el-button>
+        <el-button type="primary" @click="commitUpdateClient">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -34,7 +44,15 @@ import axios from '~/plugins/axios'
 export default {
   data() {
     return {
-      clientList: [], // 客户列表
+      clientList: [], // 用户列表
+      clientDialog: {
+        isShow: false
+      },
+      clients: {
+        name: '',
+        phone: '',
+        password: ''
+      }
     }
   },
   methods: {
@@ -44,20 +62,45 @@ export default {
         this.clientList = res.data.data.clients
       })
     },
-    // 编辑联系状态
-    async handleClose(row) {
-      row.contact = !row.contact
-      return await axios.put(`/client/${row._id}`, row)
+    // 编辑用户信息
+    editClient(row) {
+      this.clients = {
+        id: row._id,
+        name: row.name,
+        phone: row.phone,
+        password: row.password
+      }
+      this.clientDialog.isShow = true
     },
-    // 删除客户信息
+    // 删除用户信息
     delClient(row) {
       axios.delete(`/client/${row._id}`, {}).then(res => {
         this.$message({
-          message: `客户 ${row.name} 信息删除成功`,
+          message: `用户 ${row.name} 信息删除成功`,
           type: 'success'
         })
         this.getListClients()
       })
+    },
+    // 提交用户信息
+    commitUpdateClient() {
+      let params = {
+        name: this.clients.name,
+        phone: this.clients.phone,
+        password: this.clients.password
+      }
+      axios.put(`/client/${this.clients.id}`, params).then(res => {
+        this.$message({
+          message: `用户 ${this.clients.name} 更新成功`,
+          type: 'success'
+        })
+        this.clientDialog.isShow = false
+        this.getListClients()
+      })
+    },
+    // 关闭弹窗
+    closeClientDialog() {
+      this.clientDialog.isShow = false
     }
   },
   mounted () {

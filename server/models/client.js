@@ -1,5 +1,5 @@
 /**
- * @file 标签数据模型
+ * @file 用户数据模型
  */
 
 const mongoose = require("../db/mongodb").mongoose;
@@ -14,31 +14,13 @@ const ClientSchema = new Schema({
   // 姓名
   name: { type: String, required: true, validate: /\S+/ },
 
-  // 公司名称
-  company: { type: String, required: true, validate: /\S+/ },
-
-  // 邮箱
-  email: {
-    type: String,
-    required: true,
-    validate: /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/
-  },
-
-  // 固定电话
-  tel: {
-    type: String
-  },
+  // 密码
+  password: { type: String, required: true, validate: /[\w-]+/ },
 
   // 手机号
   phone: {
     type: String
-  },
-
-  // message
-  message: String,
-
-  // 是否已联系
-  contact: { type: Boolean, default: false },
+  }, 
 
   // 创建时间
   createAt: { type: Date, default: Date.now },

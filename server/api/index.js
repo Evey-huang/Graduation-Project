@@ -14,8 +14,12 @@ import Tag from "../controller/tag";
 import Article from "../controller/article";
 import Like from "../controller/like";
 import Client from "../controller/client";
+import Comment from "../controller/comment"
 
 router
+  .all("*",(req,res,next) => {
+    next();
+  })
   .get("/", (req, res, next) => {
     res.status(200);
     res.json({
@@ -50,19 +54,37 @@ router
       });
     }
   })
+  .post("/signup",(req,res,next) => {
+    var data = req.body;
+    if(data.name) {
+      res.clearCookie("login");
+      res.status(200).send({code: 0, message: "退出登录成功"});
+    } else{
+      res.status(200).send({code: 1, message: "退出登录失败"});
+    }
+  })
+
   // 标签管理
   .get("/tag", Tag.get)
   .post("/tag", verifyToken, Tag.create)
   .put("/tag/:id", verifyToken, Tag.update)
   .delete("/tag/:id", verifyToken, Tag.delete)
+
   // 文章管理
   .get("/article", Article.list)
   .post("/article", verifyToken, Article.create)
   .get("/article/:id", Article.get)
   .put("/article/:id", verifyToken, Article.update)
   .delete("/article/:id", verifyToken, Article.delete)
+
   // 喜欢文章
   .put("/like/:id", Like.like)
+
+  // 评论
+  .get("/comment", verifyToken, Comment.get)
+  .post("/comment", verifyToken, Comment.create)
+  .delete("/comment/:id", verifyToken, Comment.delete)
+
   // 客户管理
   .get("/client", verifyToken, Client.get)
   .post("/client", Client.create)

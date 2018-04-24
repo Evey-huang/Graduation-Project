@@ -21,6 +21,11 @@
               </nuxt-link>
             </el-menu-item>
             <el-menu-item index="2-3">
+              <nuxt-link tag="span" to="/admin/comment">
+                <i class="el-icon-edit"/>评论管理
+              </nuxt-link>
+            </el-menu-item>
+            <el-menu-item index="2-4">
               <nuxt-link tag="span" to="/admin/article">
                 <i class="el-icon-tickets"/>全部文章
               </nuxt-link>
@@ -29,7 +34,7 @@
         </el-submenu>
         <el-menu-item index="3">
           <nuxt-link tag="span" slot="title" to="/admin/client">
-            <i class="el-icon-service"/>客户管理
+            <i class="el-icon-service"/>用户管理
           </nuxt-link>
         </el-menu-item>
       </el-menu>
@@ -70,6 +75,7 @@ export default {
   }
   .main {
     padding: 10px !important;
+    background: #fff;
   }
 }
 </style>

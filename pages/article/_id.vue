@@ -4,9 +4,10 @@
       <div class="content">
         <h2 class="title">{{article.title}}</h2>
         <p class="title-meta">
-          <span class="time"> {{article.createAt | toYMD}}</span> | 
-          <span class="views"><i class="iconfont icon-yanjing"></i>阅读 {{article.meta.views}} 次</span> |
-          <span><i class="iconfont icon-xihuan" @click.once="like()"></i>喜欢 {{article.meta.likes}} 次</span>
+          <span class="author">Evey</span> |
+          <span class="time"> {{ article.createAt | toYMD }}</span> | 
+          <span class="views"><i class="iconfont icon-yanjing"></i>阅读 {{ article.meta.views }} 次</span> |
+          <span><i class="iconfont icon-xihuan" @click.once="like()"></i>喜欢 {{ article.meta.likes }} 次</span>
         </p>
         <article class="markdown-body" v-html="compiledMarkdown"></article>
         <div class="metas">
@@ -17,6 +18,60 @@
             </nuxt-link>
           </p>
         </div>
+        <!-- 登录后的评论框 -->
+        <div class="comment-box" v-show="commentShow">
+          <div class="pull-left"><img src="~/assets/images/comment-avatar.png" alt="评论头像"></div>
+          <div class="comment-form">
+            <el-form :model="commentForm">
+              <el-form-item>
+                <el-input type="textarea" v-model="commentForm.comment" placeholder="说说你的想法"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="onSubmit">评论</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+        </div>
+        <!-- 评论列表 -->
+        <div class="comment-list" v-show="commentShow">
+          <ul>
+            <li class="item" v-for="comment in commentsList" :key="comment.id">
+              <div class="comment-img">
+                <img src="~/assets/images/comment-avatar.png" alt="评论头像">
+              </div>
+              <div class="comment-content">
+                <p class="title">{{ comment.name }}</p>
+                <p>{{ comment.content }}</p>
+                <p class="comment-meta">
+                  <span><i class="iconfont icon-comment1"></i>评论</span>
+                  <span class="time">{{ comment.createAt | toLocalString }}</span>
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- 登录前的评论框 -->
+        <div class="comment-box-before" v-show="!commentShow">
+          <p class="title">评论</p>
+          <div class="box-content">
+            <span class="login" @click="handleSignIn">登录</span>
+            <span>说说你的想法</span>
+          </div>
+        </div>
+        <!-- 登录弹出窗口 -->
+        <el-dialog title="登录" :visible.sync="isShow" width="25%" center>
+          <el-form :model="signInForm">
+            <el-form-item label="用户名">
+              <el-input v-model="signInForm.name" placeholder="请输入用户名"></el-input>
+            </el-form-item>
+            <el-form-item label="密码">
+              <el-input v-model="signInForm.password" type="password" placeholder="请输入密码"></el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="signIn">登录</el-button>
+          </div>
+        </el-dialog>
       </div>
       <div class="aside">
         <div class="aside-article">
@@ -64,17 +119,102 @@ export default {
       error({ statusCode: 404 });
     }
   },
+  data() {
+    return {
+      commentForm: {
+        comment: ''
+      },
+      commentsList: [], // 评论列表
+      commentShow: false,
+      isShow: false,
+      userName: "",
+      signInForm: {
+        name: '',
+        password: ''
+      }
+    }
+  },
   methods: {
     like() {
       axios.put(`/like/${this.article.id}`).then(res => {
         this.article.meta.likes++;
       })
+    },
+    // 获取评论列表
+    getListComments() {
+      axios.get("/comment", {params: {postID: this.article.id}}).then(res => {
+        this.commentsList = res.data.comments
+      })
+    },
+    // 提交评论
+    onSubmit() {
+      let params = {
+        content: this.commentForm.comment,
+        name: this.userName,
+        postID: this.article.id
+      }
+      axios.post("/comment", params).then(res => {
+        this.commentForm = {
+          content: ''
+        }
+        this.getListComments()
+      })
+    },
+    getLogin(){
+      const cookies = decodeURIComponent(document.cookie);
+      if(cookies) {
+        const arr = cookies.split("; ");
+        arr.forEach((item) => {
+          const Arr = item.split("=");
+          if(Arr[0].trim() == "login" && Arr[1]){
+            this.commentShow = true;
+            this.userName = JSON.parse(Arr[1]).name;
+          }
+        })
+      }
+    },
+    handleSignIn() {
+      this.isShow = true
+    },
+    signIn() {
+      if(!this.signInForm.name){
+        return this.$message({
+          message: `请填写用户名`,
+          type: 'error'
+        })
+      } else if(!this.signInForm.password) {
+        return this.$message({
+          message: `请填写密码`,
+          type: 'error'
+        })
+      } else{
+        let params = {
+          name: this.signInForm.name,
+          password: this.signInForm.password,
+          type: 'signin'
+        } 
+        axios.post("/client", params).then(res => {
+          var data = res.data;
+          if(data.code == 0){
+            this.$message({message: data.message, type: 'success'});
+            this.getLogin();
+          } else if(data.code == 1){
+            this.$message({message: data.message, type: 'error'})
+          }
+        })
+      }
+       this.isShow = false
+       this.commentShow = true
     }
   },
   computed: {
     compiledMarkdown() {
       return marked(this.article.content);
     }
+  },
+  mounted() {
+    this.getLogin();
+    this.getListComments();
   }
 };
 </script>
@@ -88,8 +228,10 @@ export default {
     display: flex;
     justify-content: space-between;
     .content {
-      padding: 10px 45px;
+      margin: 15px 30px;
+      padding: 0 15px;
       flex: 3;
+      background: #fff;
       .metas {
         margin: 30px 0;
         line-height: 2;
@@ -124,14 +266,84 @@ export default {
           list-style: inherit;
         }
       }
+      .comment-box {
+        .pull-left {
+          margin-top: 20px;
+          float: left;
+        }
+        .comment-form {
+          float: left;
+          margin: 20px 0 0 20px;
+          width: 90%;
+        }
+      }
+      .comment-box-before {
+        margin-bottom: 40px;
+        .title {
+          color: #909090;
+          font-size: 18px;
+          margin-bottom: 20px;
+        }
+        .box-content {
+          background: #f4f5f5;
+          padding: 35px 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .login {
+            cursor: pointer;
+            color: #007fff;
+            border: 1px solid #007fff;
+            padding: 8px;
+            @include border-radius(4px);
+            font-size: 14px;
+            margin-right: 20px;
+          }
+        }
+      }
+      .comment-list {
+        margin-top: 40px;
+        .item {
+          display: block;
+          .comment-img {
+            float: left;
+          }
+          .comment-content {
+            margin-left: 15px;
+            margin-bottom: 30px;
+            .title {
+              color: #333;
+              text-align: left;
+            }
+            p {
+              margin-top: 10px;
+            }
+            .comment-meta {
+              color: #909090;
+              font-size: 14px;
+              i {
+                padding-right: 5px;
+              }
+              .time {
+                margin-left: 20px;
+              }
+            }
+          }
+        }
+      }
+      .dialog-footer {
+        button {
+          width: 100%;
+        }
+      }
     }
     .aside {
-      margin-top: 30px;
+      margin-top: 15px;
       flex: 1;
       .title {
         border-bottom: 1px solid #dddfe2;
-        padding-bottom: 20px;
-        width: 100%;
+        padding: 10px 0 10px 10px;
+        width: 96%;
         span {
           border-left: 3px solid #4a90e2;
           padding-left: 10px;
@@ -140,11 +352,13 @@ export default {
         }
       }
       .aside-article {
+        background: #fff;
         ul {
-          margin-top: 20px;
+          margin-top: 15px;
+          padding-left: 20px;
           li {
             line-height: 1.5;
-            margin-bottom: 15px;
+            padding-bottom: 15px;
             span {
               a {
                 color: #212121;
@@ -159,9 +373,11 @@ export default {
         }
       }
       .aside-tag {
-        margin-top: 50px;
+        margin-top: 15px;
+        background: #fff;
         ul {
-          margin-top: 20px;
+          margin-top: 10px;
+          padding: 0 0 15px 5px;
           display: flex;
           flex-wrap: wrap;
           align-items: center;
@@ -171,10 +387,18 @@ export default {
             border: 1px solid #dddfe2;
             margin: 5px;
             font-size: 14px;
+            @include border-radius(4px);
+            &:hover {
+              background: #1A88FA;
+              @include opacity(0.9);
+            }
             a {
               color: #666;
               padding: 5px;
               display: inline-block;
+              &:hover {
+                color: #fff;
+              }
             }
           }
         }

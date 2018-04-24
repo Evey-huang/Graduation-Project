@@ -94,7 +94,6 @@ export default {
     // 搜索文章
     handleSearch() {
       axios.get( `/article?keyword=${this.search}`).then(res => {
-        // console.log(res)
         this.articleList = res.data.articles
       })
     }

@@ -1,22 +1,40 @@
-# sky-cloud
+## 1. 环境搭建
 
-> Nuxt.js project
+* 安装 `monogodb`
+* 配置用户密码 (记得在 `config` 中修改)
+* 安装 `node >= 8.0`
+* 安装 `pm2`
 
-## Build Setup
+## 2. 启动服务
 
-``` bash
-# install dependencies
+```bash
+# 拉取 或 更新代码
+$ git clone <url> # Or git pull
+
+# 安装依赖
 $ npm install # Or yarn install
 
-# serve with hot reload at localhost:3000
+# 开发环境启动
 $ npm run dev
 
-# build for production and launch server
+# 生产环境 打包 及 启动
 $ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
+$ pm2 start ecosystem.config.js
 ```
+
+
+## 3. 其他说明
+
+* 后台管理系统的路径为 `域名/admin`
+* 登录的用户在 config 的 users 中配置
+* api 路径为 `域名/api`
+
+## 4. 技术栈
+
+* Nuxt.js
+* Node.js
+* Mongodb
+* ElementUI
+
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
