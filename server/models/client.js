@@ -16,11 +16,9 @@ const ClientSchema = new Schema({
 
   // 密码
   password: { type: String, required: true, validate: /[\w-]+/ },
-
-  // 手机号
-  phone: {
-    type: String
-  }, 
+  
+  // 确认密码
+  checkPass: { type: String, required: true, validate: /[\w-]+/ },
 
   // 创建时间
   createAt: { type: Date, default: Date.now },

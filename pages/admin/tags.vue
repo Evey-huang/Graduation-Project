@@ -5,8 +5,8 @@
       <span @click="handleNew"><i class="icon el-icon-plus"></i></span>
       <span @click="getListTags"><i class="icon el-icon-refresh"></i></span>
       <el-dialog :title="tagDialog.add ? '添加标签' : '修改标签'" :visible.sync="tagDialog.isShow" width="20%" center>
-        <el-form :model="tags">
-          <el-form-item label="名称">
+        <el-form :model="tags" :rules="tagRules">
+          <el-form-item label="名称" prop="name">
             <el-input v-model="tags.name" placeholder="请输入标签名称"></el-input>
           </el-form-item>
           <el-form-item label="描述">
@@ -51,6 +51,13 @@ export default {
         isShow: false,
         add: false,
         edit: false
+      },
+      // 表单校验
+      tagRules: {
+        name: [
+          { required: true, message: '请输入标签名', trigger: 'blur' },
+          { max: 10, message: '标签名最多为10个字符', trigger: 'blur' }
+        ]
       }
     }
   },

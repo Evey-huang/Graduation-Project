@@ -16,7 +16,7 @@ const ArticleSchema = new Schema({
   title: { type: String, required: true, validate: /\S+/ },
 
   // 作者
-  // author: { type: String, required: true, validate: /\S+/ },
+  author: { type: String, required: true, validate: /\S+/ },
   
   // 文章关键词
   keywords: { type: String },
@@ -40,7 +40,7 @@ const ArticleSchema = new Schema({
     // 点赞数
     likes: { type: Number, default: 0 },
     // 评论数量
-    // comments: { type: Number, default: 0 }
+    comments: { type: Number, default: 0 }
   },
 
   // 创建时间

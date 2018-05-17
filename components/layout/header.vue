@@ -19,7 +19,7 @@
               </el-dropdown-menu>
             </el-dropdown>
           </li>
-          <li class="item" v-show="!aritcleShow">
+          <li class="item auth" v-show="!aritcleShow">
             <span @click="openSignInDialog" class="signIn" >登录</span>|
             <span @click="openSignUpDialog" class="signUp">注册</span>
           </li>
@@ -36,11 +36,11 @@
             </el-dropdown>
           </li>
           <el-dialog title="登录" :visible.sync="signDialog.signIn" width="25%" center>
-            <el-form :model="signInForm">
-              <el-form-item label="用户名">
+            <el-form :model="signInForm" :rules="loginRules">
+              <el-form-item label="用户名" prop="name">
                 <el-input v-model="signInForm.name" placeholder="请输入用户名"></el-input>
               </el-form-item>
-              <el-form-item label="密码">
+              <el-form-item label="密码" prop="password">
                 <el-input v-model="signInForm.password" type="password" placeholder="请输入密码"></el-input>
               </el-form-item>
             </el-form>
@@ -49,15 +49,15 @@
             </div>
           </el-dialog>
           <el-dialog title="注册" :visible.sync="signDialog.signUp" width="25%" center>
-            <el-form :model="clients">
-              <el-form-item label="用户名">
+            <el-form :model="clients" :rules="logoutRules">
+              <el-form-item label="用户名" prop="name">
                 <el-input v-model="clients.name" placeholder="请输入用户名"></el-input>
               </el-form-item>
-              <el-form-item label="手机">
-                <el-input v-model="clients.phone" placeholder="请输入手机号"></el-input>
-              </el-form-item>
-              <el-form-item label="密码">
+              <el-form-item label="密码" prop="password">
                 <el-input type="password" v-model="clients.password" placeholder="请输入密码"></el-input>
+              </el-form-item>
+              <el-form-item label="确认密码" prop="checkPass">
+                <el-input type="password" v-model="clients.checkPass" placeholder="请再次输入密码"></el-input>
               </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -66,9 +66,6 @@
           </el-dialog>
         </ul>
       </nav>
-      <div class="tips" v-if="success">
-        <span><i class="iconfont icon-tipssuccess"></i>注册成功</span>
-      </div>
     </div>
     <div class="visible-xs">
       <span><img :class="['menu-more',{'rotate': isShow}]" @click.stop="showMenu" src="~/assets/images/ic_menu_more2.png"/></span>
@@ -91,11 +88,30 @@ export default {
     Search
   },
   data () {
+    // 校验规则
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'))
+      }
+      if (!/^\w+$/.test(value)) {
+        callback(new Error('密码由字母、数字及下划线组成'))
+      } else {
+        callback()
+      }
+    };
+    var validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'));
+      } else if (value !== this.clients.password) {
+        callback(new Error('两次输入密码不一致!'));
+      } else {
+        callback();
+      }
+    };
     return {
       aritcleShow: false,
       isShow: false,
       isOpen: false,
-      success: false,
       userName: '',
       signDialog: {
         signIn: false,
@@ -108,7 +124,32 @@ export default {
       clients: { // 注册
         name: '',
         password: '',
-        phone: ''
+        checkPass: ''
+      },
+      // 登录表单校验
+      loginRules: {
+        name: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { max: 10, message: '用户名最多为10个字符', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, validator: validatePass, trigger: 'blur' },
+          { max: 10, message: '密码最多为10个字符', trigger: 'blur' }
+        ],
+      },
+      // 注册表单校验
+      logoutRules: {
+        name: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { max: 10, message: '用户名最多为10个字符', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, validator: validatePass, trigger: 'blur' },
+          { max: 10, message: '密码最多为10个字符', trigger: 'blur' }
+        ],
+        checkPass: [
+          { required: true, validator: validatePass2, trigger: 'blur' }
+        ]
       }
     }
   },
@@ -118,7 +159,6 @@ export default {
     },
     goSearch (str) {
       this.isOpen = true
-      // this.$router.push(`/search/${str}`)
     },
     // 打开登录弹窗
     openSignInDialog() {
@@ -179,21 +219,24 @@ export default {
       let params = {
         name: this.clients.name,
         password: this.clients.password,
-        phone: this.clients.phone,
+        checkPass: this.clients.checkPass,
         type: 'signup'
       }
       axios.post("/client", params).then(res => {
-        this.success = true
         this.clients = {
           name: '',
           password: '',
-          phone: ''
+          checkPass: ''
         }
-        setTimeout(() => {
-          this.success = false
-        }, 2000)
+        var data = res.data;
+        if(data.code == 0){
+          this.$message({message: '注册成功', type: 'success'});
+        } else if(data.code == 1){
+          this.$message({message: data.message, type: 'error'})
+        }
       })
       this.signDialog.signUp = false
+    
     },
     // 退出登录
     signout() {
@@ -204,6 +247,7 @@ export default {
           this.userName = "";
           this.aritcleShow = false;
           this.$message({message: data.message,type: 'success'})
+          this.$router.push("/")
         }else{
           this.$message({message: data.message,type: 'error'})
         }
@@ -234,7 +278,7 @@ export default {
     z-index: 1;
     .container {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
       height: $header-height;
       .logo {

@@ -13,7 +13,7 @@ class Tag {
   // 创建标签
   static async create(req, res) {
     const tag = req.body;
-    console.log(tag);
+    // console.log(tag);
 
     // name validate
     if (!tag.name) {
@@ -101,7 +101,7 @@ class Tag {
     const tag = req.body;
     const id = req.params.id;
 
-    console.log(id);
+    // console.log(id);
     // name validate
     if (!tag.name) {
       return res.status(400).send("标签名为空");

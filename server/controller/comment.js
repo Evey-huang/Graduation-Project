@@ -3,6 +3,7 @@
  */
 
 const CommentModel = require("../models/comment");
+const ArticleModel = require("../models/article");
 
 const select = {
   id: false,
@@ -19,9 +20,15 @@ class Comment {
     if (!comment.content || !comment.postID) {
       return res.status(400).send("参数为空");
     }
+    let result = await ArticleModel.findOne({ id: comment.postID });
+    // console.log(result);
+    
     await new CommentModel(comment)
       .save()
       .then(() => {
+        // 评论数+1
+        result.meta.comments++;
+        result.save();
         return res.status(200).json({
           success: true,
           message: "评论创建成功"
@@ -97,6 +104,7 @@ class Comment {
       message: "删除成功"
     });
   }
+
 }
 
 export default Comment;

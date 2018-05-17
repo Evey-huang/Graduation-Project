@@ -26,14 +26,18 @@ class Client {
       if (!client.password) {
         return res.status(400).send("密码为空");
       }
-  
-      if (!client.phone) {
-        return res.status(400).send("手机号为空");
+
+      if (!client.checkPass) {
+        return res.status(400).send("请再次输入密码");
       }
-  
       let phoneValidate = /^1[3-578]\d{9}$/;
-      if (client.phone && !phoneValidate.test(client.phone)) {
-        return res.status(400).send("手机号不合法！");
+      var userData = await ClientModel.find({"name": client.name});
+      if(userData.length > 0){
+        return res.status(200).json({
+          code: 1,
+          message: "用户名已存在",
+          status: false
+        });
       }
       try {
         const result = await new ClientModel(client).save();

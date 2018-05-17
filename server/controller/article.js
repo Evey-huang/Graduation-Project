@@ -75,7 +75,6 @@ class Article {
   // 创建文章
   static async create(req, res) {
     const article = req.body;
-
     if (!article.title || !article.content) {
       return res.status(400).send("文章标题或内容为空");
     }
@@ -172,7 +171,8 @@ class Article {
     let isExist = await ArticleModel.findOne({ _id: id });
 
     if (!isExist) {
-      return res.status(404).json({
+      return res.status(200).json({
+        code: 0,
         success: false,
         message: "文章ID不存在"
       });
@@ -183,6 +183,25 @@ class Article {
     return res.status(200).json({
       success: true,
       message: "文章删除成功"
+    });
+  }
+
+  //根据作者查找文章
+  static async findByName(req, res) {
+    const name = req.body.name;
+
+    let isExist = await ArticleModel.find({ author: name });
+    if (!isExist) {
+      return res.status(200).json({
+        code: 0,
+        success: false,
+        message: "暂无数据"
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "success",
+      data: isExist
     });
   }
 }

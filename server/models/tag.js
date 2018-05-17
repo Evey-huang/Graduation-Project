@@ -11,7 +11,7 @@ const Schema = mongoose.Schema;
 autoIncrement.initialize(mongoose.connection);
 
 const TagSchema = new Schema({
-  // 分类名称
+  // 标签名称
   name: { type: String, required: true, validate: /\S+/ },
 
   // 描述

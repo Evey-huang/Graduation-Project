@@ -15,7 +15,7 @@
                 <div class="item-meta">
                   <span class="author">
                     <i class="iconfont icon-people"></i>
-                    <span>Evey</span>
+                    <span>{{ article.author }}</span>
                   </span>
                   <span class="date">
                     <i class="iconfont icon-shijian"></i>
@@ -31,7 +31,7 @@
                   </span>
                   <span class="comment">
                     <i class="iconfont icon-comment"></i>
-                    <span>{{ commentsCount }}</span>
+                    <span>{{ article.meta.comments }}</span>
                   </span>
                 </div>
               </div>
@@ -46,7 +46,6 @@
               <ul>
                 <li v-for="(article, index) in hot" :key="index">
                   <span><nuxt-link :to="`/article/${article.id}`">{{article.title}}</nuxt-link></span>
-                  <p>sky-cloud前端团队</p>
                 </li>
               </ul>
             </div>
@@ -91,18 +90,10 @@ export default {
   },
   data() {
     return {
-      commentsCount: '',
       article: []
     }
   },
-  //postID: this.article.id
   methods: {
-    // 获取评论数
-    getListComments() {
-      axios.get("/comment", {params: {}}).then(res => {
-        this.commentsCount = res.data.comments.length
-      })
-    },
     async getArticles(flag, TagName) {
       if (flag) {
         TagName = this.$route.query.tag;
@@ -130,9 +121,6 @@ export default {
           this.pageSize = res.data.pageSize;
         });
     }
-  },
-  mounted() {
-    this.getListComments()
   }
 };
 </script>
@@ -190,6 +178,7 @@ export default {
             p {
               flex: 3;
               margin-top: 10px;
+              padding-right: 10px;
             }
             .item-meta {
               text-align: left;
@@ -241,16 +230,6 @@ export default {
           li {
             line-height: 1.5;
             padding-bottom: 15px;
-            span {
-              a {
-                color: #212121;
-                font-size: 16px;
-              }
-            }
-            p {
-              color: #999;
-              font-size: 14px;
-            }
           }
         }
       }

@@ -9,7 +9,6 @@
       <el-table-column label="用户名" width="120">
         <template slot-scope="scope">{{ scope.row.name }}</template>
       </el-table-column>
-      <el-table-column prop="phone" label="手机号"></el-table-column>
       <el-table-column prop="password" label="密码"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
@@ -22,9 +21,6 @@
       <el-form :model="clients">
         <el-form-item label="用户名">
           <el-input v-model="clients.name" placeholder="请输入用户名"></el-input>
-        </el-form-item>
-        <el-form-item label="手机">
-          <el-input v-model="clients.phone" placeholder="请输入手机号"></el-input>
         </el-form-item>
         <el-form-item label="密码">
           <el-input type="password" v-model="clients.password" placeholder="请输入密码"></el-input>
@@ -50,7 +46,7 @@ export default {
       },
       clients: {
         name: '',
-        phone: '',
+        // phone: '',
         password: ''
       }
     }
@@ -67,7 +63,6 @@ export default {
       this.clients = {
         id: row._id,
         name: row.name,
-        phone: row.phone,
         password: row.password
       }
       this.clientDialog.isShow = true
@@ -86,7 +81,6 @@ export default {
     commitUpdateClient() {
       let params = {
         name: this.clients.name,
-        phone: this.clients.phone,
         password: this.clients.password
       }
       axios.put(`/client/${this.clients.id}`, params).then(res => {

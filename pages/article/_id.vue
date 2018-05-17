@@ -4,7 +4,7 @@
       <div class="content">
         <h2 class="title">{{article.title}}</h2>
         <p class="title-meta">
-          <span class="author">Evey</span> |
+          <span class="author">{{ article.author }}</span> |
           <span class="time"> {{ article.createAt | toYMD }}</span> | 
           <span class="views"><i class="iconfont icon-yanjing"></i>阅读 {{ article.meta.views }} 次</span> |
           <span><i class="iconfont icon-xihuan" @click.once="like()"></i>喜欢 {{ article.meta.likes }} 次</span>
@@ -20,7 +20,7 @@
         </div>
         <!-- 登录后的评论框 -->
         <div class="comment-box" v-show="commentShow">
-          <div class="pull-left"><img src="~/assets/images/comment-avatar.png" alt="评论头像"></div>
+          <!-- <div class="pull-left"><img src="~/assets/images/comment-avatar.png" alt="评论头像"></div> -->
           <div class="comment-form">
             <el-form :model="commentForm">
               <el-form-item>
@@ -60,11 +60,11 @@
         </div>
         <!-- 登录弹出窗口 -->
         <el-dialog title="登录" :visible.sync="isShow" width="25%" center>
-          <el-form :model="signInForm">
-            <el-form-item label="用户名">
+          <el-form :model="signInForm" :rules="loginRules">
+            <el-form-item label="用户名" prop="name">
               <el-input v-model="signInForm.name" placeholder="请输入用户名"></el-input>
             </el-form-item>
-            <el-form-item label="密码">
+            <el-form-item label="密码" prop="password">
               <el-input v-model="signInForm.password" type="password" placeholder="请输入密码"></el-input>
             </el-form-item>
           </el-form>
@@ -120,6 +120,16 @@ export default {
     }
   },
   data() {
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'))
+      }
+      if (!/^\w+$/.test(value)) {
+        callback(new Error('密码由字母、数字及下划线组成'))
+      } else {
+        callback()
+      }
+    };
     return {
       commentForm: {
         comment: ''
@@ -131,6 +141,17 @@ export default {
       signInForm: {
         name: '',
         password: ''
+      },
+      // 登录校验
+      loginRules: {
+        name: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { max: 10, message: '用户名最多为10个字符', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, validator: validatePass, trigger: 'blur' },
+          { max: 6, message: '密码最多为6个字符', trigger: 'blur' }
+        ]
       }
     }
   },
@@ -267,14 +288,14 @@ export default {
         }
       }
       .comment-box {
-        .pull-left {
-          margin-top: 20px;
-          float: left;
-        }
+        // .pull-left {
+        //   margin-top: 20px;
+        //   float: left;
+        // }
         .comment-form {
-          float: left;
-          margin: 20px 0 0 20px;
-          width: 90%;
+          // float: left;
+          // margin: 20px 0 0 20px;
+          width: 100%;
         }
       }
       .comment-box-before {
@@ -303,6 +324,7 @@ export default {
       }
       .comment-list {
         margin-top: 40px;
+        float: left;
         .item {
           display: block;
           .comment-img {
@@ -317,6 +339,8 @@ export default {
             }
             p {
               margin-top: 10px;
+              font-size: 14px;
+              width: 800px;
             }
             .comment-meta {
               color: #909090;

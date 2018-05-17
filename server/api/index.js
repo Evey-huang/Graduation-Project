@@ -23,9 +23,9 @@ router
   .get("/", (req, res, next) => {
     res.status(200);
     res.json({
-      name: "天元云api",
+      name: "毕设api",
       version: "1.0.0",
-      author: "天元云团队",
+      author: "Evey",
       powered: ["Vue", "Nuxt.js", "MongoDB", "Nodejs", "Express", "Nginx"]
     });
   })
@@ -50,7 +50,7 @@ router
       res.status(400);
       res.json({
         success: false,
-        message: "登陆失败, 用户名或密码错误！"
+        message: "登录失败, 用户名或密码错误！"
       });
     }
   })
@@ -76,6 +76,7 @@ router
   .get("/article/:id", Article.get)
   .put("/article/:id", verifyToken, Article.update)
   .delete("/article/:id", verifyToken, Article.delete)
+  .post("/article/author",Article.findByName)
 
   // 喜欢文章
   .put("/like/:id", Like.like)

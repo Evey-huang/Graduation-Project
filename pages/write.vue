@@ -44,7 +44,27 @@
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 import axios from "~/plugins/axios";
-
+var cookies = decodeURIComponent(document.cookie);
+const illegal = ['麻痹','操你妈','傻逼','蠢驴'];
+var userName = "";
+if(cookies) {
+  const arr = cookies.split("; ");
+  arr.forEach((item) => {
+    const Arr = item.split("=");
+    if(Arr[0].trim() == "login" && Arr[1]){
+      userName = JSON.parse(Arr[1]).name;
+    }
+  })
+}
+const articleNull = {
+      title: "",
+      keywords: "",
+      description: "",
+      content: "",
+      thumb: "",
+      tag: [],
+      author: userName
+    };
 export default {
   layout: 'empty',
   components: {
@@ -52,14 +72,7 @@ export default {
   },
   async asyncData({ query }) {
     let res = await axios.get("/tag");
-    let article = {
-      title: "",
-      keywords: "",
-      description: "",
-      content: "",
-      thumb: "",
-      tag: []
-    };
+    let article = articleNull;
     if (query.articleId) {
       let res2 = await axios.get(`/article/${query.articleId}`, {});
       res2.data.article.tag.forEach((item, index) => {
@@ -74,14 +87,7 @@ export default {
   },
   beforeRouteUpdate(to, from, next) {
     if (!to.query.articleId) {
-      this.article = {
-        title: "",
-        keywords: "",
-        description: "",
-        content: "",
-        thumb: "",
-        tag: []
-      };
+      this.article = articleNull;
     }
     next();
   },
@@ -123,6 +129,15 @@ export default {
         });
     },
     save(value, render) {
+      illegal.forEach((item) => {
+        var content = this.article.content;
+        if(content.indexOf(item) > -1){
+          this.article.content = content.replace(item,'***');
+        }
+      })
+      if(this.article.content.length>2000){
+        return this.$message.error("文章不能超过2000字");
+      }
       if (!this.$route.query.articleId) {
         axios.post("/article", this.article).then(res => {
           if (res.data.success) {
