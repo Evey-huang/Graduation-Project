@@ -51,6 +51,7 @@ $ pm2 start ecosystem.config.js
 * [x] 修改用户信息
 * [x] 权限控制
 * [x] 查看主页自己发表过的文章
+...
 
 ## 6. 系统部分页面
 ![插图1](http://p1cjg886l.bkt.clouddn.com/readMe1.png)
