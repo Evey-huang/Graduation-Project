@@ -14,10 +14,10 @@ $ git clone <url> # Or git pull
 # 安装依赖
 $ npm install # Or yarn install
 
-# 开发环境启动
+# 开发环境启动
 $ npm run dev
 
-# 生产环境 打包 及 启动
+# 生产环境打包及启动
 $ npm run build
 $ pm2 start ecosystem.config.js
 ```
@@ -36,5 +36,27 @@ $ pm2 start ecosystem.config.js
 * Mongodb
 * ElementUI
 
+## 5. 实现的功能
+
+* [x] 文章列表展示
+* [x] 撰写文章
+* [x] 修改文章
+* [x] 删除文章
+* [x] 搜索文章
+* [x] 给文章点赞
+* [x] 添加评论
+* [x] 删除评论
+* [x] 注册
+* [x] 登录
+* [x] 修改用户信息
+* [x] 权限控制
+* [x] 查看主页自己发表过的文章
+
+## 6. 系统部分页面
+![插图1](~/assets/readMe1.png)
+![插图2](~/assets/readMe2.png)
+![插图3](~/assets/readMe3.png)
+![插图4](~/assets/readMe4.png)
+![插图5](~/assets/readMe5.png)
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
