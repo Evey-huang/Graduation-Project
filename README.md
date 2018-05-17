@@ -53,10 +53,10 @@ $ pm2 start ecosystem.config.js
 * [x] 查看主页自己发表过的文章
 
 ## 6. 系统部分页面
-![插图1](/assets/readMe1.png)
-![插图2]("~/assets/readMe2.png")
-![插图3](~/assets/readMe3.png)
-![插图4](~/assets/readMe4.png)
-![插图5](~/assets/readMe5.png)
+![插图1](http://p1cjg886l.bkt.clouddn.com/readMe1.png)
+![插图2](http://p1cjg886l.bkt.clouddn.com/readMe2.png)
+![插图3](http://p1cjg886l.bkt.clouddn.com/readMe3.png)
+![插图4](http://p1cjg886l.bkt.clouddn.com/readMe4.png)
+![插图5](http://p1cjg886l.bkt.clouddn.com/readMe5.png)
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
