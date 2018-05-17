@@ -53,8 +53,8 @@ $ pm2 start ecosystem.config.js
 * [x] 查看主页自己发表过的文章
 
 ## 6. 系统部分页面
-![插图1](~/assets/readMe1.png)
-![插图2](~/assets/readMe2.png)
+![插图1](/assets/readMe1.png)
+![插图2]("~/assets/readMe2.png")
 ![插图3](~/assets/readMe3.png)
 ![插图4](~/assets/readMe4.png)
 ![插图5](~/assets/readMe5.png)
